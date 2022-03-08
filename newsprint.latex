@@ -1,0 +1,193 @@
+\documentclass{article}
+% Use upquote if available, for straight quotes in verbatim environments
+\usepackage{upquote}
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\usepackage{fvextra}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,breakanywhere,commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\makeatother
+% Allow footnotes in longtable head/foot
+\usepackage{footnotehyper}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\usepackage[normalem]{ulem}
+% Avoid problems with \sout in headers with hyperref
+%\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+%---
+\usepackage[colorlinks=true,allcolors=LinkColor]{hyperref}
+%metadata
+\hypersetup{
+	$if(subject)$
+	pdfsubject={$subject$},
+	$endif$
+	pdfcreator={Latex via Pandoc newsprint theme},
+}
+\author{}
+\date{}
+\usepackage[a4paper]{geometry}
+%colors
+\usepackage[table]{xcolor}
+\definecolor{BackgroundColor}{HTML}{F3F2EE}
+\definecolor{TextColor}{HTML}{1F0909}
+\definecolor{H1UnderlineColor}{HTML}{C5C5C5}
+\definecolor{Quoteline}{HTML}{BABABA}
+\definecolor{Quote}{HTML}{656565}
+\definecolor{LinkColor}{HTML}{065588}
+\definecolor{ShadeColor}{HTML}{DADADA}
+\definecolor{LinkColor}{HTML}{065588}
+\definecolor{TextColor}{HTML}{1F0909}
+\definecolor{TableEvenColor}{HTML}{E8E7E7}
+\pagecolor{BackgroundColor}
+%fonts
+\usepackage{fontspec}
+	%-------set global color
+\makeatletter
+	  \color{TextColor}\global\let\default@color\current@color
+\makeatother
+	%-------https://tex.stackexchange.com/a/29409
+\setmainfont[Extension=.ttf,Path=/home/cab1729/Templates/Markdown/Pandoc/fonts/newsprint_fonts/,UprightFont=timesnewroman,ItalicFont=timesnewromanitalic,BoldFont=timesnewromanbold,BoldItalicFont=timesnewromanbolditalic]{}
+\linespread{1.25}%1.5/1.2
+%headings
+\usepackage{sectsty}
+\usepackage{titlesec}
+ \titleformat{\section}{\fontsize{1.875em}{1.6em}\normalfont}{}{}{\vspace{2em}}[\vspace{0.8125em}\textcolor{H1UnderlineColor}{\titlerule[0.0104167in]}\vspace{0.5em}]
+\titleformat{\subsection}{\fontsize{1.312em}{1.15em}\bfseries}{}{}{\vspace{2.285714em}}[\vspace{0.75em}]
+\titleformat{\subsubsection}{\fontsize{1.312em}{1.15em}\normalfont}{}{}{\vspace{2.285714em}}[\vspace{1.15em}]
+\titleformat{\paragraph}{\fontsize{1.125em}{\baselinestretch}\bfseries}{}{}{\vspace*{2.67em}}
+\titleformat{\subparagraph}{\fontsize{1em}{1.5em}\bfseries}{}{}{}
+\usepackage[none]{hyphenat}
+\raggedright
+\usepackage[most]{tcolorbox}
+%quotes
+\renewenvironment{quote}{
+	\begin{tcolorbox}[
+			notitle,
+			frame hidden,
+			interior hidden,
+			sharp corners,
+			enhanced,
+			boxrule=0pt,
+			colback=BackgroundColor,
+			coltext=Quote,
+			boxsep=0em,
+			left=2em,
+			borderline west={0.052083in}{0pt}{Quoteline}
+	]
+		\itshape
+}{
+	\end{tcolorbox}
+}
+%code background
+\newenvironment{Shaded}{
+	\begin{tcolorbox}[
+			notitle,
+			breakable,
+			frame hidden,
+			sharp corners,
+			enhanced,
+			boxrule=0pt,
+			colback=ShadeColor,
+			boxsep=0em,
+			left=0.0208333334in,
+			right=0.0208333334in,
+	]
+	\fontsize{0.875em}{1.714285em}
+}{
+	\end{tcolorbox}
+}
+%code highlighting - taken from CodeMirror
+\newcommand{\AlertTok}[1]{#1}
+\newcommand{\AnnotationTok}[1]{#1}
+\newcommand{\AttributeTok}[1]{\textcolor[HTML]{0000CC}{#1}}
+\newcommand{\BaseNTok}[1]{#1}
+\newcommand{\BuiltInTok}[1]{\textcolor[HTML]{3300aa}{#1}}
+\newcommand{\CharTok}[1]{#1} \newcommand{\CommentTok}[1]{\textcolor[HTML]{aa5500}{#1}}
+\newcommand{\CommentVarTok}[1]{#1}
+\newcommand{\ConstantTok}[1]{#1}
+\newcommand{\ControlFlowTok}[1]{#1}
+\newcommand{\DataTypeTok}[1]{\textcolor[HTML]{008855}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[HTML]{116644}{#1}}
+\newcommand{\DocumentationTok}[1]{#1}
+\newcommand{\ErrorTok}[1]{\textcolor[HTML]{FF0000}{#1}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[HTML]{116644}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[HTML]{0000FF}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{#1}
+\newcommand{\KeywordTok}[1]{\textcolor[HTML]{770088}{#1}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{#1}
+\newcommand{\OtherTok}[1]{#1}
+\newcommand{\PreprocessorTok}[1]{#1}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[HTML]{AA1111}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[HTML]{AA1111}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[HTML]{AA1111}{#1}}
+\newcommand{\VariableTok}[1]{#1}
+\newcommand{\VerbatimStringTok}[1]{#1}
+\newcommand{\WarngingTok}[1]{#1}
+%no highlighting code
+\RecustomVerbatimEnvironment{verbatim}{Verbatim}{breaklines,breakanywhere}%https://tex.stackexchange.com/a/469504
+\BeforeBeginEnvironment{verbatim}{\begin{Shaded}}
+\AfterEndEnvironment{verbatim}{\end{Shaded}}
+%inline code behaviour
+\def\inlinecode #1 {\colorbox{ShadeColor}{#1}}
+\newcommand{\VERB}{\inlinecode \Verb[breaklines,breakanywhere,commandchars=\\\{\}]}
+\renewcommand{\texttt}[1]{\VERB|#1|}
+%tables
+%deviation: not making table head bold and capital to give user more freedom
+\renewenvironment{longtable}{
+	\renewcommand{\toprule}{\rowcolor{ShadeColor}}
+	\renewcommand{\midrule}{}
+	\renewcommand{\endhead}{}
+	\renewcommand{\bottomrule}{}
+	\begin{center}
+	\rowcolors{2}{TableEvenColor}{BackgroundColor}%https://tex.stackexchange.com/a/5365
+	\begin{tabular}
+}{
+	\end{tabular}
+	\end{center}
+	\vspace{1.5em}
+}
+%horizontal rules
+\let\Rule\rule
+\renewcommand{\rule}[2]{\textcolor{H1UnderlineColor}{\Rule{\linewidth}{0.0104167in}}}
+%document
+\begin{document}
+$body$
+\end{document}
