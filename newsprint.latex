@@ -78,7 +78,7 @@
 	  \color{TextColor}\global\let\default@color\current@color
 \makeatother
 	%-------https://tex.stackexchange.com/a/29409
-\setmainfont[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/newsprint-fonts/,UprightFont=timesnewroman,ItalicFont=timesnewromanitalic,BoldFont=timesnewromanbold,BoldItalicFont=timesnewromanbolditalic]{}
+\setmainfont[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/newsprint-fonts/timesnewroman,UprightFont=-regular,ItalicFont=-italic,BoldFont=-bold,BoldItalicFont=-bolditalic]{}
 \linespread{1.25}%1.5/1.2
 %headings
 \usepackage{sectsty}
