@@ -1,6 +1,12 @@
 # Pandoc-Themes
 General purpose themes for converting markdown to pdf using pandoc
 
+## Other projects
++ All of the testing is done with [zathura](https://wiki.archlinux.org/title/zathura)
++ The fonts have been obtained using [woff2ttf](https://archlinux.org/packages/extra/x86_64/woff2/) and [woff2otf.py](https://github.com/hanikesn/woff2otf)
++ Themes are inspired from all those who wrote themes for Typora
++ Of course, none of this would be possible without [pandoc](https://pandoc.org/) and [texlive](https://www.tug.org/texlive/)
+
 ## Contributing
 I know this is probably the loneliest account on Github, so most probably no one is reading this except me.
 But in case someone else is, **please contribute code**.
