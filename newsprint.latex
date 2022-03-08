@@ -69,8 +69,6 @@
 \definecolor{Quote}{HTML}{656565}
 \definecolor{LinkColor}{HTML}{065588}
 \definecolor{ShadeColor}{HTML}{DADADA}
-\definecolor{LinkColor}{HTML}{065588}
-\definecolor{TextColor}{HTML}{1F0909}
 \definecolor{TableEvenColor}{HTML}{E8E7E7}
 \pagecolor{BackgroundColor}
 %fonts
@@ -80,7 +78,7 @@
 	  \color{TextColor}\global\let\default@color\current@color
 \makeatother
 	%-------https://tex.stackexchange.com/a/29409
-\setmainfont[Extension=.ttf,Path=/home/cab1729/Templates/Markdown/Pandoc/fonts/newsprint_fonts/,UprightFont=timesnewroman,ItalicFont=timesnewromanitalic,BoldFont=timesnewromanbold,BoldItalicFont=timesnewromanbolditalic]{}
+\setmainfont[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/newsprint-fonts/,UprightFont=timesnewroman,ItalicFont=timesnewromanitalic,BoldFont=timesnewromanbold,BoldItalicFont=timesnewromanbolditalic]{}
 \linespread{1.25}%1.5/1.2
 %headings
 \usepackage{sectsty}
