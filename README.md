@@ -1,6 +1,11 @@
 # Pandoc-Themes
 General purpose themes for converting markdown to pdf using pandoc
 
+## Usage
+```bash
+pandoc --pdf-engine=xelatex -f markdown -t pdf --data-dir=/path/to/theme/folder/ --template=name_of_template.latex > /path/to/pdf/file
+```
+
 ## Other projects
 + All of the testing is done with [zathura](https://wiki.archlinux.org/title/zathura)
 + The fonts have been obtained using [woff2ttf](https://archlinux.org/packages/extra/x86_64/woff2/) and [woff2otf.py](https://github.com/hanikesn/woff2otf)
