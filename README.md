@@ -5,6 +5,7 @@ General purpose themes for converting markdown to pdf using pandoc
 ```bash
 pandoc --pdf-engine=xelatex -f markdown -t pdf --data-dir=/path/to/theme/folder/ --template=name_of_template.latex > /path/to/pdf/file
 ```
+Metadata from markdown file will not be given priority. Most of the things will be set by the templates.
 
 ## Other projects
 + All of the testing is done with [zathura](https://wiki.archlinux.org/title/zathura)
