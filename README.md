@@ -4,6 +4,8 @@ General purpose themes for converting markdown to pdf using pandoc.
 Examples for each theme stored in the _examples_ directory.
 
 ## Usage
+__Warning_: These templates are very liberal with packages and assume the user has the entirety of texlive installed._
+
 Symlink or copy the template files to your /usr/share/pandoc/data/templates/.
 
 Copy or symlink _pandoc-fonts_ to /usr/share/fonts/.
