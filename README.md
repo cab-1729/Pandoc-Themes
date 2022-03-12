@@ -2,8 +2,9 @@
 General purpose themes for converting markdown to pdf using pandoc
 
 ## Usage
+Symlink or copy the template files to your /usr/share/pandoc/data/templates/
 ```bash
-pandoc --pdf-engine=xelatex -f markdown -t pdf --data-dir=/path/to/theme/folder/ --template=name_of_template.latex > /path/to/pdf/file
+pandoc --pdf-engine=xelatex -f markdown -t pdf --template=name_of_template.tex > /path/to/pdf/file
 ```
 Metadata from markdown file will not be given priority. Most of the things will be set by the templates.
 
@@ -12,9 +13,3 @@ Metadata from markdown file will not be given priority. Most of the things will 
 + The fonts have been obtained using [woff2ttf](https://archlinux.org/packages/extra/x86_64/woff2/) and [woff2otf.py](https://github.com/hanikesn/woff2otf)
 + Themes are inspired from all those who wrote themes for Typora
 + Of course, none of this would be possible without [pandoc](https://pandoc.org/) and [texlive](https://www.tug.org/texlive/)
-
-## Contributing
-I know this is probably the loneliest account on Github, so most probably no one is reading this except me.
-But in case someone else is, **please contribute code**.
-
-I am aiming to make pandoc equivalents for all of Typora's themes. Their css source code is available on the internet. Please make sure themes are compatible with all markdown structures and common pandoc extensions.
