@@ -1,5 +1,7 @@
 # Pandoc-Themes
-General purpose themes for converting markdown to pdf using pandoc
+General purpose themes for converting markdown to pdf using pandoc.
+
+Examples for each theme stored in the _examples_ directory.
 
 ## Usage
 Symlink or copy the template files to your /usr/share/pandoc/data/templates/
