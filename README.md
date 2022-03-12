@@ -5,7 +5,8 @@ Examples for each theme stored in the _examples_ directory.
 
 ## Usage
 Symlink or copy the template files to your /usr/share/pandoc/data/templates/.
-Copy or symlink _pandoc-fonts_ to /usr/share/fonts/
+
+Copy or symlink _pandoc-fonts_ to /usr/share/fonts/.
 
 ```bash
 pandoc --pdf-engine=xelatex -f markdown -t pdf --template=name_of_template.tex /path/to/markdown/file.md > /path/to/pdf/file.pdf
