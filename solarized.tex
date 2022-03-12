@@ -24,7 +24,6 @@
 \usepackage{etoolbox}
 \makeatletter
 \makeatother
-\usepackage{footnotehyper}
 \usepackage{graphicx}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -46,28 +45,40 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 %---
-\usepackage[colorlinks=true,allcolors=LinkColor]{hyperref}
+\author{}
+\date{}
+\usepackage[a4paper,textwidth=8.95833in,left=0.3125in,right=0.3125in,top=0.20833in,bottom=1.041667in]{geometry}
+%colors
+\usepackage[table]{xcolor}
+\definecolor{BackgroundColor}{HTML}{FDF6E3}
+\definecolor{H1UnderlineColor}{HTML}{657B83}
+\definecolor{QuotelineColor}{HTML}{B58900}
+\definecolor{QuoteColor}{HTML}{93A1A1}
+\definecolor{LinkColor}{HTML}{268BD2}
+\definecolor{CodeColor}{HTML}{CB4B16}
+\definecolor{ShadeColor}{HTML}{EEE8D5}
+\definecolor{TextColor}{HTML}{839496}
+\definecolor{TableEvenColor}{HTML}{F8F8F8}
+\definecolor{TableBorderColor}{HTML}{CCCCCC}
+\pagecolor{BackgroundColor}
+%links
+\usepackage[colorlinks=true,allcolors=LinkColor,allbordercolors=LinkColor]{hyperref}
 %metadata
 \hypersetup{
 	$if(subject)$
 	pdfsubject={$subject$},
 	$endif$
-	pdfcreator={XeLaTeX via Pandoc newsprint theme},
+	pdfcreator={XeLaTeX via Pandoc solarized-dark theme},
 }
-\author{}
-\date{}
-\usepackage[a4paper,textwidth=40em]{geometry}
-%colors
-\usepackage[table]{xcolor}
-\definecolor{BackgroundColor}{HTML}{F3F2EE}
-\definecolor{TextColor}{HTML}{1F0909}
-\definecolor{H1UnderlineColor}{HTML}{C5C5C5}
-\definecolor{QuotelineColor}{HTML}{BABABA}
-\definecolor{QuoteColor}{HTML}{656565}
-\definecolor{LinkColor}{HTML}{065588}
-\definecolor{ShadeColor}{HTML}{DADADA}
-\definecolor{TableEvenColor}{HTML}{E8E7E7}
-\pagecolor{BackgroundColor}
+	%-------underline all links
+\makeatletter
+\Hy@AtBeginDocument{%
+	\def\@pdfborder{0 0 1}% Overrides border definition set with colorlinks=true
+	\def\@pdfborderstyle{/S/U/W 1}% Overrides border style set with colorlinks=true
+		                                % Hyperlink border style will be underline of width 1pt
+}
+\makeatother
+	%-------https://tex.stackexchange.com/a/26085
 %fonts
 \usepackage{fontspec}
 	%-------set global color
@@ -75,16 +86,17 @@
 	  \color{TextColor}\global\let\default@color\current@color
 \makeatother
 	%-------https://tex.stackexchange.com/a/29409
-\setmainfont[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/newsprint-fonts/timesnewroman,UprightFont=-regular,ItalicFont=-italic,BoldFont=-bold,BoldItalicFont=-bolditalic]{}
+\setmainfont[Extension=.otf,Path=/usr/share/fonts/pandoc-fonts/solarized-fonts/mononoki,UprightFont=-regular,ItalicFont=-italic,BoldFont=-bold,BoldItalicFont=-bolditalic]{}
+\setmonofont[Extension=.otf,Path=/usr/share/fonts/pandoc-fonts/solarized-fonts/mononoki,UprightFont=-regular,ItalicFont=-italic,BoldFont=-bold,BoldItalicFont=-bolditalic]{}
 \linespread{1.25}%1.5/1.2
 %headings
 \usepackage{sectsty}
 \usepackage{titlesec}
- \titleformat{\section}{\fontsize{1.875em}{1.6em}\normalfont}{}{}{\vspace{2em}}[\vspace{0.8125em}\textcolor{H1UnderlineColor}{\titlerule[0.0104167in]}\vspace{0.5em}]
-\titleformat{\subsection}{\fontsize{1.312em}{1.15em}\bfseries}{}{}{\vspace{2.285714em}}[\vspace{0.75em}]
-\titleformat{\subsubsection}{\fontsize{1.312em}{1.15em}\normalfont}{}{}{\vspace{2.285714em}}[\vspace{1.15em}]
-\titleformat{\paragraph}{\fontsize{1.125em}{\baselinestretch}\bfseries}{}{}{\vspace{2.67em}}
-\titleformat{\subparagraph}{\fontsize{1em}{1.5em}\bfseries}{}{}{}
+ \titleformat{\section}{\fontsize{2.25em}{1.2em}\normalfont}{}{}{}[\vspace{0.3em}\textcolor{H1UnderlineColor}{\titlerule[0.0104167in]}]
+\titleformat{\subsection}{\fontsize{1.75em}{1.225em}\normalfont}{}{}{}[\vspace{0.3em}\textcolor{H1UnderlineColor}{\titlerule[0.0104167in]}]
+\titleformat{\subsubsection}{\fontsize{1.25em}{\baselinestretch}\normalfont}{}{}{}
+\titleformat{\paragraph}{\fontsize{1.125em}{\baselinestretch}\normalfont}{}{}{\vspace{2.67em}}
+\titleformat{\subparagraph}{\fontsize{1em}{\baselinestretch}\normalfont}{}{}{}
 \usepackage[none]{hyphenat}
 \raggedright
 \usepackage[most]{tcolorbox}
@@ -100,15 +112,14 @@
 			colback=BackgroundColor,
 			coltext=QuoteColor,
 			boxsep=0em,
-			left=2em,
+			left=1em,
 			borderline west={0.052083in}{0pt}{QuotelineColor}
 	]
-		\itshape
 }{
 	\end{tcolorbox}
 }
 %code background
-\newcommand{\codesize}{\fontsize{0.875em}{1.714285em}}
+\newcommand{\codesize}{\fontsize{0.9em}{1em}}
 \newenvironment{Shaded}{
 	\begin{tcolorbox}[
 			notitle,
@@ -119,10 +130,13 @@
 			boxrule=0pt,
 			colback=ShadeColor,
 			boxsep=0em,
-			left=0.0208333334in,
-			right=0.0208333334in,
+			top=0.020833in,
+			bottom=0in,
+			left=0.041667in,
+			right=0.041667in,
 	]
 	\codesize
+	\color{CodeColor}
 }{
 	\end{tcolorbox}
 }
@@ -162,21 +176,43 @@
 \BeforeBeginEnvironment{verbatim}{\begin{Shaded}}
 \AfterEndEnvironment{verbatim}{\end{Shaded}}
 %inline code behaviour
-\def\inlinecode #1 {\colorbox{ShadeColor}{\codesize#1}}
+\def\inlinecode #1 {\colorbox{ShadeColor}{\color{CodeColor}\codesize#1}}
 \newcommand{\VERB}{\inlinecode \Verb[breaklines,breakanywhere,commandchars=\\\{\}]}
 \renewcommand{\texttt}[1]{\VERB|#1|}
 %tables
-%deviation: not making table head bold and capital to give user more freedom
+\usepackage{xstring}
+%border on every row
+\makeatletter
+\let\Tabularcr\@arraycr
+\def\@arraycr{\Tabularcr\hline}
+\makeatother
+%https://stackoverflow.com/a/3175486 second comment
+\def\table#1{\begin{tabular}{#1}}
 %deviation: not streteching table accross width for aesthetics
+\renewcommand{\arraystretch}{1.2}%1.5 based on visual comparison
+\setlength{\tabcolsep}{0.13541671in}%13px
+%table border
+\arrayrulecolor{TableBorderColor}
+\setlength{\arrayrulewidth}{0.01041667in}
 \newenvironment{longtable}[3]{
+	%add border to preamble
+	\StrGobbleLeft{#3}{2}[\pream]
+	\StrGobbleRight{\pream}{2}[\pream]
+	\StrSubstitute{\pream}{l}{|l}[\pream]
+	\StrSubstitute{\pream}{r}{|r}[\pream]
+	\StrSubstitute{\pream}{c}{|c}[\pream]
+	\edef\pream{{\pream|}}
+	%empty macros
 	\newcommand{\toprule}{}
 	\newcommand{\midrule}{}
 	\def\endhead{}
 	\newcommand{\bottomrule}{}
+	%create table
 	\begin{center}
 	\rowcolors{2}{TableEvenColor}{BackgroundColor}%https://tex.stackexchange.com/a/5365
-	\begin{tabular}{#3}
-	\rowcolor{ShadeColor}
+	\expandafter\table\pream
+	\rowcolor{ShadeColor}%deviation: not making head row background color for aesthetic reasons
+	\hline
 }{
 	\end{tabular}
 	\end{center}
@@ -184,7 +220,7 @@
 }
 %horizontal rules
 \let\Rule\rule
-\renewcommand{\rule}[2]{\textcolor{H1UnderlineColor}{\Rule{\linewidth}{0.0104167in}}}
+\renewcommand{\rule}[2]{\vspace{0.25000008in}\textcolor{H1UnderlineColor}{\Rule{\linewidth}{0.01041667in}}}
 %document
 \begin{document}
 $body$
