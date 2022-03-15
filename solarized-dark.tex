@@ -86,16 +86,19 @@
 	  \color{TextColor}\global\let\default@color\current@color
 \makeatother
 	%-------https://tex.stackexchange.com/a/29409
-\setmainfont[Extension=.otf,Path=/usr/share/fonts/pandoc-fonts/solarized-fonts/mononoki,UprightFont=-regular,ItalicFont=-italic,BoldFont=-bold,BoldItalicFont=-bolditalic]{}
+\setmainfont[Extension=.otf,Path=/usr/share/fonts/pandoc-fonts/solarized-fonts/mononoki-,UprightFont=regular,ItalicFont=italic,BoldFont=bold,BoldItalicFont=bolditalic]{}
 \setmonofont[Extension=.otf,Path=/usr/share/fonts/pandoc-fonts/solarized-fonts/mononoki,UprightFont=-regular,ItalicFont=-italic,BoldFont=-bold,BoldItalicFont=-bolditalic]{}
 \linespread{1.25}%1.5/1.2
 %headings
 \usepackage{sectsty}
 \usepackage{titlesec}
- \titleformat{\section}{\fontsize{2.25em}{1.2em}\normalfont}{}{}{}[\vspace{0.3em}\textcolor{H1UnderlineColor}{\titlerule[0.0104167in]}]
-\titleformat{\subsection}{\fontsize{1.75em}{1.225em}\normalfont}{}{}{}[\vspace{0.3em}\textcolor{H1UnderlineColor}{\titlerule[0.0104167in]}]
+\titleformat{\section}{\fontsize{2.25em}{1.2em}\normalfont}{}{}{}[\textcolor{H1UnderlineColor}{\titlerule[0.0104167in]}]
+\titlespacing{\section}{0pt}{0pt}{0.3em}
+\titleformat{\subsection}{\fontsize{1.75em}{1.225em}\normalfont}{}{}{}[\textcolor{H1UnderlineColor}{\titlerule[0.0104167in]}]
+\titlespacing{\subsection}{0pt}{0pt}{0.3em}
 \titleformat{\subsubsection}{\fontsize{1.25em}{\baselinestretch}\normalfont}{}{}{}
-\titleformat{\paragraph}{\fontsize{1.125em}{\baselinestretch}\normalfont}{}{}{\vspace{2.67em}}
+\titleformat{\paragraph}{\fontsize{1.125em}{\baselinestretch}\normalfont}{}{}{}
+\titlespacing{\paragraph}{0pt}{2.67em}{0pt}
 \titleformat{\subparagraph}{\fontsize{1em}{\baselinestretch}\normalfont}{}{}{}
 \usepackage[none]{hyphenat}
 \raggedright

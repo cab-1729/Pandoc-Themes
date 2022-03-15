@@ -75,15 +75,19 @@
 	  \color{TextColor}\global\let\default@color\current@color
 \makeatother
 	%-------https://tex.stackexchange.com/a/29409
-\setmainfont[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/newsprint-fonts/timesnewroman,UprightFont=-regular,ItalicFont=-italic,BoldFont=-bold,BoldItalicFont=-bolditalic]{}
+\setmainfont[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/newsprint-fonts/timesnewroman-,UprightFont=regular,ItalicFont=italic,BoldFont=bold,BoldItalicFont=bolditalic]{}
 \linespread{1.25}%1.5/1.2
 %headings
 \usepackage{sectsty}
 \usepackage{titlesec}
- \titleformat{\section}{\fontsize{1.875em}{1.6em}\normalfont}{}{}{\vspace{2em}}[\vspace{0.8125em}\textcolor{H1UnderlineColor}{\titlerule[0.0104167in]}\vspace{0.5em}]
-\titleformat{\subsection}{\fontsize{1.312em}{1.15em}\bfseries}{}{}{\vspace{2.285714em}}[\vspace{0.75em}]
+\titleformat{\section}{\fontsize{1.875em}{1.6em}\normalfont}{}{}{}[\textcolor{H1UnderlineColor}{\titlerule[0.0104167in]}\vspace{0.5em}]
+\titlespacing{\section}{0pt}{2em}{0.8125em}
+\titleformat{\subsection}{\fontsize{1.312em}{1.15em}\bfseries}{}{}{}
+\titlespacing{\subsection}{0pt}{2.285714em}{0.75em}
 \titleformat{\subsubsection}{\fontsize{1.312em}{1.15em}\normalfont}{}{}{\vspace{2.285714em}}[\vspace{1.15em}]
+\titlespacing{\subsubsection}{0pt}{2.285714em}{1.15em}
 \titleformat{\paragraph}{\fontsize{1.125em}{\baselinestretch}\bfseries}{}{}{\vspace{2.67em}}
+\titlespacing{\paragraph}{0pt}{0pt}{2.67em}
 \titleformat{\subparagraph}{\fontsize{1em}{1.5em}\bfseries}{}{}{}
 \usepackage[none]{hyphenat}
 \raggedright
