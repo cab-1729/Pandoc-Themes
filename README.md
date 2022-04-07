@@ -21,3 +21,15 @@ Metadata from markdown file will not be given priority. Most of the things will 
 + The fonts have been obtained using [woff2ttf](https://archlinux.org/packages/extra/x86_64/woff2/) and [woff2otf.py](https://github.com/hanikesn/woff2otf)
 + Themes are inspired from all those who wrote themes for Typora
 + Of course, none of this would be possible without [pandoc](https://pandoc.org/) and [texlive](https://www.tug.org/texlive/)
+
+
+## Contributing
+This is too big of a project for me to be handled by one person. So if you have the skills please consider contributing code.
+
+Possible ways you can help:
++ Create a new pandoc template from an existing Typora theme. Stick as close as possible to the original source. If you want to do this I would recommend copying any template here and editing it to create the new one as it maintains code consistency.
++ Solve any one of the known issues
++ Review the code and recommend a simplification
+
+### Known issues
++ Code elements go off of page instead of breaking the line (all themes)
