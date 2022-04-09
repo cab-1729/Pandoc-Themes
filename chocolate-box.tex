@@ -1,0 +1,365 @@
+%The original theme was created by Alex Keen (https://alexrkeen.com). He has no affiliation with this project.
+\documentclass{article}
+% Use upquote if available, for straight quotes in verbatim environments
+\usepackage{upquote}
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\usepackage{fvextra}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines=true,breakanywhere=true,commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\makeatother
+\usepackage{footnotehyper}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\usepackage[normalem]{ulem}
+% Avoid problems with \sout in headers with hyperref
+%\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+%---
+\usepackage[colorlinks=true,allcolors=AccentColor]{hyperref}
+\let\Href\href
+\renewcommand{\href}[2]{\Href{#1}{\bfseries#2}}
+%metadata
+\hypersetup{
+	$if(subject)$
+	pdfsubject={$subject$},
+	$endif$
+	pdfcreator={XeLaTeX via Pandoc newsprint theme},
+}
+\author{}
+\date{}
+\usepackage[a4paper,textwidth=50em]{geometry}
+%colors
+\usepackage[table]{xcolor}
+\definecolor{BackgroundColor}{HTML}{171212}
+\definecolor{TextColor}{HTML}{E3E3DE}
+\definecolor{HeadingColor}{HTML}{D6523D}
+\definecolor{QuotelineColor}{HTML}{BABABA}
+\definecolor{AccentColor}{HTML}{ACD959}
+\definecolor{ShadeColor}{HTML}{28211C}
+\definecolor{TableEvenColor}{HTML}{E8E7E7}
+\definecolor{HeaderColor}{HTML}{D6523D}
+\definecolor{SubheaderColor}{HTML}{E7C95A}
+\definecolor{CodeColor}{HTML}{9D9B97}
+\pagecolor{BackgroundColor}
+%fonts
+\usepackage{fontspec}
+\setmainfont[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/chocolate-box-fonts/firasans-,
+	UprightFont=extralight,
+	BoldFont=medium,
+	ItalicFont=extralightitalic,
+	BoldItalicFont=italic
+]{}
+\newfontfamily\fstwohundred[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/chocolate-box-fonts/firasans-,
+	UprightFont=extralight,
+	BoldFont=medium,
+	ItalicFont=extralightitalic,
+	BoldItalicFont=italic
+]{}
+\newfontfamily\fsfourhundred[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/chocolate-box-fonts/firasans-,
+	UprightFont=light,
+	BoldFont=medium,
+	ItalicFont=lightitalic,
+	BoldItalicFont=mediumitalic
+]{}
+\newfontfamily\fssevenhundred[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/chocolate-box-fonts/firasans-,
+	UprightFont=bold,
+	BoldFont=extrabold,
+	ItalicFont=bolditalic,
+	BoldItalicFont=extrabolditalic
+]{}
+\newfontfamily\fsninehundred[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/chocolate-box-fonts/firasans-,
+	UprightFont=extrabold,
+	BoldFont=black,
+	ItalicFont=extrabolditalic,
+	BoldItalicFont=blackitalic
+]{}
+	%-------set global color
+\makeatletter
+	  \color{TextColor}\global\let\default@color\current@color
+\makeatother
+	%-------https://tex.stackexchange.com/a/29409
+\linespread{1.5}%1.0/1.2
+\usepackage[fontsize=0.16666672in]{fontsize}
+%headings
+\usepackage{sectsty}
+\usepackage{titlesec}
+%No fontsize mentioned for headers, hence going with css defaults:
+%h1 : 2em
+%h2 : 1.5em
+%h3 : 1.17em
+%h4 : 1em
+%h5 : 0.83em
+%Source - http://www.codeash.com/h1-to-h6-font-size-in-html/
+\renewcommand{\section}[1]{
+	 \tcbox[
+			 notitle,
+			 on line,
+			 sharp corners,
+			 colback=BackgroundColor,
+			 colframe=HeaderColor,
+			 boxrule=0.05208335in,
+			 boxsep=0mm,
+			 top=0.37778em, %17*0.2/9
+			 bottom=0.37778em,
+			 left=0.56667em, %17*0.3/9
+			 right=0.56667em,
+		 ]{
+			 \vspace{0.5em}
+			 \fontsize{2em}{\baselineskip}
+			 \fsninehundred{\color{HeaderColor}{#1}}
+			 \vspace{0.3em}
+		 }
+ }
+\titleformat{\subsection}{\fontsize{1.5em}{\baselineskip}\color{SubheaderColor}\fssevenhundred}{}{}{}
+\titleformat{\subsubsection}{\fontsize{1.17em}{\baselineskip}\color{SubheaderColor}\fsfourhundred}{}{}{}
+\titleformat{\paragraph}{\fontsize{1em}{\baselineskip}\color{SubheaderColor}\fsfourhundred}{}{}{}
+\titleformat{\subparagraph}{\fontsize{0.83em}{\baselineskip}\color{SubheaderColor}\fsfourhundred}{}{}{}
+%can't do anything about H6, pandoc doesn't assigne it anything
+\usepackage[none]{hyphenat}
+\raggedright
+\usepackage[most]{tcolorbox}
+%quotes
+%blockquote blockquote does not work in pandoc
+\renewenvironment{quote}{
+	\begin{tcolorbox}[
+			notitle,
+			frame hidden,
+			interior hidden,
+			enhanced, %required for side bar
+			sharp corners,
+			boxrule=0pt,
+			colback=BackgroundColor,
+			coltext=TextColor,
+			boxsep=0em,
+			left=1em,
+			borderline west={0.03125in}{0pt}{HeaderColor}
+	]
+}{
+	\end{tcolorbox}
+	\vspace{0.5em}
+}
+%code background
+\newenvironment{Shaded}{
+	\begin{tcolorbox}[
+			notitle,
+			breakable,
+			frame hidden,
+			sharp corners,
+			boxrule=0pt,
+			colback=ShadeColor,
+			boxsep=0.125em,
+			left=0mm,
+			right=0mm,
+			top=0mm,
+			bottom=0mm
+	]
+}{
+	\end{tcolorbox}
+}
+%syntax highlighting - taken from CodeMirror
+\newcommand{\AlertTok}[1]{#1}
+\newcommand{\AnnotationTok}[1]{#1}
+\newcommand{\AttributeTok}[1]{\textcolor[HTML]{54BE0D}{#1}}
+\newcommand{\BaseNTok}[1]{#1}
+\newcommand{\BuiltInTok}[1]{\textcolor[HTML]{3300aa}{#1}}
+\newcommand{\CharTok}[1]{#1}
+\newcommand{\CommentTok}[1]{\textcolor[HTML]{937121}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[HTML]{937121}{#1}}
+\newcommand{\ConstantTok}[1]{#1}
+\newcommand{\ControlFlowTok}[1]{#1}
+\newcommand{\DataTypeTok}[1]{\textcolor[HTML]{008855}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[HTML]{9B859D}{#1}}
+\newcommand{\DocumentationTok}[1]{#1}
+\newcommand{\ErrorTok}[1]{\colorbox{797977}{\textcolor[HTML]{CF6A4C}{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[HTML]{9B859D}{#1}}
+\newcommand{\FunctionTok}[1]{\expandafter\FancyVerbBreakStart\textcolor[HTML]{54BE0D}{#1}\FancyVerbBreakStop}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{#1}
+\newcommand{\KeywordTok}[1]{\textcolor[HTML]{CF6A4C}{#1}}
+\newcommand{\NormalTok}[1]{\textcolor[HTML]{54BE0D}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[HTML]{9B859D}{#1}}
+\newcommand{\OtherTok}[1]{#1}
+\newcommand{\PreprocessorTok}[1]{#1}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[HTML]{AA1111}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[HTML]{AA1111}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[HTML]{F9EE98}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[HTML]{54BE0D}{#1}}
+\newcommand{\VerbatimStringTok}[1]{#1}
+\newcommand{\WarngingTok}[1]{#1}
+%no highlighting code
+\RecustomVerbatimEnvironment{verbatim}{Verbatim}{breaklines,breakanywhere}%https://tex.stackexchange.com/a/469504
+\BeforeBeginEnvironment{verbatim}{\begin{Shaded}\color{CodeColor}}
+\AfterEndEnvironment{verbatim}{\end{Shaded}}
+%inline code behaviour
+\def\inlinecode #1 {
+	\tcbox[
+		 notitle,
+		 on line,
+		 coltext=TextColor,
+		 colback=BackgroundColor,
+		 colframe=AccentColor,
+		 boxrule=0.01041667in,
+		 boxsep=0.125em,
+		 top=0em,
+		 bottom=0em,
+		 left=-0.3em,%eye balled
+		 right=0em,
+	]{
+	\fontsize{0.9em}{\baselineskip}
+	#1
+	}
+}
+\newcommand{\VERB}{\inlinecode\Verb[breaklines,breakanywhere,commandchars=\\\{\}]}
+\renewcommand{\texttt}[1]{\VERB|#1|}
+%tables
+	%underline on every row
+\makeatletter
+\let\Tabularcr\@arraycr
+\def\@arraycr{\Tabularcr\hline}
+\makeatother
+	%https://stackoverflow.com/a/3175486 second comment
+\usepackage{xstring}
+\def\table#1{\begin{tabular}{#1}}
+%deviation: not making table stretch across page for aesthetic reasons
+\newenvironment{longtable}[3]{
+	%unfortunately couldn't find any simpler way to make heading heavier
+	\gdef\heavier{\fssevenhundred}
+	\newcolumntype{L}{>{\heavier}l}
+	\newcolumntype{R}{>{\heavier}r}
+	\newcolumntype{C}{>{\heavier}c}
+	\StrGobbleLeft{#3}{2}[\pream]
+	\StrGobbleRight{\pream}{2}[\pream]
+	\StrSubstitute{\pream}{l}{L}[\pream]
+	\StrSubstitute{\pream}{r}{R}[\pream]
+	\StrSubstitute{\pream}{c}{C}[\pream]
+	\edef\pream{{\pream}}
+	\newcommand{\toprule}{
+		\arrayrulecolor{HeaderColor}
+		\noalign{\global\arrayrulewidth=0.02083334in}%https://tex.stackexchange.com/a/337790
+	}
+	\newcommand{\midrule}{
+		\arrayrulecolor{AccentColor}
+		\noalign{\global\arrayrulewidth=0.01041667in}%https://tex.stackexchange.com/a/337790
+		\fstwohundred%for first item in second row
+	}
+	\def\endhead{\gdef\heavier{\fstwohundred}}
+	\newcommand{\bottomrule}{}
+	\begin{center}
+	\expandafter\table\pream
+}{
+	\end{tabular}
+	\end{center}
+	\vspace{1.5em}
+}
+%lists
+\AtBeginEnvironment{itemize}{
+	\let\Item\item
+	\renewcommand{\item}{\Item[\fsninehundred\textcolor{AccentColor}\textbullet\hspace{1.8mm}]}%1.8 from eyeballing
+}
+\AtBeginEnvironment{enumerate}{
+	\let\Tightlist\tightlist
+	\renewcommand{\tightlist}{
+		\def\labelenumi{\bfseries\color{AccentColor}\arabic{enumi}.}
+		\Tightlist
+	}
+}
+%horizontal rules
+\usepackage{tikz}
+\def \globalscale {0.6} %eyeballing
+\let\Rule\rule
+\renewcommand{\rule}[2]{
+	\begin{tikzpicture}[HeaderColor,y=0.80pt, x=0.80pt, yscale=-\globalscale, xscale=\globalscale, inner sep=0pt, outer sep=0pt,
+	even odd rule,line join=round,miter limit=2.00]
+	\begin{scope}[shift={(6.20666,-25.0)}]% g31
+	\begin{scope}[cm={{1.09358,0.0,0.0,1.0,(529.425,-0.0)}}]% g4
+		% path2
+	\path[draw,fill] (46.3500,101.5000) -- (393.0480,100.0000) -- (46.3500,98.5000) -- (44.9780,98.5000) -- (44.9780,101.5000) -- (46.3500,101.5000) -- cycle;
+
+		% path2
+
+
+	\end{scope}
+	\begin{scope}[cm={{-1.09358,0.0,0.0,1.0,(458.161,-0.0)}}]% g8
+		% path6
+	\path[draw,fill] (46.3500,98.5000) -- (393.0480,100.0000) -- (46.3500,101.5000) -- (44.9780,101.5000) -- (44.9780,98.5000) -- (46.3500,98.5000) -- cycle;
+
+		% path6
+
+
+	\end{scope}
+	\begin{scope}[cm={{0.15106,0.0,0.0,0.15106,(493.793,100.0)}}]% chocolate-box-svgrepo-com.svg
+	\begin{scope}[shift={(-256.0,-256.0)}]% g28
+	\begin{scope}
+	\begin{scope}
+			  % path10
+	\path[draw,fill,nonzero rule] (512.0000,156.7770) .. controls (512.0000,118.5640) and (497.6290,82.2460) .. (471.5340,54.5130) .. controls (468.5410,51.3320) and (463.5370,51.1800) .. (460.3580,54.1740) .. controls (460.3040,54.2250) and (460.2580,54.2800) .. (460.2050,54.3330) .. controls (457.1810,57.3390) and (457.0760,62.2240) .. (460.0170,65.3500) .. controls (483.2740,90.0660) and (496.1090,122.4230) .. (496.1820,156.4860) -- (408.0280,156.4860) .. controls (407.6370,156.4270) and (407.2400,156.3860) .. (406.8330,156.3860) .. controls (406.4260,156.3860) and (406.0290,156.4260) .. (405.6380,156.4860) -- (272.5510,156.4860) .. controls (268.3280,123.8510) and (240.5400,98.5610) .. (206.9730,98.5610) .. controls (186.6580,98.5610) and (168.4610,107.8290) .. (156.3160,122.3750) -- (156.3160,23.8190) .. controls (188.7440,25.7230) and (218.9780,39.3090) .. (242.1520,62.5740) -- (250.3960,70.8630) .. controls (251.8790,72.3550) and (253.8970,73.1940) .. (256.0010,73.1940) .. controls (258.1050,73.1940) and (260.1230,72.3550) .. (261.6060,70.8630) -- (269.8460,62.5780) .. controls (294.8880,37.4290) and (328.1790,23.5780) .. (363.5900,23.5780) .. controls (389.6220,23.5780) and (414.7540,31.0960) .. (436.2670,45.3160) .. controls (437.2680,45.9790) and (438.2650,46.6560) .. (439.2490,47.3470) .. controls (442.7640,49.8110) and (447.5800,49.0100) .. (450.1230,45.5900) .. controls (450.1670,45.5300) and (450.2180,45.4750) .. (450.2610,45.4140) .. controls (452.7680,41.8380) and (451.9020,36.9090) .. (448.3270,34.4030) .. controls (447.2240,33.6300) and (446.1110,32.8720) .. (444.9890,32.1290) .. controls (420.8800,16.1920) and (392.7330,7.7680) .. (363.5900,7.7680) .. controls (323.9440,7.7680) and (286.6720,23.2710) .. (258.6400,51.4260) -- (256.0020,54.0790) -- (253.3580,51.4220) .. controls (225.3170,23.2680) and (188.0460,7.7650) .. (148.4100,7.7650) .. controls (108.7630,7.7650) and (71.4890,23.2680) .. (43.4580,51.4190) .. controls (15.4340,79.5540) and (0.0000,116.9710) .. (0.0000,156.7770) .. controls (0.0000,157.3770) and (0.0150,157.9730) .. (0.0220,158.5720) .. controls (0.0140,158.7140) and (0.0000,158.8570) .. (0.0000,159.0020) -- (0.0000,200.3480) .. controls (0.0000,200.4640) and (0.0030,200.5810) .. (0.0070,200.6970) .. controls (0.2180,240.1880) and (15.6410,277.2940) .. (43.4530,305.2170) -- (138.4550,400.7160) .. controls (141.5340,403.8110) and (146.5400,403.8230) .. (149.6350,400.7460) .. controls (152.7300,397.6660) and (152.7440,392.6610) .. (149.6650,389.5660) -- (54.6580,294.0630) .. controls (36.9420,276.2760) and (24.8570,254.3160) .. (19.2990,230.3870) .. controls (25.8120,241.8620) and (33.8990,252.5330) .. (43.4510,262.1240) -- (231.1610,450.8160) .. controls (237.8050,457.4730) and (246.6250,461.1400) .. (255.9990,461.1400) .. controls (265.3720,461.1400) and (274.1920,457.4730) .. (280.8420,450.8060) -- (334.9190,396.4470) -- (334.9190,417.1210) -- (269.6400,482.7420) .. controls (265.9850,486.4050) and (261.1410,488.4230) .. (256.0000,488.4230) .. controls (250.8570,488.4230) and (246.0100,486.4050) .. (242.3640,482.7510) -- (171.6890,411.7060) .. controls (168.6080,408.6080) and (163.6020,408.5970) .. (160.5090,411.6760) -- (160.5090,411.6770) .. controls (157.4140,414.7570) and (157.4000,419.7610) .. (160.4790,422.8570) -- (231.1630,493.9120) .. controls (237.8070,500.5690) and (246.6270,504.2360) .. (256.0010,504.2360) .. controls (265.3740,504.2360) and (274.1940,500.5700) .. (280.8440,493.9020) -- (343.4120,431.0060) .. controls (345.1910,431.8040) and (347.1560,432.2570) .. (349.2280,432.2570) -- (464.4430,432.2570) .. controls (472.3310,432.2570) and (478.7500,425.8180) .. (478.7500,417.9050) -- (478.7500,293.8720) .. controls (500.1050,267.5910) and (511.8070,235.0410) .. (511.9930,200.6980) .. controls (511.9970,200.5820) and (512.0000,200.4650) .. (512.0000,200.3490) -- (512.0000,159.0030) .. controls (512.0000,158.8580) and (511.9860,158.7150) .. (511.9780,158.5720) .. controls (511.9850,157.9730) and (512.0000,157.3760) .. (512.0000,156.7770) -- cycle(206.9730,114.3700) .. controls (231.8100,114.3700) and (252.4910,132.6010) .. (256.5710,156.4840) -- (183.4580,156.4840) .. controls (182.8700,146.8390) and (174.8580,139.1650) .. (165.0680,139.1650) -- (163.7360,139.1650) .. controls (172.5300,124.3300) and (188.6170,114.3700) .. (206.9730,114.3700) -- cycle(165.0670,154.9770) .. controls (166.4950,154.9770) and (167.7020,156.1840) .. (167.7020,157.6120) -- (167.7020,172.6230) .. controls (167.7020,174.0510) and (166.4950,175.2580) .. (165.0670,175.2580) -- (133.6620,175.2580) .. controls (132.2340,175.2580) and (131.0270,174.0510) .. (131.0270,172.6230) -- (131.0270,157.6120) .. controls (131.0270,156.1840) and (132.2340,154.9770) .. (133.6620,154.9770) -- (165.0670,154.9770) -- cycle(115.2150,172.2960) -- (115.2150,172.6240) .. controls (115.2150,182.7950) and (123.4910,191.0710) .. (133.6620,191.0710) -- (134.9950,191.0710) .. controls (126.1990,205.9080) and (110.1120,215.8670) .. (91.7560,215.8670) .. controls (66.4150,215.8670) and (45.3990,196.8910) .. (41.9270,172.2960) -- (115.2150,172.2960) -- cycle(42.1600,156.4840) .. controls (46.2390,132.6020) and (66.9190,114.3700) .. (91.7570,114.3700) .. controls (110.1130,114.3700) and (126.1990,124.3290) .. (134.9950,139.1640) -- (133.6630,139.1640) .. controls (123.8720,139.1640) and (115.8610,146.8370) .. (115.2730,156.4830) -- (42.1600,156.4830) -- (42.1600,156.4840) -- cycle(54.6610,62.5770) .. controls (77.8330,39.3090) and (108.0670,25.7230) .. (140.5050,23.8180) -- (140.5050,120.1760) .. controls (128.4040,106.8980) and (111.0330,98.5580) .. (91.7580,98.5580) .. controls (58.1910,98.5580) and (30.4040,123.8490) .. (26.1810,156.4830) -- (15.8170,156.4830) .. controls (15.8910,120.9990) and (29.6770,87.6590) .. (54.6610,62.5770) -- cycle(140.5030,337.2610) -- (54.6590,250.9680) .. controls (33.2880,229.5110) and (20.1150,202.0100) .. (16.7050,172.2960) -- (25.9940,172.2960) .. controls (29.5630,205.6340) and (57.6910,231.6790) .. (91.7560,231.6790) .. controls (111.0310,231.6790) and (128.4020,223.3390) .. (140.5030,210.0610) -- (140.5030,337.2610) -- cycle(339.0960,256.9460) .. controls (336.4040,259.6540) and (334.9210,263.2530) .. (334.9210,267.0790) -- (334.9210,374.0270) -- (269.6420,439.6480) .. controls (265.9870,443.3110) and (261.1430,445.3290) .. (256.0020,445.3290) .. controls (250.8590,445.3290) and (246.0120,443.3110) .. (242.3660,439.6570) -- (155.7870,352.6260) .. controls (156.1230,351.7480) and (156.3160,350.7980) .. (156.3160,349.8010) -- (156.3160,207.9910) .. controls (165.0600,218.4590) and (177.0290,226.2360) .. (190.9930,229.7230) .. controls (191.6360,229.8830) and (192.2810,229.9610) .. (192.9150,229.9610) .. controls (196.4580,229.9610) and (199.6820,227.5620) .. (200.5800,223.9680) .. controls (201.6380,219.7300) and (199.0620,215.4390) .. (194.8250,214.3820) .. controls (181.3820,211.0260) and (170.3670,202.4330) .. (163.6780,191.0710) -- (165.0680,191.0710) .. controls (175.2390,191.0710) and (183.5150,182.7950) .. (183.5150,172.6240) -- (183.5150,172.2960) -- (256.8100,172.2960) .. controls (254.1370,191.4770) and (240.8800,207.5680) .. (222.1340,213.5270) .. controls (217.9730,214.8500) and (215.6720,219.2960) .. (216.9950,223.4570) .. controls (218.3180,227.6180) and (222.7640,229.9210) .. (226.9250,228.5960) .. controls (252.2670,220.5390) and (269.9720,198.4150) .. (272.7370,172.2960) -- (398.9300,172.2960) -- (398.9300,197.1570) .. controls (398.1370,197.6860) and (397.3910,198.2980) .. (396.7050,198.9890) -- (339.0960,256.9460) -- cycle(462.9390,416.4450) -- (350.7330,416.4450) -- (350.7330,267.6680) -- (406.8350,211.2260) -- (462.9390,267.6690) -- (462.9390,416.4450) -- cycle(478.7010,266.0720) .. controls (478.4640,262.6250) and (477.0270,259.4120) .. (474.5710,256.9420) -- (473.9880,256.3560) .. controls (481.2050,248.3090) and (487.4630,239.6020) .. (492.7000,230.3740) .. controls (489.7860,242.9190) and (485.0780,254.9240) .. (478.7010,266.0720) -- cycle(462.8160,245.1170) -- (416.9640,198.9870) .. controls (416.2770,198.2970) and (415.5310,197.6860) .. (414.7410,197.1570) -- (414.7410,172.2950) -- (495.2930,172.2950) .. controls (492.1860,199.3670) and (480.9610,224.6040) .. (462.8160,245.1170) -- cycle;
+
+			  % path10
+
+
+	\end{scope}
+	\end{scope}
+	\begin{scope}
+	\begin{scope}
+			  % path16
+	\path[nonzero rule,draw,fill] (442.4120,315.5210) .. controls (437.0740,310.0690) and (429.9640,307.0660) .. (422.3950,307.0660) .. controls (416.7790,307.0660) and (411.4150,308.7190) .. (406.8360,311.8030) .. controls (402.2610,308.7200) and (396.8960,307.0660) .. (391.2750,307.0660) .. controls (383.7040,307.0660) and (376.5950,310.0690) .. (371.2550,315.5250) .. controls (365.9630,320.9360) and (363.0510,328.1140) .. (363.0510,335.7380) .. controls (363.0510,343.3620) and (365.9660,350.5390) .. (371.2540,355.9470) -- (398.3900,383.7020) .. controls (400.5990,385.9690) and (403.6770,387.2710) .. (406.8350,387.2710) .. controls (409.9890,387.2710) and (413.0660,385.9720) .. (415.2690,383.7120) -- (442.4160,355.9470) .. controls (447.7070,350.5370) and (450.6190,343.3610) .. (450.6190,335.7370) .. controls (450.6190,328.1150) and (447.7060,320.9370) .. (442.4120,315.5210) -- cycle(431.1100,344.8910) -- (406.8340,369.7200) -- (382.5580,344.8900) .. controls (380.1740,342.4520) and (378.8610,339.2020) .. (378.8610,335.7360) .. controls (378.8610,332.2690) and (380.1740,329.0160) .. (382.5560,326.5810) .. controls (384.8950,324.1910) and (387.9900,322.8760) .. (391.2750,322.8760) .. controls (394.5600,322.8760) and (397.6550,324.1910) .. (399.9870,326.5760) -- (401.1800,327.7970) .. controls (402.6670,329.3180) and (404.7060,330.1770) .. (406.8340,330.1770) -- (406.8370,330.1770) .. controls (408.9670,330.1760) and (411.0060,329.3170) .. (412.4920,327.7920) -- (413.6730,326.5820) .. controls (416.0130,324.1920) and (419.1090,322.8770) .. (422.3940,322.8770) .. controls (425.6780,322.8770) and (428.7750,324.1930) .. (431.1100,326.5770) .. controls (433.4920,329.0180) and (434.8060,332.2710) .. (434.8060,335.7380) .. controls (434.8070,339.2030) and (433.4950,342.4540) .. (431.1100,344.8910) -- cycle;
+
+			  % path16
+
+
+	\end{scope}
+	\end{scope}
+	\begin{scope}
+	\begin{scope}
+			  % path22
+	\path[nonzero rule,draw,fill] (406.8350,233.1630) .. controls (394.5860,233.1630) and (384.6210,243.1720) .. (384.6210,255.4750) .. controls (384.6210,267.7800) and (394.5860,277.7910) .. (406.8350,277.7910) .. controls (419.0840,277.7910) and (429.0490,267.7800) .. (429.0490,255.4750) .. controls (429.0480,243.1720) and (419.0840,233.1630) .. (406.8350,233.1630) -- cycle(406.8350,261.9790) .. controls (403.3050,261.9790) and (400.4330,259.0610) .. (400.4330,255.4750) .. controls (400.4330,251.8910) and (403.3050,248.9750) .. (406.8350,248.9750) .. controls (410.3650,248.9750) and (413.2370,251.8910) .. (413.2370,255.4750) .. controls (413.2370,259.0610) and (410.3640,261.9790) .. (406.8350,261.9790) -- cycle;
+
+			  % path22
+
+
+	\end{scope}
+	\end{scope}
+	\end{scope}
+	\end{scope}
+	\end{scope}
+
+	\end{tikzpicture}
+}
+%document
+\begin{document}
+$body$
+\end{document}
