@@ -32,4 +32,5 @@ Possible ways you can help:
 + Review the code and recommend a simplification
 
 ### Known issues
-+ Code elements go off of page instead of breaking the line (all themes) {7.3.1 from fvextra manual, https://github.com/gpoore/fvextra/issues/11 }
+
+**None**
