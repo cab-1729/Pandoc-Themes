@@ -19,6 +19,7 @@ Metadata from markdown file will not be given priority. Most of the things will 
 ## Other projects
 + All of the testing is done with [zathura](https://wiki.archlinux.org/title/zathura)
 + The fonts have been obtained using [woff2ttf](https://archlinux.org/packages/extra/x86_64/woff2/) and [woff2otf.py](https://github.com/hanikesn/woff2otf)
++ [typora-free](https://aur.archlinux.org/packages/typora-free) for the AUR was used for visual aid
 + Themes are inspired from all those who wrote themes for Typora
 + Of course, none of this would be possible without [pandoc](https://pandoc.org/) and [texlive](https://www.tug.org/texlive/)
 
