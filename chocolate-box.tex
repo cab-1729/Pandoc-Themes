@@ -18,7 +18,7 @@
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
 \usepackage{fvextra}
-\DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines=true,breakanywhere=true,commandchars=\\\{\}}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,breakanywhere,commandchars=\\\{\}}
 % Add ',fontsize=\small' for more characters per line
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
@@ -55,7 +55,7 @@
 	$if(subject)$
 	pdfsubject={$subject$},
 	$endif$
-	pdfcreator={XeLaTeX via Pandoc newsprint theme},
+	pdfcreator={XeLaTeX via Pandoc chocolate-box theme},
 }
 \author{}
 \date{}
@@ -147,7 +147,6 @@
 \titleformat{\paragraph}{\fontsize{1em}{\baselineskip}\color{SubheaderColor}\fsfourhundred}{}{}{}
 \titleformat{\subparagraph}{\fontsize{0.83em}{\baselineskip}\color{SubheaderColor}\fsfourhundred}{}{}{}
 %can't do anything about H6, pandoc doesn't assigne it anything
-\usepackage[none]{hyphenat}
 \raggedright
 \usepackage[most]{tcolorbox}
 %quotes
@@ -191,33 +190,33 @@
 %syntax highlighting - taken from CodeMirror
 \newcommand{\AlertTok}[1]{#1}
 \newcommand{\AnnotationTok}[1]{#1}
-\newcommand{\AttributeTok}[1]{\textcolor[HTML]{54BE0D}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[HTML]{54BE0D}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
 \newcommand{\BaseNTok}[1]{#1}
-\newcommand{\BuiltInTok}[1]{\textcolor[HTML]{3300aa}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[HTML]{3300aa}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
 \newcommand{\CharTok}[1]{#1}
-\newcommand{\CommentTok}[1]{\textcolor[HTML]{937121}{#1}}
-\newcommand{\CommentVarTok}[1]{\textcolor[HTML]{937121}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[HTML]{937121}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\CommentVarTok}[1]{\textcolor[HTML]{937121}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
 \newcommand{\ConstantTok}[1]{#1}
 \newcommand{\ControlFlowTok}[1]{#1}
-\newcommand{\DataTypeTok}[1]{\textcolor[HTML]{008855}{#1}}
-\newcommand{\DecValTok}[1]{\textcolor[HTML]{9B859D}{#1}}
+\newcommand{\DataTypeTok}[1]{\textcolor[HTML]{008855}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\DecValTok}[1]{\textcolor[HTML]{9B859D}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
 \newcommand{\DocumentationTok}[1]{#1}
-\newcommand{\ErrorTok}[1]{\colorbox{797977}{\textcolor[HTML]{CF6A4C}{#1}}}
+\newcommand{\ErrorTok}[1]{\colorbox{797977}{\textcolor[HTML]{CF6A4C}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}}
 \newcommand{\ExtensionTok}[1]{#1}
-\newcommand{\FloatTok}[1]{\textcolor[HTML]{9B859D}{#1}}
-\newcommand{\FunctionTok}[1]{\expandafter\FancyVerbBreakStart\textcolor[HTML]{54BE0D}{#1}\FancyVerbBreakStop}
+\newcommand{\FloatTok}[1]{\textcolor[HTML]{9B859D}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\FunctionTok}[1]{\textcolor[HTML]{54BE0D}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
 \newcommand{\ImportTok}[1]{#1}
 \newcommand{\InformationTok}[1]{#1}
-\newcommand{\KeywordTok}[1]{\textcolor[HTML]{CF6A4C}{#1}}
-\newcommand{\NormalTok}[1]{\textcolor[HTML]{54BE0D}{#1}}
-\newcommand{\OperatorTok}[1]{\textcolor[HTML]{9B859D}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[HTML]{CF6A4C}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\NormalTok}[1]{\textcolor[HTML]{54BE0D}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\OperatorTok}[1]{\textcolor[HTML]{9B859D}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
 \newcommand{\OtherTok}[1]{#1}
 \newcommand{\PreprocessorTok}[1]{#1}
 \newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[HTML]{AA1111}{#1}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[HTML]{AA1111}{#1}}
-\newcommand{\StringTok}[1]{\textcolor[HTML]{F9EE98}{#1}}
-\newcommand{\VariableTok}[1]{\textcolor[HTML]{54BE0D}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[HTML]{AA1111}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[HTML]{AA1111}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\StringTok}[1]{\textcolor[HTML]{F9EE98}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\VariableTok}[1]{\textcolor[HTML]{54BE0D}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
 \newcommand{\VerbatimStringTok}[1]{#1}
 \newcommand{\WarngingTok}[1]{#1}
 %no highlighting code

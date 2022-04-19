@@ -89,7 +89,6 @@
 \titleformat{\paragraph}{\fontsize{1.125em}{\baselinestretch}\bfseries}{}{}{\vspace{2.67em}}
 \titlespacing{\paragraph}{0pt}{0pt}{2.67em}
 \titleformat{\subparagraph}{\fontsize{1em}{1.5em}\bfseries}{}{}{}
-\usepackage[none]{hyphenat}
 \raggedright
 \usepackage[most]{tcolorbox}
 %quotes
@@ -130,34 +129,34 @@
 }{
 	\end{tcolorbox}
 }
-%code highlighting - taken from CodeMirror
+%syntax highlighting - taken from CodeMirror
 \newcommand{\AlertTok}[1]{#1}
 \newcommand{\AnnotationTok}[1]{#1}
-\newcommand{\AttributeTok}[1]{\textcolor[HTML]{0000CC}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[HTML]{0000CC}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
 \newcommand{\BaseNTok}[1]{#1}
-\newcommand{\BuiltInTok}[1]{\textcolor[HTML]{3300aa}{#1}}
-\newcommand{\CharTok}[1]{#1} \newcommand{\CommentTok}[1]{\textcolor[HTML]{aa5500}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[HTML]{3300aa}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\CharTok}[1]{#1} \newcommand{\CommentTok}[1]{\textcolor[HTML]{aa5500}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
 \newcommand{\CommentVarTok}[1]{#1}
 \newcommand{\ConstantTok}[1]{#1}
 \newcommand{\ControlFlowTok}[1]{#1}
-\newcommand{\DataTypeTok}[1]{\textcolor[HTML]{008855}{#1}}
-\newcommand{\DecValTok}[1]{\textcolor[HTML]{116644}{#1}}
+\newcommand{\DataTypeTok}[1]{\textcolor[HTML]{008855}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\DecValTok}[1]{\textcolor[HTML]{116644}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
 \newcommand{\DocumentationTok}[1]{#1}
-\newcommand{\ErrorTok}[1]{\textcolor[HTML]{FF0000}{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor[HTML]{FF0000}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
 \newcommand{\ExtensionTok}[1]{#1}
-\newcommand{\FloatTok}[1]{\textcolor[HTML]{116644}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[HTML]{0000FF}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[HTML]{116644}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\FunctionTok}[1]{\textcolor[HTML]{0000FF}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
 \newcommand{\ImportTok}[1]{#1}
 \newcommand{\InformationTok}[1]{#1}
-\newcommand{\KeywordTok}[1]{\textcolor[HTML]{770088}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[HTML]{770088}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
 \newcommand{\NormalTok}[1]{#1}
 \newcommand{\OperatorTok}[1]{#1}
 \newcommand{\OtherTok}[1]{#1}
 \newcommand{\PreprocessorTok}[1]{#1}
 \newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[HTML]{AA1111}{#1}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[HTML]{AA1111}{#1}}
-\newcommand{\StringTok}[1]{\textcolor[HTML]{AA1111}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[HTML]{AA1111}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[HTML]{AA1111}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\StringTok}[1]{\textcolor[HTML]{AA1111}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
 \newcommand{\VariableTok}[1]{#1}
 \newcommand{\VerbatimStringTok}[1]{#1}
 \newcommand{\WarngingTok}[1]{#1}
