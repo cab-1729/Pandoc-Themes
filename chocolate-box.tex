@@ -255,7 +255,6 @@
 \def\table#1{\begin{tabular}{#1}}
 %deviation: not making table stretch across page for aesthetic reasons
 \newenvironment{longtable}[3]{
-	%unfortunately couldn't find any simpler way to make heading heavier
 	\gdef\heavier{\fssevenhundred}
 	\newcolumntype{L}{>{\heavier}l}
 	\newcolumntype{R}{>{\heavier}r}

@@ -1,3 +1,4 @@
+%TODO: start from h3
 \documentclass{article}
 % Use upquote if available, for straight quotes in verbatim environments
 \usepackage{upquote}
@@ -46,7 +47,15 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 %---
-\usepackage[colorlinks=true,allcolors=LinkColor]{hyperref}
+\author{}
+\date{}
+\usepackage[a4paper]{geometry}%deviation: textwidth!=60em because text would go off page
+%colors
+\usepackage[table]{xcolor}
+\definecolor{BackgroundColor}{HTML}{F9F9F9}
+\definecolor{LinkColor}{HTML}{333333}
+\pagecolor{BackgroundColor}
+\usepackage[colorlinks=true,allcolors=LinkColor,allbordercolors=LinkColor]{hyperref}
 %metadata
 \hypersetup{
 	$if(subject)$
@@ -54,64 +63,54 @@
 	$endif$
 	pdfcreator={XeLaTeX via Pandoc newsprint theme},
 }
-\author{}
-\date{}
-\usepackage[a4paper,textwidth=40em]{geometry}
-%colors
-\usepackage[table]{xcolor}
-\definecolor{BackgroundColor}{HTML}{F3F2EE}
-\definecolor{TextColor}{HTML}{1F0909}
-\definecolor{H1UnderlineColor}{HTML}{C5C5C5}
-\definecolor{QuotelineColor}{HTML}{BABABA}
-\definecolor{QuoteColor}{HTML}{656565}
-\definecolor{LinkColor}{HTML}{065588}
-\definecolor{ShadeColor}{HTML}{DADADA}
-\definecolor{TableEvenColor}{HTML}{E8E7E7}
-\pagecolor{BackgroundColor}
+	%-------underline all links
+\makeatletter
+\Hy@AtBeginDocument{%
+	\def\@pdfborder{0 0 1}% Overrides border definition set with colorlinks=true
+	\def\@pdfborderstyle{/S/U/W 1}% Overrides border style set with colorlinks=true
+		                                % Hyperlink border style will be underline of width 1pt
+}
+\makeatother
+	%-------https://tex.stackexchange.com/a/26085
 %fonts
 \usepackage{fontspec}
-	%-------set global color
-\makeatletter
-	  \color{TextColor}\global\let\default@color\current@color
-\makeatother
-	%-------https://tex.stackexchange.com/a/29409
-\setmainfont[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/newsprint-fonts/timesnewroman-,UprightFont=regular,ItalicFont=italic,BoldFont=bold,BoldItalicFont=bolditalic]{}
-\linespread{1.25}%1.5/1.2
+\newfontfamily\heading[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/rubrication-fonts/ptserif-,UprightFont=regular,ItalicFont=italic,BoldFont=bold,BoldItalicFont=bolditalic]{}
+\setmonofont[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/rubrication-fonts/,UprightFont=typopro-iosevka-term-medium]{}
+\linespread{1.25}
 %headings
 \usepackage{sectsty}
 \usepackage{titlesec}
-\titleformat{\section}{\fontsize{1.875em}{1.6em}\normalfont}{}{}{}[\textcolor{H1UnderlineColor}{\titlerule[0.0104167in]}\vspace{0.5em}]
-\titlespacing{\section}{0pt}{2em}{0.8125em}
-\titleformat{\subsection}{\fontsize{1.312em}{1.15em}\bfseries}{}{}{}
-\titlespacing{\subsection}{0pt}{2.285714em}{0.75em}
-\titleformat{\subsubsection}{\fontsize{1.312em}{1.15em}\normalfont}{}{}{}
-\titlespacing{\subsubsection}{0pt}{2.285714em}{1.15em}
-\titleformat{\paragraph}{\fontsize{1.125em}{\baselinestretch}\bfseries}{}{}{}
-\titlespacing{\paragraph}{0pt}{0pt}{2.67em}
-\titleformat{\subparagraph}{\fontsize{1em}{1.5em}\bfseries}{}{}{}
+\titleformat{\section}{\fontsize{0.375000012in}{\baselinestretch}\filcenter\bfseries\color{red}\heading}{}{}{}
+\let\Section\section
+\renewcommand{\section}[1]{
+	\Section{\uppercase{#1}}
+}
+\titleformat{\subsection}{\fontsize{0.291666676in}{\baselinestretch}\filcenter\bfseries\color{red}\heading}{}{}{}
+\let\Subsection\subsection
+\renewcommand{\subsection}[1]{
+	\Subsection{\underline{#1}}
+}
+\titleformat{\subsubsection}{\fontsize{0.291666676in}{\baselinestretch}\filcenter\bfseries\color{red}\heading}{}{}{}
+\let\Subsubsection\subsubsection
+\renewcommand{\subsubsection}[1]{
+	\Subsubsection{\underline{#1}}
+}
+\titleformat{\paragraph}{\fontsize{0.166666672in}{\baselinestretch}\bfseries\heading}{}{}{}
+\titleformat{\subparagraph}{\fontsize{0.166666672in}{\baselinestretch}\bfseries\heading}{}{}{}
 \raggedright
 \usepackage[most]{tcolorbox}
 %quotes
-\renewenvironment{quote}{
-	\begin{tcolorbox}[
-			notitle,
-			frame hidden,
-			interior hidden,
-			sharp corners,
-			enhanced,
-			boxrule=0pt,
-			colback=BackgroundColor,
-			coltext=QuoteColor,
-			boxsep=0em,
-			left=2em,
-			borderline west={0.052083in}{0pt}{QuotelineColor}
-	]
-		\itshape
-}{
-	\end{tcolorbox}
-}
+%https://tex.stackexchange.com/a/2430
+\renewenvironment{quote}%
+  {\list{}{\leftmargin=0.31250001in\rightmargin=0.31250001in}\item[]\color{red}}%
+	    {\endlist}
+%list
+\renewcommand{\labelitemi}{\rule[0.25em]{0.25em}{0.25em}}%eyeballing
+%emphasis
+\let\Textbf\textbf
+\renewcommand{\textbf}[1]{\Textbf{\color{red}#1}}
+\renewcommand{\emph}[1]{\underline{#1}}
 %code background
-\newcommand{\codesize}{\fontsize{0.875em}{1.714285em}}
 \newenvironment{Shaded}{
 	\begin{tcolorbox}[
 			notitle,
@@ -119,16 +118,16 @@
 			frame hidden,
 			sharp corners,
 			enhanced,
+			colback=BackgroundColor,
 			boxrule=0pt,
-			colback=ShadeColor,
 			boxsep=0em,
-			left=0.0208333334in,
-			right=0.0208333334in,
+			left=1em,
+			borderline west={0.020833334in}{0pt}{red}
 	]
-	\codesize
 }{
 	\end{tcolorbox}
 }
+%deviation: basic syntax highlightin kept. No syntax highlighting in original theme.
 %syntax highlighting - taken from CodeMirror
 \newcommand{\AlertTok}[1]{#1}
 \newcommand{\AnnotationTok}[1]{#1}
@@ -165,8 +164,7 @@
 \BeforeBeginEnvironment{verbatim}{\begin{Shaded}}
 \AfterEndEnvironment{verbatim}{\end{Shaded}}
 %inline code behaviour
-\def\inlinecode #1 {\colorbox{ShadeColor}{\codesize#1}}
-\newcommand{\VERB}{\inlinecode \Verb[breaklines,breakanywhere,commandchars=\\\{\}]}
+\newcommand{\VERB}{\Verb[breaklines,breakanywhere,commandchars=\\\{\}]}
 \renewcommand{\texttt}[1]{\VERB|#1|}
 %tables
 %deviation: not making table head bold and capital to give user more freedom
@@ -177,17 +175,11 @@
 	\def\endhead{}
 	\newcommand{\bottomrule}{}
 	\begin{center}
-	\rowcolors{2}{TableEvenColor}{BackgroundColor}%https://tex.stackexchange.com/a/5365
 	\begin{tabular}{#3}
-	\rowcolor{ShadeColor}
 }{
 	\end{tabular}
 	\end{center}
-	\vspace{1.5em}
 }
-%horizontal rules
-\let\Rule\rule
-\renewcommand{\rule}[2]{\textcolor{H1UnderlineColor}{\Rule{\linewidth}{0.0104167in}}}
 %document
 \begin{document}
 $body$
