@@ -44,7 +44,7 @@
 	$if(subject)$
 	pdfsubject={$subject$},
 	$endif$
-	pdfcreator={XeLaTeX via Pandoc newsprint theme},
+	pdfcreator={XeLaTeX via Pandoc mint-dark theme},
 }
 \author{}
 \date{}
@@ -184,7 +184,7 @@
 \usepackage{xstring}
 \def\table#1{\begin{tabular}{#1}}
 %deviation: not making table head bold and capital to give user more freedom
-%deviation: not streteching table accross width for aesthetics
+%deviation: not stretching table accross width for aesthetics
 \arrayrulecolor{MintLightColor}
 \newenvironment{longtable}[3]{
 	\gdef\greenify{\color{DeepThemeColor}}
@@ -209,7 +209,6 @@
 }{
 	\end{tabular}
 	\end{center}
-	\vspace{1.5em}
 }
 %horizontal rules
 \let\Rule\rule
