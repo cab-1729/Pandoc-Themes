@@ -30,7 +30,7 @@ Possible ways you can help:
 
 ### Known issues
 
-**None**
++ evangelion, solarized, rubrication - ```pdfborder``` has too much padding. The underline needs to be closer to the text to better resemble ```href``` in html.
 
 ## Other projects
 + All of the testing is done with [zathura](https://wiki.archlinux.org/title/zathura)
