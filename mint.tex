@@ -58,7 +58,7 @@
 \usepackage[table]{xcolor}
 \definecolor{DeepThemeColor}{HTML}{4EB289}
 \definecolor{SubparagraphColor}{HTML}{777777}
-\definecolor{BackgroundColor}{HTML}{000000}
+\definecolor{BackgroundColor}{HTML}{FFFFFF}
 \definecolor{RuleColor}{HTML}{E7E7E7}
 \definecolor{QuotelineColor}{HTML}{BABABA}
 \definecolor{QuoteColor}{HTML}{777777}
@@ -71,6 +71,7 @@
 %fonts
 \usepackage{fontspec}
 \setmainfont[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/mint-fonts/lexend-,UprightFont=regular,BoldFont=bold]{}
+\usepackage[fontsize=0.16666672in]{fontsize}
 \setmonofont[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/mint-fonts/,UprightFont=sourcecodepro-regular,Scale=0.9]{}
 \linespread{1.25}%1.5/1.2
 %headings
@@ -122,8 +123,8 @@
 			right=0in,
 			top=0in,
 			bottom=0in,
+			fontlower=\codesize
 	]
-	\codesize
 }{
 	\end{tcolorbox}
 }
@@ -196,7 +197,7 @@
 	\def\endhead{}
 	\newcommand{\bottomrule}{}
 	\begin{center}
-	\rowcolors{2}{BackgroundColor}{TableEvenRowColor}%https://tex.stackexchange.com/a/5365
+	\rowcolors{2}{TableEvenRowColor}{BackgroundColor}%https://tex.stackexchange.com/a/5365
 	\expandafter\table\pream
 	\rowcolor{TableHeadColor}
 }{

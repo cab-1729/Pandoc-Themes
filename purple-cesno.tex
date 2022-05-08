@@ -24,6 +24,7 @@
 \usepackage{etoolbox}
 \makeatletter
 \makeatother
+\usepackage{footnotehyper}
 \usepackage{graphicx}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -47,28 +48,33 @@
 %---
 \author{}
 \date{}
-\usepackage[a4paper,textwidth=8.95833in,left=0.3125in,right=0.3125in,top=0.20833in,bottom=1.041667in]{geometry}
+\usepackage[a4paper,
+	top=1em,
+	left=4em,
+	right=4em,
+	bottom=0.10416667in
+]{geometry}
 %colors
 \usepackage[table]{xcolor}
-\definecolor{BackgroundColor}{HTML}{002B36}
-\definecolor{H1UnderlineColor}{HTML}{657B83}
-\definecolor{QuotelineColor}{HTML}{657B83}
-\definecolor{QuoteColor}{HTML}{6C71C4}
-\definecolor{LinkColor}{HTML}{2AA198}
-\definecolor{CodeColor}{HTML}{2AA198}
-\definecolor{ShadeColor}{HTML}{073642}
-\definecolor{TextColor}{HTML}{839496}
-\definecolor{TableEvenColor}{HTML}{F8F8F8}
-\definecolor{TableBorderColor}{HTML}{CCCCCC}
-\pagecolor{BackgroundColor}
+\definecolor{TextColor}{HTML}{444444}
+\definecolor{BorderColor}{HTML}{E7E7E7}
+\definecolor{TitleColor}{HTML}{8064A9}
+\definecolor{CodeColor}{HTML}{745FB5}
+\definecolor{InlineCodeBgColor}{HTML}{F4F2F9}
+\definecolor{BorderQuoteColor}{RGB}{116,95,181}
+\definecolor{LinkUnderlineColor}{HTML}{BBBBBB}
+\definecolor{LinkColor}{HTML}{2AA899}
+\definecolor{ShadeColor}{HTML}{FDFDFD}
+\definecolor{TableBorderColor}{HTML}{DDDDDD}
+\definecolor{TableEvenColor}{HTML}{FCFCFC}
 %links
-\usepackage[colorlinks=true,allcolors=LinkColor,allbordercolors=LinkColor]{hyperref}
+\usepackage[colorlinks=true,allcolors=LinkColor,allbordercolors=LinkUnderlineColor]{hyperref}
 %metadata
 \hypersetup{
 	$if(subject)$
 	pdfsubject={$subject$},
 	$endif$
-	pdfcreator={XeLaTeX via Pandoc solarized-dark theme},
+	pdfcreator={XeLaTeX via Pandoc purple-cesno theme},
 }
 	%-------underline all links
 \makeatletter
@@ -76,7 +82,6 @@
 	\def\@pdfborderstyle{/S/U/W 0.01}%eyeballing
 }
 \makeatother
-	%-------https://tex.stackexchange.com/a/26085
 %fonts
 \usepackage{fontspec}
 	%-------set global color
@@ -84,23 +89,44 @@
 	  \color{TextColor}\global\let\default@color\current@color
 \makeatother
 	%-------https://tex.stackexchange.com/a/29409
-\setmainfont[Extension=.otf,Path=/usr/share/fonts/pandoc-fonts/solarized-fonts/mononoki-,UprightFont=regular,ItalicFont=italic,BoldFont=bold,BoldItalicFont=bolditalic]{}
-\usepackage[fontsize=0.16666672in]{fontsize}
-\setmonofont[Extension=.otf,Path=/usr/share/fonts/pandoc-fonts/solarized-fonts/mononoki,UprightFont=-regular,ItalicFont=-italic,BoldFont=-bold,BoldItalicFont=-bolditalic]{}
-\linespread{1.25}%1.5/1.2
+\setmainfont[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/purple-fonts/consolas-,UprightFont=regular,ItalicFont=italic,BoldFont=bold,BoldItalicFont=bolditalic]{}
+\setmonofont[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/purple-fonts/ubuntumono-,UprightFont=regular]{}
+\usepackage[fontsize=0.166666672in]{fontsize}
+\linespread{1.33}%1.6/1.2
 %headings
 \usepackage{sectsty}
 \usepackage{titlesec}
-\titleformat{\section}{\fontsize{2.25em}{1.2em}\normalfont}{}{}{}[\textcolor{H1UnderlineColor}{\titlerule[0.0104167in]}]
-\titlespacing{\section}{0pt}{1em}{0.3em}
-\titleformat{\subsection}{\fontsize{1.75em}{1.225em}\normalfont}{}{}{}[\textcolor{H1UnderlineColor}{\titlerule[0.0104167in]}]
-\titlespacing{\subsection}{0pt}{0.3em}{0.3em}
-\titleformat{\subsubsection}{\fontsize{1.25em}{\baselinestretch}\normalfont}{}{}{}
-\titleformat{\paragraph}{\fontsize{1.125em}{\baselinestretch}\normalfont}{}{}{}
-\titlespacing{\paragraph}{0pt}{2.67em}{0pt}
-\titleformat{\subparagraph}{\fontsize{1em}{\baselinestretch}\normalfont}{}{}{}
-\raggedright
+\titleformat{\section}{\fontsize{2em}{0.2em}\filcenter\normalfont\color{TitleColor}}{}{}{}[\filcenter\textcolor{TitleColor}{\Rule{6em}{0.02083334in}}]
+\titlespacing{\section}{0pt}{2em}{2.3em}
+\titleformat{\subsection}{\fontsize{1.5em}{0em}\normalfont\color{TitleColor}}{}{}{}
+\titlespacing{\subsection}{0pt}{0em}{0em}
 \usepackage[most]{tcolorbox}
+\let\Subsection\subsection
+\renewcommand{\subsection}[1]{
+	\vspace{2em}
+	\begin{tcolorbox}[
+			notitle,
+			frame hidden,
+			interior hidden,
+			sharp corners,
+			enhanced,
+			boxrule=0pt,
+			boxsep=0em,
+			left=0.4em,
+			borderline west={0.4em}{0pt}{TitleColor},
+			borderline south={0.010416667in}{0pt}{TitleColor}
+		]
+			\Subsection{#1}
+	\end{tcolorbox}
+	\vspace{1.3em}
+}
+\titleformat{\subsubsection}{\fontsize{1.6em}{1.3em}\normalfont\color{TitleColor}}{}{}{}
+\titlespacing{\subsubsection}{0pt}{2em}{1em}
+\titleformat{\paragraph}{\fontsize{1.4em}{1.3em}\normalfont\color{TitleColor}}{}{}{}
+\titlespacing{\paragraph}{0pt}{2em}{1em}
+\titleformat{\subparagraph}{\fontsize{1.2em}{1.3em}\normalfont\color{TitleColor}}{}{}{}
+\titlespacing{\subparagraph}{0pt}{2em}{1em}
+\setlength{\parindent}{0pt}
 %quotes
 \renewenvironment{quote}{
 	\begin{tcolorbox}[
@@ -110,34 +136,27 @@
 			sharp corners,
 			enhanced,
 			boxrule=0pt,
-			colback=BackgroundColor,
-			coltext=QuoteColor,
 			boxsep=0em,
 			left=1em,
-			borderline west={0.052083in}{0pt}{QuotelineColor}
+			borderline west={0.3em}{0pt}{BorderQuoteColor!20!white!}
 	]
 }{
 	\end{tcolorbox}
 }
 %code background
-\newcommand{\codesize}{\fontsize{0.9em}{1em}}
+\newcommand{\codesize}{\fontsize{0.9em}{\baselineskip}}
 \newenvironment{Shaded}{
 	\begin{tcolorbox}[
 			notitle,
 			breakable,
-			frame hidden,
-			sharp corners,
 			enhanced,
-			boxrule=0pt,
+			boxrule=0.01041667in,
+			colframe=BorderColor,
 			colback=ShadeColor,
-			boxsep=0em,
-			top=0.020833in,
-			bottom=0in,
-			left=0.041667in,
-			right=0.041667in,
-			fontlower=\codesize,
+			arc=0.05208335in,
+			outer arc=0.05208335in,
+			fontlower=\codesize
 	]
-	\color{CodeColor}
 }{
 	\end{tcolorbox}
 }
@@ -146,30 +165,31 @@
 \newcommand{\AnnotationTok}[1]{#1}
 \newcommand{\AttributeTok}[1]{\textcolor[HTML]{0000CC}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
 \newcommand{\BaseNTok}[1]{#1}
-\newcommand{\BuiltInTok}[1]{\textcolor[HTML]{3300aa}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
-\newcommand{\CharTok}[1]{#1} \newcommand{\CommentTok}[1]{\textcolor[HTML]{aa5500}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\BuiltInTok}[1]{\textcolor[HTML]{0451A5}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\CharTok}[1]{#1}
+\newcommand{\CommentTok}[1]{\textcolor[HTML]{9DAAB6}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
 \newcommand{\CommentVarTok}[1]{#1}
 \newcommand{\ConstantTok}[1]{#1}
 \newcommand{\ControlFlowTok}[1]{#1}
-\newcommand{\DataTypeTok}[1]{\textcolor[HTML]{008855}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
-\newcommand{\DecValTok}[1]{\textcolor[HTML]{116644}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\DataTypeTok}[1]{\textcolor[HTML]{9ED44C}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\DecValTok}[1]{\textcolor[HTML]{E95295}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
 \newcommand{\DocumentationTok}[1]{#1}
 \newcommand{\ErrorTok}[1]{\textcolor[HTML]{FF0000}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
 \newcommand{\ExtensionTok}[1]{#1}
-\newcommand{\FloatTok}[1]{\textcolor[HTML]{116644}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\FloatTok}[1]{\textcolor[HTML]{E95295}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
 \newcommand{\FunctionTok}[1]{\textcolor[HTML]{0000FF}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
 \newcommand{\ImportTok}[1]{#1}
 \newcommand{\InformationTok}[1]{#1}
-\newcommand{\KeywordTok}[1]{\textcolor[HTML]{770088}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\KeywordTok}[1]{\textcolor[HTML]{BC64A4}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
 \newcommand{\NormalTok}[1]{#1}
-\newcommand{\OperatorTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[HTML]{A59ACA}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
 \newcommand{\OtherTok}[1]{#1}
 \newcommand{\PreprocessorTok}[1]{#1}
 \newcommand{\RegionMarkerTok}[1]{#1}
 \newcommand{\SpecialCharTok}[1]{\textcolor[HTML]{AA1111}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
 \newcommand{\SpecialStringTok}[1]{\textcolor[HTML]{AA1111}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
 \newcommand{\StringTok}[1]{\textcolor[HTML]{AA1111}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
-\newcommand{\VariableTok}[1]{#1}
+\newcommand{\VariableTok}[1]{\textcolor[HTML]{F39800}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
 \newcommand{\VerbatimStringTok}[1]{#1}
 \newcommand{\WarngingTok}[1]{#1}
 %no highlighting code
@@ -177,51 +197,70 @@
 \BeforeBeginEnvironment{verbatim}{\begin{Shaded}}
 \AfterEndEnvironment{verbatim}{\end{Shaded}}
 %inline code behaviour
-\def\inlinecode #1 {\colorbox{ShadeColor}{\color{CodeColor}\codesize#1}}
+\def\inlinecode #1 {
+	\tcbox[
+		 notitle,
+		 on line,
+		 frame empty,
+		 coltext=InlineCodeBgColor,
+		 coltext=CodeColor,
+		 boxsep=0.02083334in,
+		 outer arc=0.3em,
+		 arc=0.3em,
+		 top=0.02083334in,
+		 right=0.04166668in,
+		 bottom=0.02083334in,
+		 left=0.04166668in,
+		 fontlower=\codesize
+	]{
+		#1
+	}
+}
 \newcommand{\VERB}{\inlinecode \Verb[breaklines,breakanywhere,commandchars=\\\{\}]}
 \renewcommand{\texttt}[1]{\VERB|#1|}
 %tables
-\usepackage{xstring}
-%border on every row
+	%underline on every row
 \makeatletter
 \let\Tabularcr\@arraycr
 \def\@arraycr{\Tabularcr\hline}
 \makeatother
-%https://stackoverflow.com/a/3175486 second comment
+	%https://stackoverflow.com/a/3175486 second comment
+\usepackage{xstring}
 \def\table#1{\begin{tabular}{#1}}
+%deviation: not making table head bold and capital to give user more freedom
 %deviation: not stretching table accross width for aesthetics
-\renewcommand{\arraystretch}{1.2}%1.5 based on visual comparison
-\setlength{\tabcolsep}{0.13541671in}%13px
-%table border
+\setlength{\tabcolsep}{0.08333336in}
+\renewcommand{\arraystretch}{1.25}
 \arrayrulecolor{TableBorderColor}
-\setlength{\arrayrulewidth}{0.01041667in}
 \newenvironment{longtable}[3]{
-	%add border to preamble
 	\StrGobbleLeft{#3}{2}[\pream]
 	\StrGobbleRight{\pream}{2}[\pream]
 	\StrSubstitute{\pream}{l}{|l}[\pream]
 	\StrSubstitute{\pream}{r}{|r}[\pream]
 	\StrSubstitute{\pream}{c}{|c}[\pream]
 	\edef\pream{{\pream|}}
-	%empty macros
 	\newcommand{\toprule}{}
 	\newcommand{\midrule}{}
 	\def\endhead{}
 	\newcommand{\bottomrule}{}
-	%create table
 	\begin{center}
-	\rowcolors{2}{TableEvenColor}{BackgroundColor}%https://tex.stackexchange.com/a/5365
+	\rowcolors{2}{TableEvenColor}{white}%https://tex.stackexchange.com/a/5365
 	\expandafter\table\pream
-	\rowcolor{ShadeColor}%deviation: not making head row background color for aesthetic reasons
+	\noalign{\global\arrayrulewidth=0.01041667in}%https://tex.stackexchange.com/a/337790
 	\hline
 }{
 	\end{tabular}
 	\end{center}
-	\vspace{1.5em}
+	\vspace{1.25em}
+}
+%lists
+\AtBeginEnvironment{itemize}{
+	\let\Item\item
+	\renewcommand{\item}{\Item[\textbf{\textbullet}\hspace{1.8mm}]}%1.8 from eyeballing
 }
 %horizontal rules
 \let\Rule\rule
-\renewcommand{\rule}[2]{\vspace{0.25000008in}\textcolor{H1UnderlineColor}{\Rule{\linewidth}{0.01041667in}}}
+\renewcommand{\rule}[2]{\textcolor{BorderColor}{\vspace{1.5em}\Rule{\linewidth}{0.0104167in}}}
 %document
 \begin{document}
 $body$

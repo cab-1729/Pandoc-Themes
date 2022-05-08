@@ -111,17 +111,11 @@
 \makeatother
 	%-------https://tex.stackexchange.com/a/29409
 \linespread{1.5}%1.0/1.2
-\usepackage[fontsize=0.16666672in]{fontsize}
+\usepackage{fontsize}
+\changefontsize[0.16666672in]{0.8em}
 %headings
 \usepackage{sectsty}
 \usepackage{titlesec}
-%No fontsize mentioned for headers, hence going with css defaults:
-%h1 : 2em
-%h2 : 1.5em
-%h3 : 1.17em
-%h4 : 1em
-%h5 : 0.83em
-%Source - http://www.codeash.com/h1-to-h6-font-size-in-html/
 \renewcommand{\section}[1]{
 	 \tcbox[
 			 notitle,
@@ -142,10 +136,10 @@
 			 \vspace{0.3em}
 		 }
  }
-\titleformat{\subsection}{\fontsize{1.5em}{\baselineskip}\color{SubheaderColor}\fssevenhundred}{}{}{}
-\titleformat{\subsubsection}{\fontsize{1.17em}{\baselineskip}\color{SubheaderColor}\fsfourhundred}{}{}{}
-\titleformat{\paragraph}{\fontsize{1em}{\baselineskip}\color{SubheaderColor}\fsfourhundred}{}{}{}
-\titleformat{\subparagraph}{\fontsize{0.83em}{\baselineskip}\color{SubheaderColor}\fsfourhundred}{}{}{}
+\titleformat{\subsection}{\fontsize{1.8em}{\baselineskip}\color{SubheaderColor}\fssevenhundred}{}{}{}
+\titleformat{\subsubsection}{\fontsize{1.6em}{\baselineskip}\color{SubheaderColor}\fsfourhundred}{}{}{}
+\titleformat{\paragraph}{\fontsize{1.4em}{\baselineskip}\color{SubheaderColor}\fsfourhundred}{}{}{}
+\titleformat{\subparagraph}{\fontsize{1.2em}{\baselineskip}\color{SubheaderColor}\fsfourhundred}{}{}{}
 %can't do anything about H6, pandoc doesn't assigne it anything
 \raggedright
 \usepackage[most]{tcolorbox}

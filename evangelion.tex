@@ -73,19 +73,18 @@
 	$if(subject)$
 	pdfsubject={$subject$},
 	$endif$
-	pdfcreator={XeLaTeX via Pandoc newsprint theme},
+	pdfcreator={XeLaTeX via Pandoc evangelion theme},
 }
 	%-------underline all links
 \makeatletter
 \Hy@AtBeginDocument{%
-	\def\@pdfborder{0 0 1}% Overrides border definition set with colorlinks=true
-	\def\@pdfborderstyle{/S/U/W 1}% Overrides border style set with colorlinks=true
-		                                % Hyperlink border style will be underline of width 1pt
+	\def\@pdfborderstyle{/S/U/W 0.01}%eyeballing
 }
 \makeatother
 	%-------https://tex.stackexchange.com/a/26085
 %fonts
 \usepackage{fontspec}
+\usepackage[fontsize=0.16666672in]{fontsize}
 	%-------set global color
 \makeatletter
 	  \color{white}\global\let\default@color\current@color

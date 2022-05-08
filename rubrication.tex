@@ -65,9 +65,7 @@
 	%-------underline all links
 \makeatletter
 \Hy@AtBeginDocument{%
-	\def\@pdfborder{0 0 1}% Overrides border definition set with colorlinks=true
-	\def\@pdfborderstyle{/S/U/W 1}% Overrides border style set with colorlinks=true
-		                                % Hyperlink border style will be underline of width 1pt
+	\def\@pdfborderstyle{/S/U/W 0.01}%eyeballing
 }
 \makeatother
 	%-------https://tex.stackexchange.com/a/26085
@@ -75,6 +73,7 @@
 \usepackage{fontspec}
 \newfontfamily\heading[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/rubrication-fonts/ptserif-,UprightFont=regular,ItalicFont=italic,BoldFont=bold,BoldItalicFont=bolditalic]{}
 \setmonofont[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/rubrication-fonts/,UprightFont=typopro-iosevka-term-medium]{}
+\usepackage[fontsize=0.16666672in]{fontsize}
 \linespread{1.25}
 %headings
 \usepackage{sectsty}
