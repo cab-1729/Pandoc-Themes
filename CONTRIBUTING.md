@@ -17,7 +17,7 @@ Possible ways you can help:
 + [woff2ttf](https://archlinux.org/packages/extra/x86_64/woff2/) -  for converting woff2 to ttf, for arch based distros
 + [woff2otf.py](https://github.com/hanikesn/woff2otf) -  for converting woff to otf
 + [File from old, deprecated project](https://github.com/cab-1729/SchoolStuff/blob/main/School%20material/Program.cs) - a file using for testing syntax highlighting
-+ Command used for testing and compiling : ```pandoc --verbose --pdf-engine=xelatex --template={}.tex -f markdown+inline_code_attritbutes+implicit_header_references -t pdf Github\ Markdown.md -o Github\ markdown.pdf```
++ Command used for testing and compiling : ```pandoc --verbose --pdf-engine=xelatex --template={}.tex -f markdown+inline_code_attritbutes+implicit_header_references -t pdf Github\ Markdown.md | zathura -```
 
 ## Known issues
 
