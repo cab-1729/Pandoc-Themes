@@ -20,19 +20,6 @@ pandoc --pdf-engine=xelatex -f markdown -t pdf --template=name_of_template.tex /
 ```
 Metadata from markdown file will not be given priority. Most of the things will be set by the templates.
 
-## Contributing
-This is the loneliest account on Github, but in case anyone who is reading this who is not me, this is too big of a project to be handled by one person. So if you have the skills please consider contributing code.
-
-Possible ways you can help:
-+ Create a new pandoc template from an existing Typora theme. Stick as close as possible to the original source. If you want to do this I would recommend copying any template here and editing it to create the new one as it maintains code consistency.
-+ Solve any one of the known issues
-+ Review the code and recommend a simplification
-
-### Known issues
-
-+ evangelion, solarized, rubrication - ```pdfborder``` has too much padding. The underline needs to be closer to the text to better resemble ```href``` in html.
-+ cobalt - ```marginpar``` needs to be aligned with the heading.
-
 ## Other projects
 + All of the testing is done with [zathura](https://wiki.archlinux.org/title/zathura)
 + The fonts have been obtained using [woff2ttf](https://archlinux.org/packages/extra/x86_64/woff2/) and [woff2otf.py](https://github.com/hanikesn/woff2otf)
