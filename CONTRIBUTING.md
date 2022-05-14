@@ -2,6 +2,7 @@
 
 This is the loneliest account on Github, but in case anyone who is reading this who is not me, this is too big of a project to be handled by one person. So if you have the skills please consider contributing code.
 Put the fonts and the example in the respective directories and follow the naming convention.
+If an issue is to be created, please include many images as this is a very visual project.
 
 Possible ways you can help:
 + Create a new pandoc template from an existing Typora theme. Stick as close as possible to the original source. If you want to do this I would recommend copying any template here and editing it to create the new one as it maintains code consistency.
