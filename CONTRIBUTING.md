@@ -25,3 +25,4 @@ Possible ways you can help:
 
 + evangelion, solarized, rubrication - ```pdfborder``` has too much padding. The underline needs to be closer to the text to better resemble ```href``` in html.
 + cobalt - ```marginpar``` needs to be aligned with the heading.
++ all - formatting needs to be applied on level 6 headings. Pandoc does [not](https://github.com/jgm/pandoc/issues/8069) support it yet.
