@@ -50,6 +50,21 @@
 %metadata
 \hypersetup{
 	$if(subject)$
+	$if(title-meta)$
+	  pdftitle={$title-meta$},
+	$endif$
+	$if(author-meta)$
+	  pdfauthor={$author-meta$},
+	$endif$
+	$if(subject)$
+	  pdfsubject={$subject$},
+	$endif$
+	$if(keywords)$
+	  pdfkeywords={$for(keywords)$$keywords$$sep$, $endfor$},
+	$endif$
+	$if(subject)$
+	pdfsubject={$subject$},
+	$endif$
 	pdfsubject={$subject$},
 	$endif$
 	pdfcreator={XeLaTeX via Pandoc newsprint theme},
@@ -104,10 +119,10 @@
 			colback=BackgroundColor,
 			coltext=QuoteColor,
 			boxsep=0em,
+			fontlower=\itshape,
 			left=2em,
 			borderline west={0.052083in}{0pt}{QuotelineColor}
 	]
-		\itshape
 }{
 	\end{tcolorbox}
 }

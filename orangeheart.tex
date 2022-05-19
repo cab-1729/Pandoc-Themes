@@ -48,26 +48,22 @@
 %---
 \author{}
 \date{}
-\usepackage[a4paper,
-	top=0.3140001in,
-	right=0.5233335in,
-	left=0.5233335in,
-	bottom=0.2093334in
-]{geometry}
+\usepackage[a4paper,margin=0.1041667in]{geometry}
 %colors
 \usepackage[table]{xcolor}
-\definecolor{BackgroundColor}{HTML}{353846}
-\definecolor{HeaderColor}{HTML}{8CE360}
-\definecolor{QuoteColor}{HTML}{CCCCCC}
-\definecolor{LinkColor}{HTML}{C16124}
-\definecolor{CodeColor}{HTML}{A9B7C6}
-\definecolor{CodeBlockBgColor}{HTML}{0F111A}
-\definecolor{DeepThemeColor}{HTML}{9D56AE}
-\definecolor{TableHeadColor}{HTML}{7173E0}
-\definecolor{BorderColor}{HTML}{BB91F8}
-\pagecolor{BackgroundColor}
+\definecolor{H1UnderlineColor}{HTML}{C5C5C5}
+\definecolor{H2Color}{RGB}{239,112,96}
+\definecolor{H2ShadowColor}{HTML}{EFEBE9}
+\definecolor{QuoteBackColor}{HTML}{FFF9F9}
+\definecolor{ShadeColor}{HTML}{292D3E}
+\definecolor{CodeColor}{HTML}{A6ACCD}
+\definecolor{InlineCodeBackgroundColor}{RGB}{27,31,35}
+\definecolor{TableEvenColor}{HTML}{F8F8F8}
+\definecolor{TableHeadColor}{HTML}{F0F0F0}
+\definecolor{TableBorderColor}{HTML}{CCCCCC}
+\definecolor{ShadowColor}{HTML}{EFEBE9}
 %links
-\usepackage[colorlinks=true,allcolors=LinkColor,allbordercolors=LinkColor]{hyperref}
+\usepackage[colorlinks=true,allcolors=H2Color,allbordercolors=H2Color]{hyperref}
 %metadata
 \hypersetup{
 	$if(title-meta)$
@@ -97,28 +93,59 @@
 }
 \makeatother
 	%-------https://tex.stackexchange.com/a/26085
+%TODO: bold makes letters disapper :|
+\let\Href\href
+\renewcommand{\href}[2]{\Href{#1}{\bfseries#2}}
+\let\Hyperlink\hyperlink
+\renewcommand{\hyperlink}[2]{\Hyperlink{#1}{\bfseries#2}}
 %fonts
 \usepackage{fontspec}
+\setmainfont[Extension=.otf,Path=/usr/share/fonts/pandoc-fonts/orangeheart-fonts/optima-,UprightFont=regular,ItalicFont=italic,BoldFont=bold,BoldItalicFont=bolditalic]{}
+\setmonofont[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/orangeheart-fonts/consolas-,UprightFont=regular,ItalicFont=italic,BoldFont=bold,BoldItalicFont=bolditalic]{}
+\setmonofont[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/orangeheart-fonts/consolas-,UprightFont=regular,ItalicFont=italic,BoldFont=bold,BoldItalicFont=bolditalic]{}
+\newfontfamily\inlinefont[Extension=.otf,Path=/usr/share/fonts/pandoc-fonts/orangeheart-fonts/,UprightFont=operatormono]{}
 \usepackage[fontsize=0.16666672in]{fontsize}
-	%-------set global color
-\makeatletter
-	  \color{white}\global\let\default@color\current@color
-\makeatother
-	%-------https://tex.stackexchange.com/a/29409
-\linespread{1.5}%1.8/1.2
+\linespread{1.25}%1.5/1.2
 %headings
 \usepackage{sectsty}
 \usepackage{titlesec}
-\titleformat{\section}{\fontsize{2em}{1.1\baselineskip}\bfseries\color{HeaderColor}}{\thesection}{1em}{}[{\titlerule[0.010416667in]}]
-\titlespacing{\section}{0pt}{0.67em}{0.67em}
-\titleformat{\subsection}{\fontsize{1.5em}{\baselineskip}\bfseries\color{HeaderColor}}{}{}{}
-\titlespacing{\subsection}{0pt}{0.83em}{0.83em}
-\titleformat{\subsubsection}{\fontsize{1.17em}{\baselineskip}\bfseries\color{HeaderColor}}{}{}{}
-\titlespacing{\subsubsection}{0pt}{1em}{1em}
-\titleformat{\paragraph}{\fontsize{1em}{\baselinestretch}\bfseries\color{HeaderColor}}{}{}{}
-\titlespacing{\paragraph}{0pt}{1.33em}{1.33em}
-\titleformat{\subparagraph}{\fontsize{1em}{\baselinestretch}\bfseries\color{HeaderColor}}{}{}{}
-\titlespacing{\subparagraph}{0pt}{1.33em}{1.33em}
+\titleformat{\section}{\fontsize{1.5em}{\baselineskip}\bfseries}{}{}{}
+\titlespacing{\section}{0pt}{0.312500010in}{0.156250005in}
+% \titleformat{\subsection}{\fontsize{1.3em}{\baselineskip}\bfseries\color{white}}{}{}{}
+% \titlespacing{\subsection}{0pt}{0in}{0in}
+\usepackage{tikz}
+\renewcommand{\subsection}[1]{%redefining completely might cause problems
+	\vspace{0.312500010in}
+	\tcbox[
+		on line,
+		nobeforeafter,
+		colback=H2Color,
+		colframe=white,
+		top=0.1041667in,
+		bottom=0.1041667in,
+		right=0.1041667in,
+		left=0.1041667in,
+		notitle,
+		boxrule=0pt,
+		boxsep=0em,
+		fontupper=\fontsize{1.3em}{\baselineskip}\bfseries\color{white},
+		sharp corners=south,
+		arc=0.031250001in,
+		outer arc=0.031250001in,
+		enhanced,
+		overlay={%https://github.com/T-F-S/tcolorbox/issues/178#issuecomment-1126905391
+			\fill[H2ShadowColor]([xshift=0.031250001in,yshift=0.37500012in]frame.south east) -- ([xshift=0.031250001in]frame.south east) -- ([xshift=0.23958341in]frame.south east) -- cycle;
+		}
+	]{#1}
+	\textcolor{H2Color}{\hrule height 0.02083334in depth 0pt  width \linewidth}
+	\vspace{0.156250005in}
+}
+\titleformat{\subsubsection}{\fontsize{1.2em}{\baselineskip}\normalfont}{}{}{}
+\titlespacing{\subsubsection}{0pt}{0.312500010in}{0.156250005in}
+\titleformat{\paragraph}{\fontsize{1.1em}{\baselinestretch}\normalfont}{}{}{}
+\titlespacing{\paragraph}{0pt}{0.312500010in}{0.156250005in}
+\titleformat{\subparagraph}{\fontsize{1em}{\baselineskip}\normalfont}{}{}{}
+\titlespacing{\subparagraph}{0pt}{0.312500010in}{0.156250005in}
 \raggedright
 \usepackage[most]{tcolorbox}
 %quotes
@@ -126,20 +153,23 @@
 	\begin{tcolorbox}[
 			notitle,
 			frame hidden,
-			interior hidden,
 			sharp corners,
 			enhanced,
 			boxrule=0pt,
-			colback=BackgroundColor,
-			coltext=QuoteColor,
+			colback=QuoteBackColor,
 			boxsep=0em,
-			left=2em,
-			borderline west={0.2em}{0pt}{DeepThemeColor}
+			top=0.2083334in,
+			bottom=0.2083334in,
+			left=0.1041667in,
+			right=0.1041667in,
+			fontupper=\fontsize{0.9em}{0.27083342in},
+			borderline west={0.03125001in}{0pt}{H2Color}
 	]
 }{
 	\end{tcolorbox}
 }
 %code background
+\newcommand{\codesize}{\fontsize{0.875em}{1.714285em}}
 \newenvironment{Shaded}{
 	\begin{tcolorbox}[
 			notitle,
@@ -148,14 +178,15 @@
 			sharp corners,
 			enhanced,
 			boxrule=0pt,
+			colback=ShadeColor,
 			coltext=CodeColor,
-			colback=CodeBlockBgColor,
-			outer arc=0.031250001in,
-			boxsep=0.5em,
-			top=0.2em,
-			bottom=0.2em,
-			left=0in,
-			right=0in,
+			boxsep=0em,
+			arc=0.04166668in,
+			outer arc=0.04166668in,
+			left=0.04166668in,
+			top=0.5em,
+			bottom=0.5em,
+			fontlower=\codesize,
 	]
 }{
 	\end{tcolorbox}
@@ -167,7 +198,7 @@
 \newcommand{\BaseNTok}[1]{#1}
 \newcommand{\BuiltInTok}[1]{\textcolor[HTML]{FFCB6B}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
 \newcommand{\CharTok}[1]{\textcolor[HTML]{C3E88D}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
-\newcommand{\CommentTok}[1]{\textcolor[HTML]{585D6D}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\CommentTok}[1]{\textcolor[HTML]{676E95}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
 \newcommand{\CommentVarTok}[1]{#1}
 \newcommand{\ConstantTok}[1]{#1}
 \newcommand{\ControlFlowTok}[1]{#1}
@@ -186,8 +217,8 @@
 \newcommand{\OtherTok}[1]{#1}
 \newcommand{\PreprocessorTok}[1]{#1}
 \newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[HTML]{C3E88D}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[HTML]{C3E88D}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[HTML]{F07178}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[HTML]{F07178}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
 \newcommand{\StringTok}[1]{\textcolor[HTML]{C3E88D}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
 \newcommand{\VariableTok}[1]{\textcolor[HTML]{F07178}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
 \newcommand{\VerbatimStringTok}[1]{#1}
@@ -201,22 +232,22 @@
 	\tcbox[
 		 notitle,
 		 on line,
-		 coltext=white,
-		 colback=CodeBlockBgColor,
-		 colframe=BorderColor,
-		 boxrule=0.01041667in,
-		 boxsep=0.0020833334in,
-		 outer arc=0.020833334in,
-		 arc=0.020833334in,
-		 top=0.020833334in,
-		 bottom=0.020833334in,
-		 left=0.041666668in,
-		 right=0.041666668in,
+		 frame empty,
+		 coltext=H2Color,
+		 colback=white!95!InlineCodeBackgroundColor,
+		 boxsep=0.002083334in,
+		 top=0.02083334in,
+		 bottom=0.02083334in,
+		 left=0.04166668in,
+		 right=0.04166668in,
+		 arc=0.04166668in,
+		 outer arc=0.04166668in,
+		 fontupper=\fontsize{0.14583338in}{\baselineskip}\inlinefont
 	]{
 	#1
 	}
 }
-\newcommand{\VERB}{\inlinecode \Verb[breaklines,breakanywhere,commandchars=\\\{\}]}
+\newcommand{\VERB}{\inlinecode\Verb[breaklines,breakanywhere,commandchars=\\\{\}]}
 \renewcommand{\texttt}[1]{\VERB|#1|}
 %tables
 	%underline on every row
@@ -228,8 +259,10 @@
 \def\table#1{\begin{tabular}{#1}}
 	%https://stackoverflow.com/a/3175486 second comment
 %deviation: not stretching table accross width for aesthetics
-%deviation: not making table head centered for aesthetics
-\arrayrulecolor{BorderColor}
+%deviation: not making table head bold for user freedom
+\setlength{\tabcolsep}{0.10416667in}
+\renewcommand{\arraystretch}{1.25}%eyeballing
+\arrayrulecolor{TableBorderColor}
 \global\arrayrulewidth=0.01041667in%https://tex.stackexchange.com/a/337790
 \newenvironment{longtable}[3]{
 	\StrGobbleLeft{#3}{2}[\pream]
@@ -243,28 +276,18 @@
 	\def\endhead{}
 	\newcommand{\bottomrule}{}
 	\begin{center}
+	\rowcolors{2}{TableEvenColor}{white}%https://tex.stackexchange.com/a/5365
 	\expandafter\table\pream
 	\hline
 	\rowcolor{TableHeadColor}
 }{
 	\end{tabular}
 	\end{center}
-}
-%lists
-\AtBeginEnvironment{itemize}{
-	\let\Item\item
-	\renewcommand{\item}{\Item[\textcolor{DeepThemeColor}\textbullet\hspace{0.5mm}]}%0.5 from eyeballing
-}
-\AtBeginEnvironment{enumerate}{
-	\let\Tightlist\tightlist
-	\renewcommand{\tightlist}{
-		\def\labelenumi{\bfseries\color{DeepThemeColor}\arabic{enumi}.}
-		\Tightlist
-	}
+	\vspace{1.5em}
 }
 %horizontal rules
 \let\Rule\rule
-\renewcommand{\rule}[2]{\textcolor{BorderColor}{\Rule{\linewidth}{0.010416667in}}}
+\renewcommand{\rule}[2]{\textcolor{H1UnderlineColor}{\Rule{\linewidth}{0.0104167in}}}
 %document
 \begin{document}
 $body$

@@ -41,6 +41,21 @@
 \usepackage[colorlinks=true,allcolors=DeepThemeColor]{hyperref}
 %metadata
 \hypersetup{
+	$if(title-meta)$
+	  pdftitle={$title-meta$},
+	$endif$
+	$if(author-meta)$
+	  pdfauthor={$author-meta$},
+	$endif$
+	$if(subject)$
+	  pdfsubject={$subject$},
+	$endif$
+	$if(keywords)$
+	  pdfkeywords={$for(keywords)$$keywords$$sep$, $endfor$},
+	$endif$
+	$if(subject)$
+	pdfsubject={$subject$},
+	$endif$
 	$if(subject)$
 	pdfsubject={$subject$},
 	$endif$
