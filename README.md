@@ -5,6 +5,8 @@ General purpose themes for converting markdown to pdf using pandoc.
 
 All in pure ```xelatex```, no Lua.
 
+Each theme works independently of each other. The only dependency to a theme is its font folder.
+
 Examples for each theme stored in the _examples_ directory.
 
 __Warning_: These templates are very liberal with packages and assume the user has the entirety of texlive installed._
