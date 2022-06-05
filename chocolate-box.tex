@@ -176,6 +176,7 @@
 }{
 	\end{tcolorbox}
 	\vspace{0.5em}
+	\color{TextColor}
 }
 %code background
 \newenvironment{Shaded}{
@@ -185,6 +186,7 @@
 			frame hidden,
 			sharp corners,
 			boxrule=0pt,
+			coltext=TextColor,
 			colback=ShadeColor,
 			boxsep=0.125em,
 			left=0mm,
@@ -251,6 +253,7 @@
 	]{
 	#1
 	}
+	\color{TextColor}
 }
 \newcommand{\VERB}{\inlinecode\Verb[breaklines,breakanywhere,commandchars=\\\{\}]}
 \renewcommand{\texttt}[1]{\VERB|#1|}
