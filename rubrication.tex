@@ -182,17 +182,11 @@
 %tables
 %deviation: not making table head bold and capital to give user more freedom
 %deviation: not stretching table accross width for aesthetics
-\newenvironment{longtable}[3]{
-	\newcommand{\toprule}{}
-	\newcommand{\midrule}{}
-	\def\endhead{}
-	\newcommand{\bottomrule}{}
-	\begin{center}
-	\begin{tabular}{#3}
-}{
-	\end{tabular}
-	\end{center}
-}
+\usepackage{longtable}
+\newcommand{\toprule}{}
+\newcommand{\midrule}{}
+\def\endhead{}
+\newcommand{\bottomrule}{}
 %document
 \begin{document}
 $body$

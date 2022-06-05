@@ -241,13 +241,16 @@
 \makeatother
 	%https://stackoverflow.com/a/3175486 second comment
 \usepackage{xstring}
-\def\table#1{\begin{tabular}{#1}}
+\usepackage{longtable}
+\let\Longtable\longtable
+\let\EndLongtable\endlongtable
+\def\table#1{\Longtable{#1}}
 %deviation: not making table head bold and capital to give user more freedom
 %deviation: not stretching table accross width for aesthetics
 \setlength{\tabcolsep}{0.08333336in}
 \renewcommand{\arraystretch}{1.25}
 \arrayrulecolor{TableBorderColor}
-\newenvironment{longtable}[3]{
+\renewenvironment{longtable}[3]{
 	\StrGobbleLeft{#3}{2}[\pream]
 	\StrGobbleRight{\pream}{2}[\pream]
 	\StrSubstitute{\pream}{l}{|l}[\pream]
@@ -264,7 +267,7 @@
 	\noalign{\global\arrayrulewidth=0.01041667in}%https://tex.stackexchange.com/a/337790
 	\hline
 }{
-	\end{tabular}
+	\EndLongtable
 	\end{center}
 	\vspace{1.25em}
 }

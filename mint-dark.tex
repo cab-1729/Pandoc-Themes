@@ -198,11 +198,14 @@
 \makeatother
 	%https://stackoverflow.com/a/3175486 second comment
 \usepackage{xstring}
-\def\table#1{\begin{tabular}{#1}}
+\usepackage{longtable}
+\let\Longtable\longtable
+\let\EndLongtable\endlongtable
+\def\table#1{\Longtable{#1}}
 %deviation: not making table head bold and capital to give user more freedom
 %deviation: not stretching table accross width for aesthetics
 \arrayrulecolor{MintLightColor}
-\newenvironment{longtable}[3]{
+\renewenvironment{longtable}[3]{
 	\gdef\greenify{\color{DeepThemeColor}}
 	\newcolumntype{L}{|>{\greenify}l}
 	\newcolumntype{R}{|>{\greenify}r}
@@ -223,7 +226,7 @@
 	\hline
 	\rowcolor{TableHeadColor}
 }{
-	\end{tabular}
+	\EndLongtable
 	\end{center}
 }
 %horizontal rules

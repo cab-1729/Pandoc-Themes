@@ -197,20 +197,23 @@
 \renewcommand{\texttt}[1]{\VERB|#1|}
 %tables
 \usepackage{xstring}
+\usepackage{longtable}
+\let\Longtable\longtable
+\let\EndLongtable\endlongtable
 %border on every row
 \makeatletter
 \let\Tabularcr\@arraycr
 \def\@arraycr{\Tabularcr\hline}
 \makeatother
 %https://stackoverflow.com/a/3175486 second comment
-\def\table#1{\begin{tabular}{#1}}
+\def\table#1{\Longtable{#1}}
 %deviation: not stretching table accross width for aesthetics
 \renewcommand{\arraystretch}{1.2}%1.5 based on visual comparison
 \setlength{\tabcolsep}{0.13541671in}%13px
 %table border
 \arrayrulecolor{TableBorderColor}
 \setlength{\arrayrulewidth}{0.01041667in}
-\newenvironment{longtable}[3]{
+\renewenvironment{longtable}[3]{
 	%add border to preamble
 	\StrGobbleLeft{#3}{2}[\pream]
 	\StrGobbleRight{\pream}{2}[\pream]
@@ -230,7 +233,7 @@
 	\rowcolor{ShadeColor}%deviation: not making head row background color for aesthetic reasons
 	\hline
 }{
-	\end{tabular}
+	\EndLongtable
 	\end{center}
 	\vspace{1.5em}
 }

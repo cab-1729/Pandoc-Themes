@@ -259,13 +259,16 @@
 \makeatother
 	%https://stackoverflow.com/a/3175486 second comment
 \usepackage{xstring}
-\def\table#1{\begin{tabular}{#1}}
+\usepackage{longtable}
+\let\Longtable\longtable
+\let\EndLongtable\endlongtable
+\def\table#1{\Longtable{#1}}
 %deviation: not stretching table accross width for aesthetics
 %deviation: not making table head bold to give user more freedom
 \setlength{\tabcolsep}{0.166666672in}
 \renewcommand{\arraystretch}{1.3}%eyeballing
 \arrayrulecolor{TableBorderColor}
-\newenvironment{longtable}[3]{
+\renewenvironment{longtable}[3]{
 	\gdef\purply{\color{TableHeadTextColor}\fontsize{0.875em}{\baselineskip}\selectfont}
 	\newcolumntype{L}{|>{\purply}l}
 	\newcolumntype{R}{|>{\purply}r}
@@ -286,7 +289,7 @@
 	\hline
 	\rowcolor{TableHeadBackgroundColor}
 }{
-	\end{tabular}
+	\EndLongtable
 	\end{center}
 	\vspace{1.5em}
 }

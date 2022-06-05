@@ -254,7 +254,10 @@
 \def\@arraycr{\Tabularcr\hline}
 \makeatother
 \usepackage{xstring}
-\def\table#1{\begin{tabular}{#1}}
+\usepackage{longtable}
+\let\Longtable\longtable
+\let\EndLongtable\endlongtable
+\def\table#1{\Longtable{#1}}
 	%https://stackoverflow.com/a/3175486 second comment
 %deviation: not stretching table accross width for aesthetics
 %deviation: not making table head bold for user freedom
@@ -262,7 +265,7 @@
 \renewcommand{\arraystretch}{1.25}%eyeballing
 \arrayrulecolor{TableBorderColor}
 \global\arrayrulewidth=0.01041667in%https://tex.stackexchange.com/a/337790
-\newenvironment{longtable}[3]{
+\renewenvironment{longtable}[3]{
 	\StrGobbleLeft{#3}{2}[\pream]
 	\StrGobbleRight{\pream}{2}[\pream]
 	\StrSubstitute{\pream}{l}{|l}[\pream]
@@ -279,7 +282,7 @@
 	\hline
 	\rowcolor{TableHeadColor}
 }{
-	\end{tabular}
+	\EndLongtable
 	\end{center}
 	\vspace{1.5em}
 }

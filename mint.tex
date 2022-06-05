@@ -191,10 +191,13 @@
 \makeatother
 	%https://stackoverflow.com/a/3175486 second comment
 \usepackage{xstring}
-\def\table#1{\begin{tabular}{#1}}
+\usepackage{longtable}
+\def\table#1{\Longtable{#1}}
+\let\Longtable\longtable
+\let\EndLongtable\endlongtable
 %deviation: not making table head bold and capital to give user more freedom
 %deviation: not stretching table accross width for aesthetics
-\newenvironment{longtable}[3]{
+\renewenvironment{longtable}[3]{
 	\StrGobbleLeft{#3}{2}[\pream]
 	\StrGobbleRight{\pream}{2}[\pream]
 	\StrSubstitute{\pream}{l}{|l}[\pream]
@@ -216,7 +219,7 @@
 	\expandafter\table\pream
 	\rowcolor{TableHeadColor}
 }{
-	\end{tabular}
+	\EndLongtable
 	\end{center}
 }
 %horizontal rules

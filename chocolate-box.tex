@@ -241,9 +241,11 @@
 		 colframe=AccentColor,
 		 boxrule=0.01041667in,
 		 boxsep=0.125em,
+		 arc=0.25em,
+		 outer arc=0.25em,
 		 top=0em,
 		 bottom=0em,
-		 left=-0.3em,%eye balled
+		 left=0em,
 		 right=0em,
 		 fontupper=\fontsize{0.9em}{\baselineskip}
 	]{
@@ -260,9 +262,12 @@
 \makeatother
 	%https://stackoverflow.com/a/3175486 second comment
 \usepackage{xstring}
-\def\table#1{\begin{tabular}{#1}}
 %deviation: not making table stretch across page for aesthetic reasons
-\newenvironment{longtable}[3]{
+\usepackage{longtable}
+\let\Longtable\longtable
+\let\EndLongtable\endlongtable
+\def\table#1{\Longtable{#1}}
+\renewenvironment{longtable}[3]{
 	\gdef\heavier{\fssevenhundred}
 	\newcolumntype{L}{>{\heavier}l}
 	\newcolumntype{R}{>{\heavier}r}
@@ -284,12 +289,10 @@
 	}
 	\def\endhead{\gdef\heavier{\fstwohundred}}
 	\newcommand{\bottomrule}{}
-	\begin{center}
 	\expandafter\table\pream
+	% \Longtable{#3}
 }{
-	\end{tabular}
-	\end{center}
-	\vspace{1.5em}
+	\EndLongtable
 }
 %lists
 \AtBeginEnvironment{itemize}{
