@@ -6,8 +6,8 @@ If an issue is to be created, please include many images as this is a very visua
 
 Possible ways you can help:
 + Create a new pandoc template from an existing Typora theme. Stick as close as possible to the original source. If you want to do this I would recommend copying any template here and editing it to create the new one as it maintains code consistency.
-+ Solve any one of the known issues
-+ Review the code and recommend a simplification
++ Solve any one of the known issues are strike the issue in this document`.
++ Review the code and recommend a simplification.
 
 ## Resources
 
@@ -27,4 +27,5 @@ Possible ways you can help:
 + evangelion, solarized, rubrication - ```pdfborder``` has too much padding. The underline needs to be closer to the text to better resemble ```href``` in html.
 + cobalt - ```marginpar``` needs to be aligned with the heading.
 + all - formatting needs to be applied on level 6 headings. Pandoc does [not](https://github.com/jgm/pandoc/issues/8069) support it yet.
++ ~~all - switch back to ```longtable``` instead of tabular.~~
 + all - inline code highlighting causes rest of paragraph to lose color.
