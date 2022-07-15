@@ -226,12 +226,12 @@
 \let\Tabularcr\@arraycr
 \def\@arraycr{\Tabularcr\hline}
 \makeatother
+	%https://stackoverflow.com/a/3175486 second comment
 \usepackage{xstring}
 \usepackage{longtable}
 \let\Longtable\longtable
 \let\EndLongtable\endlongtable
 \def\table#1{\Longtable{#1}}
-	%https://stackoverflow.com/a/3175486 second comment
 %deviation: not stretching table accross width for aesthetics
 %deviation: not making table head centered for aesthetics
 \arrayrulecolor{BorderColor}
@@ -243,10 +243,10 @@
 	\StrSubstitute{\pream}{r}{|r}[\pream]
 	\StrSubstitute{\pream}{c}{|c}[\pream]
 	\edef\pream{{\pream|}}
-	\newcommand{\toprule}{}
-	\newcommand{\midrule}{}
+	\newcommand{\toprule}[2]{}
+	\newcommand{\midrule}[2]{}
 	\def\endhead{}
-	\newcommand{\bottomrule}{}
+	\newcommand{\bottomrule}[2]{}
 	\begin{center}
 	\expandafter\table\pream
 	\hline

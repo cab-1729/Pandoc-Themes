@@ -281,17 +281,17 @@
 	\StrSubstitute{\pream}{r}{R}[\pream]
 	\StrSubstitute{\pream}{c}{C}[\pream]
 	\edef\pream{{\pream}}
-	\newcommand{\toprule}{
+	\newcommand{\toprule}[2]{
 		\arrayrulecolor{HeaderColor}
 		\noalign{\global\arrayrulewidth=0.02083334in}%https://tex.stackexchange.com/a/337790
 	}
-	\newcommand{\midrule}{
+	\newcommand{\midrule}[2]{
 		\arrayrulecolor{AccentColor}
 		\noalign{\global\arrayrulewidth=0.01041667in}%https://tex.stackexchange.com/a/337790
 		\fstwohundred%for first item in second row
 	}
 	\def\endhead{\gdef\heavier{\fstwohundred}}
-	\newcommand{\bottomrule}{}
+	\newcommand{\bottomrule}[2]{}
 	\expandafter\table\pream
 	% \Longtable{#3}
 }{

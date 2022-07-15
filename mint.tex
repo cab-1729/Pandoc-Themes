@@ -204,16 +204,16 @@
 	\StrSubstitute{\pream}{r}{|r}[\pream]
 	\StrSubstitute{\pream}{c}{|c}[\pream]
 	\edef\pream{{\pream|}}
-	\newcommand{\toprule}{
+	\newcommand{\toprule}[2]{
 		\arrayrulecolor{TableHeadColor}
 		\noalign{\global\arrayrulewidth=0.01041667in}%https://tex.stackexchange.com/a/337790
 	}
-	\newcommand{\midrule}{
+	\newcommand{\midrule}[2]{
 		\arrayrulecolor{TableHeadColor}
 		\noalign{\global\arrayrulewidth=0.01041667in}%https://tex.stackexchange.com/a/337790
 	}
 	\def\endhead{}
-	\newcommand{\bottomrule}{}
+	\newcommand{\bottomrule}[2]{}
 	\begin{center}
 	\rowcolors{2}{TableEvenRowColor}{BackgroundColor}%https://tex.stackexchange.com/a/5365
 	\expandafter\table\pream

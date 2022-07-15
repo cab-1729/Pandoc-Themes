@@ -191,26 +191,12 @@
 %deviation: not stretching table accross width for aesthetics
 \rowcolors{2}{TableEvenColor}{BackgroundColor}%https://tex.stackexchange.com/a/5365
 \usepackage{longtable}
-\newcommand{\toprule}{\rowcolor{ShadeColor}}
-\newcommand{\midrule}{}
-\newcommand{\bottomrule}{}
+\newcommand{\toprule}[2]{\rowcolor{ShadeColor}}
+\newcommand{\midrule}[2]{}
+\newcommand{\bottomrule}[2]{}
 \def\endhead{}
 \let\Longtable\longtable
 \AtEndEnvironment{longtable}{\vspace{1.5em}}
-% \newenvironment{longtable}[3]{
-% 	\newcommand{\toprule}{}
-% 	\newcommand{\midrule}{}
-% 	\def\endhead{}
-% 	\newcommand{\bottomrule}{}
-% 	\begin{center}
-% 	\rowcolors{2}{TableEvenColor}{BackgroundColor}%https://tex.stackexchange.com/a/5365
-% 	\begin{tabular}{#3}
-% 	\rowcolor{ShadeColor}
-% }{
-% 	\end{tabular}
-% 	\end{center}
-% 	\vspace{1.5em}
-% }
 %horizontal rules
 \let\Rule\rule
 \renewcommand{\rule}[2]{\textcolor{H1UnderlineColor}{\Rule{\linewidth}{0.0104167in}}}

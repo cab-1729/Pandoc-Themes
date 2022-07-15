@@ -223,10 +223,10 @@
 	\StrSubstitute{\pream}{c}{|c}[\pream]
 	\edef\pream{{\pream|}}
 	%empty macros
-	\newcommand{\toprule}{}
-	\newcommand{\midrule}{}
+	\newcommand{\toprule}[2]{}
+	\newcommand{\midrule}[2]{}
 	\def\endhead{}
-	\newcommand{\bottomrule}{}
+	\newcommand{\bottomrule}[2]{}
 	%create table
 	\begin{center}
 	\rowcolors{2}{TableEvenColor}{BackgroundColor}%https://tex.stackexchange.com/a/5365

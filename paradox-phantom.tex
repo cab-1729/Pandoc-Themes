@@ -298,10 +298,10 @@
 	\StrSubstitute{\pream}{r}{|r}[\pream]
 	\StrSubstitute{\pream}{c}{|c}[\pream]
 	\edef\pream{{\pream|}}
-	\newcommand{\toprule}{}
-	\newcommand{\midrule}{}
+	\newcommand{\toprule}[2]{}
+	\newcommand{\midrule}[2]{}
 	\def\endhead{}
-	\newcommand{\bottomrule}{}
+	\newcommand{\bottomrule}[2]{}
 	\begin{center}
 	\rowcolors{2}{SideBarBgColor}{black}%https://tex.stackexchange.com/a/5365
 	\expandafter\table\pream
