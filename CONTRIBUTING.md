@@ -27,5 +27,8 @@ Possible ways you can help:
 + evangelion, solarized, rubrication - ```pdfborder``` has too much padding. The underline needs to be closer to the text to better resemble ```href``` in html.
 + cobalt - ```marginpar``` needs to be aligned with the heading.
 + all - formatting needs to be applied on level 6 headings. Pandoc does [not](https://github.com/jgm/pandoc/issues/8069) support it yet.
++ mo, mo-dark - table cell height inaccurate. Gaps between rows on page break if ```rowsep``` is applied without ```belowsep=0pt,abovesep=0pt```
 + ~~all - switch back to ```longtable``` instead of tabular.~~
 + ~~all - inline code highlighting causes rest of paragraph to lose color.~~
++ mo, mo-dark - table full width and column alignment shifted towards right in order to achieve rounded corners
++ all - no github actions that would create the ```examples``` directory automatically on each merge/commit.

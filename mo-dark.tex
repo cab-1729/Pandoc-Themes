@@ -1,0 +1,309 @@
+\documentclass{article}
+% Use upquote if available, for straight quotes in verbatim environments
+\usepackage{upquote}
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\usepackage{fvextra}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,breakanywhere,commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\makeatother
+\usepackage{footnotehyper}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\usepackage[normalem]{ulem}
+% Avoid problems with \sout in headers with hyperref
+%\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+%---
+\usepackage[colorlinks=true,allcolors=LinkColor]{hyperref}
+%metadata
+\hypersetup{
+	$if(subject)$
+	$if(title-meta)$
+	  pdftitle={$title-meta$},
+	$endif$
+	$if(author-meta)$
+	  pdfauthor={$author-meta$},
+	$endif$
+	$if(subject)$
+	  pdfsubject={$subject$},
+	$endif$
+	$if(keywords)$
+	  pdfkeywords={$for(keywords)$$keywords$$sep$, $endfor$},
+	$endif$
+	$if(subject)$
+	pdfsubject={$subject$},
+	$endif$
+	pdfsubject={$subject$},
+	$endif$
+	pdfcreator={XeLaTeX via Pandoc mo theme},
+}
+\author{}
+\date{}
+\usepackage[a4paper,textwidth=0.9\paperwidth,bottom=7.5em,top=7.5em]{geometry}
+%colors
+\usepackage[table]{xcolor}
+\definecolor{BackgroundColor}{HTML}{181A1B}
+\definecolor{TableBorderColor}{HTML}{2F845E}
+\definecolor{QuoteBackgroundColor}{HTML}{222526}
+\definecolor{TextColor}{HTML}{ABC0D0}
+\definecolor{BoldColor}{HTML}{B5302E}
+\definecolor{EmphasisColor}{HTML}{949415}
+\definecolor{StrikethroughColor}{HTML}{999999}
+\definecolor{RuleColor}{HTML}{ABB2BF}
+\definecolor{H2UnderlineColor}{HTML}{ABC0D0}
+\definecolor{QuotelineColor}{HTML}{2F845E}
+\definecolor{LinkColor}{HTML}{2484C1}
+\definecolor{ShadeColor}{HTML}{222526}
+\definecolor{InlineColor}{HTML}{E96900}
+\definecolor{InlineBackgroundColor}{RGB}{34,37,38}
+\definecolor{CodeColor}{HTML}{ABB2BF}
+\definecolor{TableHeadColor}{HTML}{2F845E}
+\pagecolor{BackgroundColor}
+%fonts
+\usepackage{fontspec}
+	%-------set global color
+\makeatletter
+	  \color{TextColor}\global\let\default@color\current@color
+\makeatother
+	%-------https://tex.stackexchange.com/a/29409
+\setmainfont[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/mo-fonts/helveticaneue-,UprightFont=regular,ItalicFont=italic,BoldFont=bold,BoldItalicFont=bolditalic]{}
+\setmonofont[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/mo-fonts/,UprightFont=firacode]{}
+\usepackage{setspace}
+\usepackage[fontsize=0.16666672in]{fontsize}
+\linespread{1.25}%1.5/1.2
+%headings
+\usepackage{sectsty}
+\usepackage{titlesec}
+\titleformat{\section}{\fontsize{3em}{\baselineskip}\normalfont\filcenter}{}{}{}
+\titlespacing{\section}{0pt}{2em}{1em}
+\titleformat{\subsection}{\fontsize{2.4em}{0em}\normalfont\filcenter}{}{}{}[\vspace{0.01041667in}\textcolor{H2UnderlineColor}{\Rule{6.25em}{0.01041667in}}]
+\titlespacing{\subsection}{0pt}{2em}{1em}
+\titleformat{\subsubsection}{\fontsize{1.8em}{\baselineskip}\normalfont}{}{}{}
+\titlespacing{\subsubsection}{0pt}{2.285714em}{1.15em}
+\titleformat{\paragraph}{\fontsize{1.4em}{\baselineskip}\normalfont}{}{}{}
+\titleformat{\subparagraph}{\fontsize{1.2em}{\baselineskip}\normalfont}{}{}{}
+\raggedright
+\usepackage[most]{tcolorbox}
+\addtolength{\parskip}{0.5em}
+%quotes
+\renewenvironment{quote}{
+	\begin{tcolorbox}[
+			notitle,
+			frame hidden,
+			enhanced,
+			boxrule=0pt,
+			colback=QuoteBackgroundColor,
+			coltext=TextColor,
+			arc=0.041666668in,
+			outer arc=0.041666668in,
+			boxsep=0em,
+			top=0.5em,
+			bottom=0.5em,
+			right=1em,
+			left=1em,
+			overlay={
+				\fill[QuotelineColor]
+				([xshift=0.083333336in]frame.north west) --
+				([xshift=0.083333336in]frame.south west) --
+				([xshift=0.041666668in]frame.south west)
+				arc(270:180:0.041666668in) --
+				([yshift=0.041666668in]frame.south west) --
+				([yshift=-0.041666668in]frame.north west)
+				arc(180:90:0.041666668in) --
+				([xshift=0.041666668in]frame.north west) --
+				cycle;}
+	]
+}{
+	\end{tcolorbox}
+	\color{TextColor}
+}
+%code background
+\newcommand{\codesize}{\fontsize{1em}{\baselineskip}}
+\newenvironment{Shaded}{
+	\begin{tcolorbox}[
+			notitle,
+			breakable,
+			frame hidden,
+			enhanced,
+			boxrule=0pt,
+			colback=ShadeColor,
+			coltext=CodeColor,
+			boxsep=0em,
+			arc=0.041666668in,
+			outer arc=0.041666668in,
+			top=0.031250001in,
+			bottom=0.010416667in,
+			left=0.062500002in,
+			right=0.062500002in,
+			fontupper=\codesize,
+	]
+}{
+	\end{tcolorbox}
+}
+%syntax highlighting - taken from CodeMirror
+\newcommand{\AlertTok}[1]{#1}
+\newcommand{\AnnotationTok}[1]{#1}
+\newcommand{\AttributeTok}[1]{\textcolor[HTML]{D19A66}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\BaseNTok}[1]{#1}
+\newcommand{\BuiltInTok}[1]{\textcolor[HTML]{E8BF6A}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\CharTok}[1]{#1}
+\newcommand{\CommentTok}[1]{\textcolor[HTML]{629755}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\CommentVarTok}[1]{#1}
+\newcommand{\ConstantTok}[1]{#1}
+\newcommand{\ControlFlowTok}[1]{#1}
+\newcommand{\DataTypeTok}[1]{\textcolor[HTML]{E06C75}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\DecValTok}[1]{\textcolor[HTML]{D19A66}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\DocumentationTok}[1]{#1}
+\newcommand{\ErrorTok}[1]{\colorbox{white}{\textcolor[HTML]{EC5F67}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[HTML]{D19A66}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\FunctionTok}[1]{\textcolor[HTML]{D19A66}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{#1}
+\newcommand{\KeywordTok}[1]{\textcolor[HTML]{C678DD}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\NormalTok}[1]{\textcolor[HTML]{D19A66}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\OperatorTok}[1]{\textcolor[HTML]{56B6C2}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\OtherTok}[1]{#1}
+\newcommand{\PreprocessorTok}[1]{#1}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[HTML]{98C379}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[HTML]{98C379}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\StringTok}[1]{\textcolor[HTML]{98C379}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\VariableTok}[1]{\textcolor[HTML]{D19A66}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\VerbatimStringTok}[1]{#1}
+\newcommand{\WarngingTok}[1]{#1}
+%no highlighting code
+\RecustomVerbatimEnvironment{verbatim}{Verbatim}{breaklines,breakanywhere}%https://tex.stackexchange.com/a/469504
+\BeforeBeginEnvironment{verbatim}{\begin{Shaded}\color{CodeColor}}
+\AfterEndEnvironment{verbatim}{\end{Shaded}}
+%inline code behaviour
+\def\inlinecode #1 {
+	\tcbox[
+		notitle,
+		on line,
+		frame hidden,
+		enhanced,
+		boxrule=0pt,
+		colback=InlineBackgroundColor!5!BackgroundColor,
+		coltext=InlineColor,
+		boxsep=0em,
+		arc=0.041666668in,
+		outer arc=0.041666668in,
+		top=0.031250001in,
+		bottom=0.010416667in,
+		left=0.062500002in,
+		right=0.062500002in,
+		fontupper=\codesize,
+	]{#1}
+	\color{TextColor}
+}
+\newcommand{\VERB}{\inlinecode \Verb[breaklines,breakanywhere,commandchars=\\\{\}]}
+\renewcommand{\texttt}[1]{\VERB|#1|}
+%tables
+	%underline on every row
+\makeatletter
+\let\Tabularcr\@arraycr
+\def\@arraycr{\Tabularcr\hline}
+\makeatother
+	%https://stackoverflow.com/a/3175486 second comment
+\usepackage{xstring}
+%deviation: not making table head bold and capital to give user more freedom
+\arrayrulecolor{TableBorderColor}
+\global\arrayrulewidth=0.01041667in%https://tex.stackexchange.com/a/337790
+\renewcommand{\arraystretch}{1.75}%eyeballing
+\usepackage{longtable}
+\setlength\LTleft{0pt}
+\setlength\LTright{0pt}
+\let\Longtable\longtable
+\let\Endlongtable\endlongtable
+\renewenvironment{longtable}[3]{
+	\StrGobbleLeft{#3}{2}[\pream]
+	\StrGobbleRight{\pream}{2}[\pream]
+	\StrSubstitute{\pream}{l}{|l}[\pream]
+	\StrSubstitute{\pream}{r}{|r}[\pream]
+	\StrSubstitute{\pream}{c}{|c}[\pream]
+	\StrGobbleLeft{\pream}{1}[\pream]
+	\gdef\colorrow{\color{TableHeadColor}}
+	\edef\pream{{@{\noexpand\colorrow\leaders\vrule\hskip\textwidth\hskip-\textwidth\extracolsep{\fill}}\pream}}
+	\newcommand{\toprule}[2]{
+		\gdef\colorrow{\color{BackgroundColor}}
+	}
+	\newcommand{\midrule}[2]{}
+	\def\endhead{}
+	\newcommand{\bottomrule}[2]{}
+	\begin{tcolorbox}[enhanced,notitle,clip upper,breakable,
+		width=\linewidth,
+		boxsep=0pt,
+		left=0pt,
+		right=0pt,
+		top=-15pt,%eyeballing
+		bottom=0pt,
+		colback=BackgroundColor,
+		colframe=TableBorderColor,
+		coltext=TextColor,
+		boxrule=0.01041667in,
+		arc=0.062500002in,
+		outer arc=0.062500002in,
+	]
+		\expandafter\Longtable\pream
+}{
+		\Endlongtable
+	\end{tcolorbox}
+	\vspace{1.5em}
+}
+%bold
+\let\Textbf\textbf
+\renewcommand{\textbf}[1]{\textcolor{BoldColor}{\Textbf{#1}}}
+%emphasis
+\let\Emph\emph
+\renewcommand{\emph}[1]{\textcolor{EmphasisColor}{\Emph{#1}}}
+%strikethrough
+\let\Sout\sout
+\renewcommand{\sout}[1]{\textcolor{StrikethroughColor}{\Sout{#1}}}
+%horizontal rules
+\let\Rule\rule
+\newcounter{i}
+\renewcommand{\rule}[2]{\vspace{2em}\textcolor{RuleColor}{
+	\setcounter{i}{44}
+	\loop
+	\Rule{1ex}{0.020833334in}
+	\addtocounter{i}{-1}
+	\ifnum \value{i}>0
+	\repeat
+}\vspace{2em}}
+%document
+\begin{document}
+$body$
+\end{document}
