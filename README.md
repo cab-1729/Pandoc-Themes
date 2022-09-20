@@ -20,7 +20,7 @@ Copy or symlink _pandoc-fonts_ to /usr/share/fonts/.
 ```bash
 pandoc --pdf-engine=xelatex -f markdown -t pdf --template=name_of_template.tex /path/to/markdown/file.md > /path/to/pdf/file.pdf
 ```
-Metadata from markdown file will not be given priority. Most of the things will be set by the templates. Metadat may be used to set only basic parameters like title, subject author, etc.
+Metadata from markdown file will not be given priority. Most of the things will be set by the templates. Metadata may be used to set only basic parameters like title, subject author, etc.
 
 ## Other projects
 + All of the testing is done with [zathura](https://wiki.archlinux.org/title/zathura)
