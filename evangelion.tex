@@ -1,3 +1,4 @@
+%Typora theme : https://github.com/viridityzhu/Evangelion-typora-theme
 \documentclass{article}
 % Use upquote if available, for straight quotes in verbatim environments
 \usepackage{upquote}
@@ -46,13 +47,15 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 %---
+\newlength{\px}
+\setlength{\px}{0.0104166667in}
 \author{}
 \date{}
 \usepackage[a4paper,
-	top=0.3140001in,
-	right=0.5233335in,
-	left=0.5233335in,
-	bottom=0.2093334in
+	top=30\px,
+	right=50\px,
+	left=50\px,
+	bottom=20\px
 ]{geometry}
 %colors
 \usepackage[table]{xcolor}
@@ -62,9 +65,12 @@
 \definecolor{LinkColor}{HTML}{C16124}
 \definecolor{CodeColor}{HTML}{A9B7C6}
 \definecolor{CodeBlockBgColor}{HTML}{0F111A}
+\definecolor{InlineCodeColor}{HTML}{F9F9F9}
 \definecolor{DeepThemeColor}{HTML}{9D56AE}
 \definecolor{TableHeadColor}{HTML}{7173E0}
 \definecolor{BorderColor}{HTML}{BB91F8}
+\definecolor{InlineCodeBorderColor}{RGB}{187,145,248}
+\definecolor{StruckColor}{HTML}{777777}
 \pagecolor{BackgroundColor}
 %links
 \usepackage[colorlinks=true,allcolors=LinkColor,allbordercolors=LinkColor]{hyperref}
@@ -99,17 +105,17 @@
 	%-------https://tex.stackexchange.com/a/26085
 %fonts
 \usepackage{fontspec}
-\usepackage[fontsize=0.16666672in]{fontsize}
+\usepackage[fontsize=0.1666666672in]{fontsize}%16px
 	%-------set global color
 \makeatletter
-	  \color{white}\global\let\default@color\current@color
+  \color{white}\global\let\default@color\current@color
 \makeatother
 	%-------https://tex.stackexchange.com/a/29409
 \linespread{1.5}%1.8/1.2
 %headings
 \usepackage{sectsty}
 \usepackage{titlesec}
-\titleformat{\section}{\fontsize{2em}{1.1\baselineskip}\bfseries\color{HeaderColor}}{\thesection}{1em}{}[{\titlerule[0.010416667in]}]
+\titleformat{\section}{\fontsize{2em}{1.1\baselineskip}\bfseries\color{HeaderColor}}{\thesection}{1em}{}[{\titlerule[1\px]}]
 \titlespacing{\section}{0pt}{0.67em}{0.67em}
 \titleformat{\subsection}{\fontsize{1.5em}{\baselineskip}\bfseries\color{HeaderColor}}{}{}{}
 \titlespacing{\subsection}{0pt}{0.83em}{0.83em}
@@ -151,12 +157,12 @@
 			boxrule=0pt,
 			coltext=CodeColor,
 			colback=CodeBlockBgColor,
-			outer arc=0.031250001in,
+			outer arc=3\px,
 			boxsep=0.5em,
 			top=0.2em,
 			bottom=0.2em,
-			left=0in,
-			right=0in,
+			left=0pt,
+			right=0pt,
 	]
 }{
 	\end{tcolorbox}
@@ -198,29 +204,26 @@
 \BeforeBeginEnvironment{verbatim}{\begin{Shaded}}
 \AfterEndEnvironment{verbatim}{\end{Shaded}}
 %inline code behaviour
-\def\inlinecode #1 {
+\def\VERB|#1|{
 	\tcbox[
 		 notitle,
 		 on line,
-		 coltext=white,
+		 coltext=InlineCodeColor,
 		 colback=CodeBlockBgColor,
-		 colframe=BorderColor,
-		 boxrule=0.01041667in,
-		 boxsep=0.0020833334in,
-		 outer arc=0.020833334in,
-		 arc=0.020833334in,
-		 top=0.020833334in,
-		 bottom=0.020833334in,
-		 left=0.041666668in,
-		 right=0.041666668in,
-	]{
-	#1
-	}
+		 colframe=InlineCodeBorderColor!40!BackgroundColor,
+		 boxrule=1\px,
+		 boxsep=0.2\px,
+		 outer arc=2\px,
+		 arc=2\px,
+		 top=2\px,
+		 bottom=2\px,
+		 left=4\px,
+		 right=4\px,
+	]{\Verb[breaklines,breakanywhere,commandchars=\\\{\}]|#1|}
 	\color{white}
 }
-\newcommand{\VERB}{\inlinecode \Verb[breaklines,breakanywhere,commandchars=\\\{\}]}
-\renewcommand{\texttt}[1]{\VERB|#1|}
 %tables
+\renewcommand{\texttt}[1]{\VERB|#1|}
 	%underline on every row
 \makeatletter
 \let\Tabularcr\@arraycr
@@ -235,7 +238,7 @@
 %deviation: not stretching table accross width for aesthetics
 %deviation: not making table head centered for aesthetics
 \arrayrulecolor{BorderColor}
-\global\arrayrulewidth=0.01041667in%https://tex.stackexchange.com/a/337790
+\global\arrayrulewidth=1\px%https://tex.stackexchange.com/a/337790
 \renewenvironment{longtable}[3]{
 	\StrGobbleLeft{#3}{2}[\pream]
 	\StrGobbleRight{\pream}{2}[\pream]
@@ -255,11 +258,59 @@
 	\EndLongtable
 	\end{center}
 }
-%lists
-\AtBeginEnvironment{itemize}{
-	\let\Item\item
-	\renewcommand{\item}{\Item[\textcolor{DeepThemeColor}\textbullet\hspace{0.5mm}]}%0.5 from eyeballing
+%lists and tasklists
+\newlength{\boxside}
+\setlength{\boxside}{1.2em}
+\newtcbox{\checkbox}[1]{
+	enhanced,
+	notitle,
+	on line,
+	coltext=BackgroundColor,
+	colback=#1,
+	colframe=DeepThemeColor,
+	boxrule=1.2\px,
+	arc=0.6em,%experimentation, using 1.1em produces wierd pattern
+	outer arc=0.6em,
+	height=\boxside,
+	width=\boxside,%doesn't work for some reason
+	left=0em,
+	right=0em,
+	top=0em,
+	bottom=0em,
+	boxsep=0em,
 }
+	%-------strikeout item
+\def\strike{
+	\begingroup
+	\catcode`\^^M=\active
+	\applystrike
+}
+\begingroup
+\catcode`\^^M=\active
+\gdef\applystrike^^M#1^^M{\sout{#1}\endgroup}
+\endgroup
+	%-------https://tex.stackexchange.com/a/10437
+\usepackage{environ}
+\let\Item\item
+\AtBeginEnvironment{itemize}{
+	\gdef\itemformat{}
+	\renewcommand{\item}[1][\textcolor{DeepThemeColor}\textbullet\hspace{0.5mm}]{%0.5 from eyeballing
+		\Item[#1]\itemformat
+	}
+}
+\usepackage{amssymb}
+\renewcommand{\square}{
+	\checkbox{BackgroundColor}{\hspace*{\boxside-2\px}}
+	\gdef\itemformat{\color{white}}
+}
+\renewcommand{\boxtimes}{
+	\checkbox{DeepThemeColor}{\hspace*{0.125em}\fontsize{1.2em}{0.95em}\textbf{\checkmark}}%font weight 600 not available
+	\gdef\itemformat{
+		\color{StruckColor}
+		\strike
+	}
+}
+%numbered lists
 \AtBeginEnvironment{enumerate}{
 	\let\Tightlist\tightlist
 	\renewcommand{\tightlist}{
@@ -267,9 +318,22 @@
 		\Tightlist
 	}
 }
+%definition lists
+\renewcommand{\descriptionlabel}[1]{#1}%remove bold
+\usepackage{enumitem}
+\setlist[description]{style=nextline,leftmargin=0pt}
+\def\colon{: }
+\AtBeginEnvironment{description}{
+	\AddToHook{para/begin}[colon]{\colon}
+	\let\Item\item
+	\renewcommand{\item}[1][\null]{\gdef\colon{}\Item[#1]:\gdef\colon{: }}
+}
+\AtEndEnvironment{description}{
+	\RemoveFromHook{para/begin}[colon]
+}
 %horizontal rules
 \let\Rule\rule
-\renewcommand{\rule}[2]{\textcolor{BorderColor}{\Rule{\linewidth}{0.010416667in}}}
+\renewcommand{\rule}[2]{\textcolor{BorderColor}{\Rule{\linewidth}{1\px}}}
 %document
 \begin{document}
 $body$

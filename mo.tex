@@ -1,3 +1,4 @@
+%Typora theme : https://github.com/MarMomento/typora-mo-theme
 \documentclass{article}
 % Use upquote if available, for straight quotes in verbatim environments
 \usepackage{upquote}
@@ -46,6 +47,8 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 %---
+\newlength{\px}
+\setlength{\px}{0.0104166667in}
 \usepackage[colorlinks=true,allcolors=LinkColor]{hyperref}
 %metadata
 \hypersetup{
@@ -88,6 +91,8 @@
 \definecolor{ShadeColor}{HTML}{282C34}
 \definecolor{InlineColor}{HTML}{E96900}
 \definecolor{InlineBackgroundColor}{RGB}{34,37,38}
+\definecolor{CheckedColor}{HTML}{67C23A}
+\definecolor{CheckboxColor}{HTML}{737373}
 \definecolor{CodeColor}{HTML}{ABB2BF}
 \definecolor{TableHeadColor}{HTML}{E7ECF3}
 \pagecolor{BackgroundColor}
@@ -95,20 +100,20 @@
 \usepackage{fontspec}
 	%-------set global color
 \makeatletter
-	  \color{TextColor}\global\let\default@color\current@color
+  \color{TextColor}\global\let\default@color\current@color
 \makeatother
 	%-------https://tex.stackexchange.com/a/29409
 \setmainfont[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/mo-fonts/helveticaneue-,UprightFont=regular,ItalicFont=italic,BoldFont=bold,BoldItalicFont=bolditalic]{}
 \setmonofont[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/mo-fonts/,UprightFont=firacode]{}
 \usepackage{setspace}
-\usepackage[fontsize=0.16666672in]{fontsize}
+\usepackage[fontsize=0.16666672in]{fontsize}%16px
 \linespread{1.25}%1.5/1.2
 %headings
 \usepackage{sectsty}
 \usepackage{titlesec}
 \titleformat{\section}{\fontsize{3em}{\baselineskip}\normalfont\filcenter}{}{}{}
 \titlespacing{\section}{0pt}{2em}{1em}
-\titleformat{\subsection}{\fontsize{2.4em}{0em}\normalfont\filcenter}{}{}{}[\vspace{0.01041667in}\textcolor{H2UnderlineColor}{\Rule{6.25em}{0.01041667in}}]
+\titleformat{\subsection}{\fontsize{2.4em}{0em}\normalfont\filcenter}{}{}{}[\vspace{1\px}\textcolor{H2UnderlineColor}{\Rule{6.25em}{1\px}}]
 \titlespacing{\subsection}{0pt}{2em}{1em}
 \titleformat{\subsubsection}{\fontsize{1.8em}{\baselineskip}\normalfont}{}{}{}
 \titlespacing{\subsubsection}{0pt}{2.285714em}{1.15em}
@@ -120,30 +125,30 @@
 %quotes
 \renewenvironment{quote}{
 	\begin{tcolorbox}[
-			notitle,
-			frame hidden,
-			enhanced,
-			boxrule=0pt,
-			colback=QuoteBackgroundColor!10!BackgroundColor,
-			coltext=TextColor,
-			arc=0.041666668in,
-			outer arc=0.041666668in,
-			boxsep=0em,
-			top=0.5em,
-			bottom=0.5em,
-			right=1em,
-			left=1em,
-			overlay={
-				\fill[QuotelineColor]
-				([xshift=0.083333336in]frame.north west) --
-				([xshift=0.083333336in]frame.south west) --
-				([xshift=0.041666668in]frame.south west)
-				arc(270:180:0.041666668in) --
-				([yshift=0.041666668in]frame.south west) --
-				([yshift=-0.041666668in]frame.north west)
-				arc(180:90:0.041666668in) --
-				([xshift=0.041666668in]frame.north west) --
-				cycle;}
+		notitle,
+		frame hidden,
+		enhanced,
+		boxrule=0pt,
+		colback=QuoteBackgroundColor!10!BackgroundColor,
+		coltext=TextColor,
+		arc=4\px,
+		outer arc=4\px,
+		boxsep=0em,
+		top=0.5em,
+		bottom=0.5em,
+		right=1em,
+		left=1em,
+		overlay={
+			\fill[QuotelineColor]
+			([xshift=8\px]frame.north west) --
+			([xshift=8\px]frame.south west) --
+			([xshift=4\px]frame.south west)
+			arc(270:180:4\px) --
+			([yshift=4\px]frame.south west) --
+			([yshift=-4\px]frame.north west)
+			arc(180:90:4\px) --
+			([xshift=4\px]frame.north west) --
+			cycle;}
 	]
 }{
 	\end{tcolorbox}
@@ -161,12 +166,12 @@
 			colback=ShadeColor,
 			coltext=CodeColor,
 			boxsep=0em,
-			arc=0.041666668in,
-			outer arc=0.041666668in,
-			top=0.031250001in,
-			bottom=0.010416667in,
-			left=0.062500002in,
-			right=0.062500002in,
+			arc=4\px,
+			outer arc=4\px,
+			top=3\px,
+			bottom=1\px,
+			left=6\px,
+			right=6\px,
 			fontupper=\codesize,
 	]
 }{
@@ -209,7 +214,7 @@
 \BeforeBeginEnvironment{verbatim}{\begin{Shaded}}
 \AfterEndEnvironment{verbatim}{\end{Shaded}}
 %inline code behaviour
-\def\inlinecode #1 {
+\def\VERB|#1|{
 	\tcbox[
 		notitle,
 		on line,
@@ -219,36 +224,17 @@
 		colback=InlineBackgroundColor!5!BackgroundColor,
 		coltext=InlineColor,
 		boxsep=0em,
-		arc=0.041666668in,
-		outer arc=0.041666668in,
-		top=0.031250001in,
-		bottom=0.010416667in,
-		left=0.062500002in,
-		right=0.062500002in,
-		fontupper=\codesize,
-	]{#1}
-	\color{TextColor}
-}
-\newcommand{\VERB}{\inlinecode \Verb[breaklines,breakanywhere,commandchars=\\\{\}]}
-\renewcommand{\texttt}[1]{
-	\tcbox[
-		notitle,
-		on line,
-		frame hidden,
-		enhanced,
-		boxrule=0pt,
-		colback=InlineBackgroundColor!5!BackgroundColor,
-		coltext=InlineColor,
-		boxsep=0em,
-		arc=0.041666668in,
-		outer arc=0.041666668in,
-		top=0.031250001in,
-		bottom=0.010416667in,
-		left=0.062500002in,
-		right=0.062500002in,
+		arc=4\px,
+		outer arc=4\px,
+		top=3\px,
+		bottom=1\px,
+		left=6\px,
+		right=6\px,
 		fontupper=\codesize,
 	]{\Verb[breaklines,breakanywhere,commandchars=\\\{\}]|#1|}
+	\color{TextColor}
 }
+\renewcommand{\texttt}[1]{\VERB|#1|}
 %tables
 	%underline on every row
 \makeatletter
@@ -259,7 +245,7 @@
 \usepackage{xstring}
 %deviation: not making table head bold and capital to give user more freedom
 \arrayrulecolor{TableBorderColor}
-\global\arrayrulewidth=0.01041667in%https://tex.stackexchange.com/a/337790
+\global\arrayrulewidth=1\px%https://tex.stackexchange.com/a/337790
 \renewcommand{\arraystretch}{1.75}%eyeballing
 \usepackage{longtable}
 \setlength\LTleft{0pt}
@@ -291,9 +277,9 @@
 		colback=BackgroundColor,
 		colframe=TableBorderColor,
 		coltext=TextColor,
-		boxrule=0.01041667in,
-		arc=0.062500002in,
-		outer arc=0.062500002in,
+		boxrule=1\px,
+		arc=6\px,
+		outer arc=6\px,
 	]
 		\expandafter\Longtable\pream
 }{
@@ -310,13 +296,97 @@
 %strikethrough
 \let\Sout\sout
 \renewcommand{\sout}[1]{\textcolor{StrikethroughColor}{\Sout{#1}}}
+%lists and tasklists
+\newlength{\boxside}
+\setlength{\boxside}{20\px}
+	%-------strikeout item
+\def\strike{
+	\begingroup
+	\catcode`\^^M=\active
+	\applystrike
+}
+\begingroup
+\catcode`\^^M=\active
+\gdef\applystrike^^M#1^^M{\sout{#1}\endgroup}
+\endgroup
+	%-------https://tex.stackexchange.com/a/10437
+\usepackage{environ}
+\let\Item\item
+\AtBeginEnvironment{itemize}{
+	\gdef\itemformat{}
+	\renewcommand{\item}[1][\textbullet\hspace{1.8mm}]{%1.8 from eyeballing
+		\Item[#1]\itemformat
+	}
+}
+\newcommand{\square}{
+	\tcbox[
+		enhanced,
+		notitle,
+		on line,
+		coltext=BackgroundColor,
+		colback=white,
+		colframe=CheckboxColor,
+		boxrule=1\px,
+		arc=10\px,
+		outer arc=10\px,
+		height=\boxside,
+		width=\boxside,%doesn't work for some reason
+		left=0em,
+		right=0em,
+		top=0em,
+		bottom=0em,
+		boxsep=0em,
+	]{\hspace*{\boxside-2\px}}
+	\gdef\itemformat{}
+}
+\newcommand{\boxtimes}{
+	\tcbox[
+		enhanced,
+		notitle,
+		frame empty,
+		on line,
+		coltext=BackgroundColor,
+		colback=CheckedColor,
+		arc=10\px,
+		outer arc=10\px,
+		height=\boxside,
+		width=\boxside,%doesn't work for some reason
+		left=0em,
+		right=0em,
+		top=0em,
+		bottom=0em,
+		boxsep=0em,
+		overlay={
+			\draw[line width=2\px,white]([xshift=0.5\boxside,yshift=-0.5\boxside]frame.north west) -- ++(45:0.3\boxside);
+			\draw[line width=2\px,white]([xshift=0.5\boxside,yshift=-0.5\boxside]frame.north west) -- ++(225:0.3\boxside);
+			\draw[line width=2\px,white]([xshift=0.25\boxside,yshift=-0.61\boxside]frame.north west) -- ++(135:0.15\boxside);
+			\draw[line width=2\px,white]([xshift=0.25\boxside,yshift=-0.61\boxside]frame.north west) -- ++(315:0.15\boxside);
+		}
+	]{\hspace*{\boxside-2\px}}
+	\gdef\itemformat{
+		\strike
+	}
+}
+%definition lists
+\renewcommand{\descriptionlabel}[1]{#1}%remove bold
+\usepackage{enumitem}
+\setlist[description]{style=nextline,leftmargin=0pt}
+\def\colon{: }
+\AtBeginEnvironment{description}{
+	\AddToHook{para/begin}[colon]{\colon}
+	\let\Item\item
+	\renewcommand{\item}[1][\null]{\gdef\colon{}\Item[#1]:\gdef\colon{: }}
+}
+\AtEndEnvironment{description}{
+	\RemoveFromHook{para/begin}[colon]
+}
 %horizontal rules
 \let\Rule\rule
 \newcounter{i}
 \renewcommand{\rule}[2]{\vspace{2em}\textcolor{RuleColor}{
 	\setcounter{i}{44}
 	\loop
-	\Rule{1ex}{0.020833334in}
+	\Rule{1ex}{2\px}
 	\addtocounter{i}{-1}
 	\ifnum \value{i}>0
 	\repeat

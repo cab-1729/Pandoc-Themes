@@ -1,3 +1,4 @@
+%Typora theme : https://github.com/hliu202/typora-purple-theme
 \documentclass{article}
 % Use upquote if available, for straight quotes in verbatim environments
 \usepackage{upquote}
@@ -46,13 +47,15 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 %---
+\newlength{\px}
+\setlength{\px}{0.0104166667in}
 \author{}
 \date{}
 \usepackage[a4paper,
 	top=1em,
 	left=4em,
 	right=4em,
-	bottom=0.10416667in
+	bottom=1\px
 ]{geometry}
 %colors
 \usepackage[table]{xcolor}
@@ -67,6 +70,8 @@
 \definecolor{ShadeColor}{HTML}{FDFDFD}
 \definecolor{TableBorderColor}{HTML}{DDDDDD}
 \definecolor{TableEvenColor}{HTML}{FCFCFC}
+\definecolor{BoxColor}{HTML}{B4B4B4}
+\definecolor{BoxTickColor}{HTML}{333333}
 %links
 \usepackage[colorlinks=true,allcolors=LinkColor,allbordercolors=LinkUnderlineColor]{hyperref}
 %metadata
@@ -106,7 +111,7 @@
 	%-------https://tex.stackexchange.com/a/29409
 \setmainfont[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/purple-fonts/opensans-,UprightFont=regular,ItalicFont=italic,BoldFont=bold,BoldItalicFont=bolditalic]{}
 \setmonofont[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/purple-fonts/courierprime-,UprightFont=regular]{}
-\usepackage[fontsize=0.166666672in]{fontsize}
+\usepackage[fontsize=0.166666672in]{fontsize}%16pc
 \linespread{1.33}%1.6/1.2
 %headings
 \usepackage{sectsty}
@@ -120,18 +125,18 @@
 \renewcommand{\subsection}[1]{
 	\vspace{2em}
 	\begin{tcolorbox}[
-			notitle,
-			frame hidden,
-			interior hidden,
-			sharp corners,
-			enhanced,
-			boxrule=0pt,
-			boxsep=0em,
-			left=0.4em,
-			borderline west={0.4em}{0pt}{TitleColor},
-			borderline south={0.010416667in}{0pt}{TitleColor}
-		]
-			\Subsection{#1}
+		notitle,
+		frame hidden,
+		interior hidden,
+		sharp corners,
+		enhanced,
+		boxrule=0pt,
+		boxsep=0em,
+		left=0.4em,
+		borderline west={0.4em}{0pt}{TitleColor},
+		borderline south={1\px}{0pt}{TitleColor}
+	]
+	\Subsection{#1}
 	\end{tcolorbox}
 	\vspace{1.3em}
 }
@@ -145,15 +150,15 @@
 %quotes
 \renewenvironment{quote}{
 	\begin{tcolorbox}[
-			notitle,
-			frame hidden,
-			interior hidden,
-			sharp corners,
-			enhanced,
-			boxrule=0pt,
-			boxsep=0em,
-			left=1em,
-			borderline west={0.3em}{0pt}{BorderQuoteColor}
+		notitle,
+		frame hidden,
+		interior hidden,
+		sharp corners,
+		enhanced,
+		boxrule=0pt,
+		boxsep=0em,
+		left=1em,
+		borderline west={0.3em}{0pt}{BorderQuoteColor}
 	]
 }{
 	\end{tcolorbox}
@@ -163,15 +168,15 @@
 \newcommand{\codesize}{\fontsize{0.9em}{\baselineskip}}
 \newenvironment{Shaded}{
 	\begin{tcolorbox}[
-			notitle,
-			breakable,
-			enhanced,
-			boxrule=0.01041667in,
-			colframe=BorderColor,
-			colback=ShadeColor,
-			arc=0.05208335in,
-			outer arc=0.05208335in,
-			fontlower=\codesize
+		notitle,
+		breakable,
+		enhanced,
+		boxrule=1\px,
+		colframe=BorderColor,
+		colback=ShadeColor,
+		arc=5\px,
+		outer arc=5\px,
+		fontlower=\codesize
 	]
 }{
 	\end{tcolorbox}
@@ -213,27 +218,24 @@
 \BeforeBeginEnvironment{verbatim}{\begin{Shaded}}
 \AfterEndEnvironment{verbatim}{\end{Shaded}}
 %inline code behaviour
-\def\inlinecode #1 {
+\def\VERB|#1|{
 	\tcbox[
 		 notitle,
 		 on line,
 		 frame empty,
 		 coltext=InlineCodeBgColor,
 		 coltext=CodeColor,
-		 boxsep=0.02083334in,
+		 boxsep=2\px,
 		 outer arc=0.3em,
 		 arc=0.3em,
-		 top=0.02083334in,
-		 right=0.04166668in,
-		 bottom=0.02083334in,
-		 left=0.04166668in,
+		 top=2\px,
+		 right=4\px,
+		 bottom=2\px,
+		 left=4\px,
 		 fontlower=\codesize
-	]{
-		#1
-	}
+	]{\Verb[breaklines,breakanywhere,commandchars=\\\{\}]|#1|}
 	\color{TextColor}
 }
-\newcommand{\VERB}{\inlinecode \Verb[breaklines,breakanywhere,commandchars=\\\{\}]}
 \renewcommand{\texttt}[1]{\VERB|#1|}
 %tables
 	%underline on every row
@@ -249,7 +251,7 @@
 \def\table#1{\Longtable{#1}}
 %deviation: not making table head bold and capital to give user more freedom
 %deviation: not stretching table accross width for aesthetics
-\setlength{\tabcolsep}{0.08333336in}
+\setlength{\tabcolsep}{8\px}
 \renewcommand{\arraystretch}{1.25}
 \arrayrulecolor{TableBorderColor}
 \renewenvironment{longtable}[3]{
@@ -266,21 +268,85 @@
 	\begin{center}
 	\rowcolors{2}{TableEvenColor}{white}%https://tex.stackexchange.com/a/5365
 	\expandafter\table\pream
-	\noalign{\global\arrayrulewidth=0.01041667in}%https://tex.stackexchange.com/a/337790
+	\noalign{\global\arrayrulewidth=1\px}%https://tex.stackexchange.com/a/337790
 	\hline
 }{
 	\EndLongtable
 	\end{center}
 	\vspace{1.25em}
 }
-%lists
+%lists and tasklists
+\newlength{\boxside}
+\setlength{\boxside}{1em}
+\newtcbox{\checkbox}[1]{
+	enhanced,
+	notitle,
+	on line,
+	colback=white,
+	colframe=BoxColor,
+	boxrule=1\px,
+	arc=0.2em,
+	outer arc=0.2em,
+	height=\boxside,
+	width=\boxside,%doesn't work for some reason
+	left=0em,
+	right=0em,
+	top=0em,
+	bottom=0em,
+	boxsep=0em,
+	overlay={#1},
+}
+	%-------strikeout item
+\def\strike{
+	\begingroup
+	\catcode`\^^M=\active
+	\applystrike
+}
+\begingroup
+\catcode`\^^M=\active
+\gdef\applystrike^^M#1^^M{\sout{#1}\endgroup}
+\endgroup
+	%-------https://tex.stackexchange.com/a/10437
+\usepackage{environ}
+\let\Item\item
 \AtBeginEnvironment{itemize}{
+	\gdef\itemformat{}
+	\renewcommand{\item}[1][\textbf{\textbullet}\hspace{1.8mm}]{%1.8 from eyeballing
+		\Item[#1]\itemformat
+	}
+}
+\newcommand{\square}{
+	\checkbox{\null}{\hspace*{\boxside-2\px}}
+	\gdef\itemformat{\color{TextColor}}
+}
+\newcommand{\boxtimes}{
+	\checkbox{
+		\draw[line width=2\px,BoxTickColor]([xshift=0.5\boxside,yshift=-0.5\boxside]frame.north west) -- ++(40:0.3\boxside);
+		\draw[line width=2\px,BoxTickColor]([xshift=0.5\boxside,yshift=-0.5\boxside]frame.north west) -- ++(220:0.3\boxside);
+		\draw[line width=2\px,BoxTickColor]([xshift=0.25\boxside,yshift=-0.61\boxside]frame.north west) -- ++(130:0.15\boxside);
+		\draw[line width=2\px,BoxTickColor]([xshift=0.25\boxside,yshift=-0.61\boxside]frame.north west) -- ++(310:0.15\boxside);
+	}{\hspace*{\boxside-2\px}}
+	\gdef\itemformat{
+		\color{BoxColor}
+		\strike
+	}
+}
+%definition lists
+\renewcommand{\descriptionlabel}[1]{#1}%remove bold
+\usepackage{enumitem}
+\setlist[description]{style=nextline,leftmargin=0pt}
+\def\colon{: }
+\AtBeginEnvironment{description}{
+	\AddToHook{para/begin}[colon]{\colon}
 	\let\Item\item
-	\renewcommand{\item}{\Item[\textbf{\textbullet}\hspace{1.8mm}]}%1.8 from eyeballing
+	\renewcommand{\item}[1][\null]{\gdef\colon{}\Item[#1]:\gdef\colon{: }}
+}
+\AtEndEnvironment{description}{
+	\RemoveFromHook{para/begin}[colon]
 }
 %horizontal rules
 \let\Rule\rule
-\renewcommand{\rule}[2]{\textcolor{BorderColor}{\vspace{1.5em}\Rule{\linewidth}{0.0104167in}}}
+\renewcommand{\rule}[2]{\textcolor{BorderColor}{\vspace{1.5em}\Rule{\linewidth}{1\px}}}
 %document
 \begin{document}
 $body$

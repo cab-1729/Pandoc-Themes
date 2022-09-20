@@ -20,7 +20,8 @@ Possible ways you can help:
 + [woff2otf.py](https://github.com/hanikesn/woff2otf) -  for converting woff to otf
 + [File from old, deprecated project](https://github.com/cab-1729/SchoolStuff/blob/main/School%20material/Program.cs) - a file using for testing syntax highlighting
 + 1px is taken to be 0.010416667inches
-+ Command used for testing and compiling : ```pandoc --verbose --pdf-engine=xelatex --template={}.tex -f markdown+inline_code_attritbutes+implicit_header_references -t pdf Github\ Markdown.md | zathura -```
++ Default color for checkbox background is #0075ff, border is #a8a8a8.
++ Command used for testing and compiling : ```pandoc --verbose --pdf-engine=xelatex --template={}.tex -f markdown+inline_code_attributes+implicit_header_references+footnotes+definition_lists -t pdf Github\ Markdown.md | zathura -```
 
 ## Known issues
 
@@ -31,5 +32,7 @@ Possible ways you can help:
 + ~~all - inline code highlighting causes rest of paragraph to lose color.~~
 + mo, mo-dark - table full width and column alignment shifted towards right in order to achieve rounded corners
 + all - no github actions that would create the ```examples``` directory automatically on each merge/commit.
-+ all - no support for task list, highlight, definition list, superscript, subscript, heading id, footnote
-+ all - original theme github repo not mentioned as comment
++ ~~all - no support for task list, highlight, definition list, superscript, subscript~~
++ ~~all - original theme github repo not mentioned as comment~~
++ ~~all - inline code box encompassing next character.~~
++ ~~all - make pixel a variable and use it for pixel lengths~~

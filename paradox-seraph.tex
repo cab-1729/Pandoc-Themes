@@ -1,3 +1,4 @@
+%Typora theme : https://github.com/george-paul/typoratheme-paradox
 \documentclass{article}
 % Use upquote if available, for straight quotes in verbatim environments
 \usepackage{upquote}
@@ -46,6 +47,8 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 %---
+\newlength{\px}
+\setlength{\px}{0.0104166667in}
 \author{}
 \date{}
 \newlength{\ch}
@@ -60,6 +63,7 @@
 \definecolor{LinkColor}{HTML}{2077B2}
 \definecolor{BorderColor}{HTML}{DBDBDB}
 \definecolor{SideBarBgColor}{HTML}{FAFAFA}
+\definecolor{BoxColor}{HTML}{A8A8A8}
 %links
 \usepackage[colorlinks=true,allcolors=LinkColor,allbordercolors=LinkColor]{hyperref}
 %metadata
@@ -101,7 +105,7 @@
 \setmainfont[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/paradox-fonts/nunito-,UprightFont=regular,ItalicFont=italic,BoldFont=bold,BoldItalicFont=bolditalic]{}
 \setmonofont[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/paradox-fonts/,UprightFont=firacode]{}
 \newfontfamily\headingfont[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/paradox-fonts/robotoslab-,UprightFont=regular,BoldFont=bold]{}
-\usepackage[fontsize=0.16666672in]{fontsize}
+\usepackage[fontsize=0.16666672in]{fontsize}%16px
 \linespread{1.1666}%1.5/1.2
 %headings
 \usepackage{sectsty}
@@ -118,14 +122,14 @@
 		top=3em,
 		bottom=1.5em,
 		boxsep=0em,
-		boxrule=0.04166668in,
+		boxrule=4\px,
 		colback=white,
 		colframe=PrimaryColor
 	]
 	\Section{#1}
 	\end{tcolorbox}
 }
-\titleformat{\subsection}{\fontsize{2.2em}{\baselineskip}\headingfont\color{black}\filcenter}{}{}{}[\textcolor{PrimaryColor}{\Rule[\baselineskip]{0.56\linewidth}{0.02083334in}}]%0.7*0.8
+\titleformat{\subsection}{\fontsize{2.2em}{\baselineskip}\headingfont\color{black}\filcenter}{}{}{}[\textcolor{PrimaryColor}{\Rule[\baselineskip]{0.56\linewidth}{2\px}}]%0.7*0.8
 \titlespacing{\subsection}{0pt}{1.5em}{0em}
 \renewcommand{\subsubsection}[1]{%complete overwrite of level 3 header might cause problems later
 	\vspace{1.5em}
@@ -140,8 +144,8 @@
 		enhanced,
 		right=1em,
 		left=1em,
-		borderline east={0.02083334in}{0pt}{PrimaryColor},
-		borderline west={0.02083334in}{0pt}{PrimaryColor},
+		borderline east={2\px}{0pt}{PrimaryColor},
+		borderline west={2\px}{0pt}{PrimaryColor},
 		fontupper=\fontsize{1.7em}{\baselineskip}\headingfont
 	]{#1}
 	\vspace{0.5em}
@@ -160,9 +164,9 @@
 		right=0em,
 		left=0em,
 		boxsep=0pt,
-		top=0.010416667in,
+		top=1\px,
 		bottom=0.1em,
-		borderline south={0.02083334in}{0pt}{PrimaryColor,dashed},
+		borderline south={2\px}{0pt}{PrimaryColor,dashed},
 		fontupper=\fontsize{1.4em}{\baselineskip}\headingfont
 	]{#1}
 	\vspace{0.4em}
@@ -173,20 +177,20 @@
 %quotes
 \renewenvironment{quote}{
 	\begin{tcolorbox}[
-			notitle,
-			frame hidden,
-			interior hidden,
-			sharp corners,
-			enhanced,
-			boxrule=0pt,
-			colback=white,
-			coltext=AccentColor,
-			boxsep=0em,
-			fontupper=\itshape,
-			top=1em,
-			bottom=1em,
-			left=2.5\ch,
-			borderline west={0.052083in}{0pt}{PrimaryColor}
+		notitle,
+		frame hidden,
+		interior hidden,
+		sharp corners,
+		enhanced,
+		boxrule=0pt,
+		colback=white,
+		coltext=AccentColor,
+		boxsep=0em,
+		fontupper=\itshape,
+		top=1em,
+		bottom=1em,
+		left=2.5\ch,
+			borderline west={5\px}{0pt}{PrimaryColor}
 	]
 }{
 	\end{tcolorbox}
@@ -203,7 +207,7 @@
 		colframe=BorderColor,
 		arc=0.25em,
 		outer arc=0.25em,
-		boxrule=0.01041667in,
+		boxrule=1\px,
 		boxsep=0em,
 		left=0.125em,
 		right=0.125em,
@@ -249,7 +253,7 @@
 \BeforeBeginEnvironment{verbatim}{\begin{Shaded}}
 \AfterEndEnvironment{verbatim}{\end{Shaded}}
 %inline code behaviour
-\def\inlinecode #1 {
+\def\VERB|#1|{
 	\tcbox[
 		 notitle,
 		 on line,
@@ -258,17 +262,14 @@
 		 colframe=BorderColor,
 		 arc=0.25em,
 		 outer arc=0.25em,
-		 boxrule=0.01041667in,
+		 boxrule=1\px,
 		 boxsep=0em,
 		 left=0.125em,
 		 right=0.125em,
-		 fontupper=\fontsize{0.15625005in}{1.4em}
-	]{
-	#1
-	}
+		 fontupper=\fontsize{15\px}{1.4em}
+	]{\Verb[breaklines,breakanywhere,commandchars=\\\{\}]|#1|}
 	\color{TextColor}
 }
-\newcommand{\VERB}{\inlinecode\Verb[breaklines,breakanywhere,commandchars=\\\{\}]}
 \renewcommand{\texttt}[1]{\VERB|#1|}
 %tables
 	%underline on every row
@@ -302,7 +303,7 @@
 	\begin{center}
 	\rowcolors{2}{SideBarBgColor}{white}%https://tex.stackexchange.com/a/5365
 	\expandafter\table\pream
-	\noalign{\global\arrayrulewidth=0.01041667in}%https://tex.stackexchange.com/a/337790
+	\noalign{\global\arrayrulewidth=1\px}%https://tex.stackexchange.com/a/337790
 	\rowcolor{SideBarBgColor}
 	\hline
 }{
@@ -310,11 +311,46 @@
 	\end{center}
 	\vspace{1em}
 }
-%lists
+%lists and tasklists
+\newlength{\boxside}
+\setlength{\boxside}{1em}
+\newtcbox{\checkbox}[2]{
+	enhanced,
+	notitle,
+	on line,
+	colback=#2,
+	colframe=TextColor,
+	boxrule=1\px,
+	arc=0.2em,
+	outer arc=0.2em,
+	height=\boxside,
+	width=\boxside,%doesn't work for some reason
+	left=0em,
+	right=0em,
+	top=0em,
+	bottom=0em,
+	boxsep=0em,
+	overlay={#1},
+}
+\usepackage{environ}
+\newcommand{\square}{
+	\checkbox{\null}{white}{\hspace*{\boxside-2\px}}
+}
+\newcommand{\boxtimes}{
+	\checkbox{
+		\draw[line width=2\px,white]([xshift=0.5\boxside,yshift=-0.5\boxside]frame.north west) -- ++(45:0.3\boxside);
+		\draw[line width=2\px,white]([xshift=0.5\boxside,yshift=-0.5\boxside]frame.north west) -- ++(225:0.3\boxside);
+		\draw[line width=2\px,white]([xshift=0.25\boxside,yshift=-0.61\boxside]frame.north west) -- ++(135:0.15\boxside);
+		\draw[line width=2\px,white]([xshift=0.25\boxside,yshift=-0.61\boxside]frame.north west) -- ++(315:0.15\boxside);
+	}{PrimaryColor}{\hspace*{\boxside-2\px}}
+}
 \AtBeginEnvironment{itemize}{
 	\let\Item\item
-	\renewcommand{\item}{\Item[\textcolor{PrimaryColor}\textbullet\hspace{1.8mm}]}%1.8 from eyeballing
+	\renewcommand{\item}[1][\textcolor{PrimaryColor}\textbullet\hspace{1.8mm}]{%1.8 from eyeballing
+		\Item[#1]
+	}
 }
+%numbered lists
 \AtBeginEnvironment{enumerate}{
 	\let\Tightlist\tightlist
 	\renewcommand{\tightlist}{
@@ -322,9 +358,22 @@
 		\Tightlist
 	}
 }
+%definition lists
+\renewcommand{\descriptionlabel}[1]{#1}%remove bold
+\usepackage{enumitem}
+\setlist[description]{style=nextline,leftmargin=0pt}
+\def\colon{: }
+\AtBeginEnvironment{description}{
+	\AddToHook{para/begin}[colon]{\colon}
+	\let\Item\item
+	\renewcommand{\item}[1][\null]{\gdef\colon{}\Item[#1]:\gdef\colon{: }}
+}
+\AtEndEnvironment{description}{
+	\RemoveFromHook{para/begin}[colon]
+}
 %horizontal rules
 \let\Rule\rule
-\renewcommand{\rule}[2]{\textcolor{PrimaryColor}{\Rule{\linewidth}{0.02083334in}}}
+\renewcommand{\rule}[2]{\textcolor{PrimaryColor}{\Rule{\linewidth}{2\px}}}
 %document
 \begin{document}
 $body$

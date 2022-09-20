@@ -1,3 +1,4 @@
+%Typora theme : https://github.com/Y1chenYao/typora-mint-theme
 \documentclass{article}
 % Use upquote if available, for straight quotes in verbatim environments
 \usepackage{upquote}
@@ -38,6 +39,8 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 %---
+\newlength{\px}
+\setlength{\px}{0.0104166667in}
 \usepackage[colorlinks=true,allcolors=DeepThemeColor]{hyperref}
 %metadata
 \hypersetup{
@@ -64,14 +67,15 @@
 \author{}
 \date{}
 \usepackage[a4paper,
-	top=0.31250001in, %30px
-	bottom=0.20833334in, %20px
-	left=0.52083335in, %50px
-	right=0.52083335in, %50px
+	top=30\px,
+	bottom=20\px,
+	left=50\px,
+	right=50\px
 ]{geometry}
 %colors
 \usepackage[table]{xcolor}
 \definecolor{DeepThemeColor}{HTML}{4EB289}
+\definecolor{StruckColor}{HTML}{ADADAD}
 \definecolor{SubparagraphColor}{HTML}{777777}
 \definecolor{BackgroundColor}{HTML}{FFFFFF}
 \definecolor{RuleColor}{HTML}{E7E7E7}
@@ -86,7 +90,7 @@
 %fonts
 \usepackage{fontspec}
 \setmainfont[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/mint-fonts/lexend-,UprightFont=regular,BoldFont=bold]{}
-\usepackage[fontsize=0.16666672in]{fontsize}
+\usepackage[fontsize=0.16666672in]{fontsize}%16px
 \setmonofont[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/mint-fonts/,UprightFont=sourcecodepro-regular,Scale=0.9]{}
 \linespread{1.25}%1.5/1.2
 %headings
@@ -126,19 +130,20 @@
 \newcommand{\codesize}{\fontsize{0.9em}{\baselineskip}}
 \newenvironment{Shaded}{
 	\begin{tcolorbox}[
-			notitle,
-			breakable,
-			frame hidden,
-			enhanced,
-			boxrule=0.2em,
-			colback=CodeBlockBgColor,
-			outer arc=0.03125001in,
-			boxsep=0.5em,
-			left=0in,
-			right=0in,
-			top=0in,
-			bottom=0in,
-			fontlower=\codesize
+		notitle,
+		breakable,
+		frame hidden,
+		enhanced,
+		boxrule=0.2em,
+		colback=CodeBlockBgColor,
+		coltext=VerbatimColor,
+		outer arc=3\px,
+		boxsep=0.5em,
+		left=0pt,
+		right=0pt,
+		top=0pt,
+		bottom=0pt,
+		fontlower=\codesize
 	]
 }{
 	\end{tcolorbox}
@@ -176,12 +181,11 @@
 \newcommand{\VerbatimStringTok}[1]{#1}
 \newcommand{\WarngingTok}[1]{#1}
 %no highlighting code
-\RecustomVerbatimEnvironment{verbatim}{Verbatim}{breaklines,breakanywhere,formatcom=\color{VerbatimColor}}%https://tex.stackexchange.com/a/469504
+\RecustomVerbatimEnvironment{verbatim}{Verbatim}{breaklines,breakanywhere}%https://tex.stackexchange.com/a/469504
 \BeforeBeginEnvironment{verbatim}{\begin{Shaded}}
 \AfterEndEnvironment{verbatim}{\end{Shaded}}
 %inline code behaviour
-\def\inlinecode #1 {\colorbox{InlineCodeColor}{\codesize#1}}
-\newcommand{\VERB}{\inlinecode \Verb[breaklines,breakanywhere,commandchars=\\\{\}]}
+\def\VERB|#1|{\colorbox{InlineCodeColor}{\codesize\Verb[breaklines,breakanywhere,commandchars=\\\{\}]|#1|}}
 \renewcommand{\texttt}[1]{\VERB|#1|}
 %tables
 	%underline on every row
@@ -206,11 +210,11 @@
 	\edef\pream{{\pream|}}
 	\newcommand{\toprule}[2]{
 		\arrayrulecolor{TableHeadColor}
-		\noalign{\global\arrayrulewidth=0.01041667in}%https://tex.stackexchange.com/a/337790
+		\noalign{\global\arrayrulewidth=1\px}%https://tex.stackexchange.com/a/337790
 	}
 	\newcommand{\midrule}[2]{
 		\arrayrulecolor{TableHeadColor}
-		\noalign{\global\arrayrulewidth=0.01041667in}%https://tex.stackexchange.com/a/337790
+		\noalign{\global\arrayrulewidth=1\px}%https://tex.stackexchange.com/a/337790
 	}
 	\def\endhead{}
 	\newcommand{\bottomrule}[2]{}
@@ -222,11 +226,76 @@
 	\EndLongtable
 	\end{center}
 }
+%lists and tasklists
+\newlength{\boxside}
+\setlength{\boxside}{1.1em}
+\newtcbox{\checkbox}[1]{
+	enhanced,
+	notitle,
+	on line,
+	coltext=BackgroundColor,
+	colback=#1,
+	colframe=DeepThemeColor,
+	boxrule=1.2\px,
+	arc=0.5em,%experimentation, using 1.1em produces wierd pattern
+	outer arc=0.5em,
+	height=\boxside,
+	width=\boxside,%doesn't work for some reason
+	left=0em,
+	right=0em,
+	top=0em,
+	bottom=0em,
+	boxsep=0em,
+}
+	%-------strikeout item
+\def\strike{
+	\begingroup
+	\catcode`\^^M=\active
+	\applystrike
+}
+\begingroup
+\catcode`\^^M=\active
+\gdef\applystrike^^M#1^^M{\sout{#1}\endgroup}
+\endgroup
+	%-------https://tex.stackexchange.com/a/10437
+\usepackage{environ}
+\let\Item\item
+\AtBeginEnvironment{itemize}{
+	\gdef\itemformat{}
+	\renewcommand{\item}[1][\textbullet\hspace{1.8mm}]{%1.8 from eyeballing
+		\Item[#1]\itemformat
+	}
+}
+\usepackage{amssymb}
+\renewcommand{\square}{
+	\checkbox{BackgroundColor}{\hspace*{\boxside-2\px}}
+	\gdef\itemformat{\color{black}}
+}
+\renewcommand{\boxtimes}{
+	\checkbox{DeepThemeColor}{\hspace*{0.3em}\fontsize{0.8em}{0.95em}\checkmark}
+	\gdef\itemformat{
+		\color{StruckColor}
+		\strike
+	}
+}
+%definition lists
+\renewcommand{\descriptionlabel}[1]{#1}%remove bold
+\usepackage{enumitem}
+\setlist[description]{style=nextline,leftmargin=0pt}
+\def\colon{: }
+\AtBeginEnvironment{description}{
+	\AddToHook{para/begin}[colon]{\colon}
+	\let\Item\item
+	\renewcommand{\item}[1][\null]{\gdef\colon{}\Item[#1]:\gdef\colon{: }}
+}
+\AtEndEnvironment{description}{
+	\RemoveFromHook{para/begin}[colon]
+}
 %horizontal rules
 \let\Rule\rule
-\renewcommand{\rule}[2]{\textcolor{RuleColor}{\vspace{2em}\Rule{\linewidth}{0.010416667in}}}
+\renewcommand{\rule}[2]{\textcolor{RuleColor}{\vspace{2em}\Rule{\linewidth}{1\px}}}
 %document
 \begin{document}
-\fontsize{0.166666672in}{1.5em}
+\fontsize{16\px}{1.5em}
 $body$
 \end{document}
