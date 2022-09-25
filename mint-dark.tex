@@ -221,13 +221,13 @@
 	\StrSubstitute{\pream}{r}{R}[\pream]
 	\StrSubstitute{\pream}{c}{C}[\pream]
 	\edef\pream{{\pream|}}
+	\global\arrayrulewidth=1\px%https://tex.stackexchange.com/a/337790
 	\newcommand{\toprule}[2]{}
 	\newcommand{\midrule}[2]{\color{TextColor}}
 	\def\endhead{\gdef\greenify{}}
 	\newcommand{\bottomrule}[2]{}
 	\begin{center}
 	\expandafter\table\pream
-	\noalign{\global\arrayrulewidth=0.01041667in}%https://tex.stackexchange.com/a/337790
 	\hline
 	\rowcolor{TableHeadColor}
 }{

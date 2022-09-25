@@ -262,10 +262,10 @@
 	%https://stackoverflow.com/a/3175486 second comment
 %deviation: not stretching table accross width for aesthetics
 %deviation: not making table head bold for user freedom
-\setlength{\tabcolsep}{0.10416667in}
+\setlength{\tabcolsep}{1\px}
 \renewcommand{\arraystretch}{1.25}%eyeballing
 \arrayrulecolor{TableBorderColor}
-\global\arrayrulewidth=0.01041667in%https://tex.stackexchange.com/a/337790
+\global\arrayrulewidth=1\px%https://tex.stackexchange.com/a/337790
 \renewenvironment{longtable}[3]{
 	\StrGobbleLeft{#3}{2}[\pream]
 	\StrGobbleRight{\pream}{2}[\pream]

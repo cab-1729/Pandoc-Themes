@@ -74,7 +74,7 @@
 }
 \author{}
 \date{}
-\usepackage[a4paper,textwidth=40em]{geometry}
+\usepackage[a4paper,textwidth=452pt,margin=101.2pt]{geometry}
 %colors
 \usepackage[table]{xcolor}
 \definecolor{BackgroundColor}{HTML}{F3F2EE}
@@ -94,8 +94,33 @@
 	\color{TextColor}\global\let\default@color\current@color
 \makeatother
 	%-------https://tex.stackexchange.com/a/29409
-\setmainfont[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/newsprint-fonts/timesnewroman-,UprightFont=regular,ItalicFont=italic,BoldFont=bold,BoldItalicFont=bolditalic]{}
-\usepackage[fontsize=0.16666672in]{fontsize}%16px
+\setmainfont[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/compact-fonts/notoserif-,
+	UprightFont=regular,
+	ItalicFont=italic,
+	BoldFont=bold,
+	BoldItalicFont=bolditalic
+]{}
+\setmonofont[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/compact-fonts/sourcecodepro-,
+	UprightFont=medium,
+	ItalicFont=mediumitalic,
+	BoldFont=bold,
+	BoldItalicFont=bolditalic
+]{}
+\newfontfamily\mysans[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/compact-fonts/notosans-,
+	UprightFont=regular,
+	ItalicFont=italic,
+	BoldFont=bold,
+	BoldItalicFont=bolditalic
+]{}
+\newfontfamily\myseriffivehundred[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/compact-fonts/notoserif-,
+	UprightFont=medium,
+	ItalicFont=mediumitalic,
+]{}
+\newfontfamily\myserifeighthundred[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/compact-fonts/notoserif-,
+	UprightFont=extrabold,
+	ItalicFont=extrabolditalic,
+]{}
+\usepackage[fontsize=12pt]{fontsize}
 \linespread{1.25}%1.5/1.2
 %headings
 \usepackage{sectsty}

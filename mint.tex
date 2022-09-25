@@ -201,6 +201,7 @@
 \let\EndLongtable\endlongtable
 %deviation: not making table head bold and capital to give user more freedom
 %deviation: not stretching table accross width for aesthetics
+\arrayrulecolor{TableHeadColor}
 \renewenvironment{longtable}[3]{
 	\StrGobbleLeft{#3}{2}[\pream]
 	\StrGobbleRight{\pream}{2}[\pream]
@@ -208,14 +209,9 @@
 	\StrSubstitute{\pream}{r}{|r}[\pream]
 	\StrSubstitute{\pream}{c}{|c}[\pream]
 	\edef\pream{{\pream|}}
-	\newcommand{\toprule}[2]{
-		\arrayrulecolor{TableHeadColor}
-		\noalign{\global\arrayrulewidth=1\px}%https://tex.stackexchange.com/a/337790
-	}
-	\newcommand{\midrule}[2]{
-		\arrayrulecolor{TableHeadColor}
-		\noalign{\global\arrayrulewidth=1\px}%https://tex.stackexchange.com/a/337790
-	}
+	\global\arrayrulewidth=1\px%https://tex.stackexchange.com/a/337790
+	\newcommand{\toprule}[2]{}
+	\newcommand{\midrule}[2]{}
 	\def\endhead{}
 	\newcommand{\bottomrule}[2]{}
 	\begin{center}
