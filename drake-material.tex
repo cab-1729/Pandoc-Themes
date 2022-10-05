@@ -1,0 +1,320 @@
+%Typora theme : https://github.com/liangjingkanji/DrakeTyporaTheme
+\documentclass{article}
+% Use upquote if available, for straight quotes in verbatim environments
+\usepackage{upquote}
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\usepackage{fvextra}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{numbers=left,xleftmargin=24\px,breaklines,breakanywhere,commandchars=\\\{\}}
+\renewcommand{\theFancyVerbLine}{\textcolor[HTML]{546E7A}{\small\arabic{FancyVerbLine}}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\makeatother
+\usepackage{footnotehyper}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\usepackage[normalem]{ulem}
+% Avoid problems with \sout in headers with hyperref
+%\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+%---
+\newlength{\px}
+\setlength{\px}{0.0104166667in}
+%colors
+\usepackage[table]{xcolor}
+\definecolor{BackgroundColor}{HTML}{283237}
+\definecolor{TextColor}{HTML}{B3BEC4}
+\definecolor{TitleColor}{HTML}{BBC6D2}
+\definecolor{DrakeAccentColor}{HTML}{429488}
+\definecolor{DrakeHighlightColor}{HTML}{429488}
+\definecolor{BlockquoteBgColor}{HTML}{FDEFEE}
+\definecolor{CodeBlockBgColor}{HTML}{1B2529}
+\definecolor{CodeBlockColor}{HTML}{A9B7C6}
+\definecolor{TableBorderColor}{HTML}{37474F}
+\definecolor{TableEvenColor}{HTML}{2E3A40}
+\definecolor{BoxColor}{HTML}{A8A8A8}
+\definecolor{CheckedColor}{HTML}{65B73B}
+\definecolor{UncheckedColor}{HTML}{ACB7C4}
+\pagecolor{BackgroundColor}
+\usepackage[colorlinks=true,allcolors=DrakeHighlightColor,allbordercolors=DrakeHighlightColor]{hyperref}
+%metadata
+\hypersetup{
+	$if(subject)$
+	$if(title-meta)$
+	  pdftitle={$title-meta$},
+	$endif$
+	$if(author-meta)$
+	  pdfauthor={$author-meta$},
+	$endif$
+	$if(subject)$
+	  pdfsubject={$subject$},
+	$endif$
+	$if(keywords)$
+	  pdfkeywords={$for(keywords)$$keywords$$sep$, $endfor$},
+	$endif$
+	$if(subject)$
+	pdfsubject={$subject$},
+	$endif$
+	pdfsubject={$subject$},
+	$endif$
+	pdfcreator={XeLaTeX via Pandoc drake-material theme},
+}
+	%-------underline all links
+\makeatletter
+\Hy@AtBeginDocument{%
+	\def\@pdfborderstyle{/S/U/W 0.01}% eyeballing
+}
+\makeatother
+	%-------https://tex.stackexchange.com/a/26085
+\author{}
+\date{}
+\usepackage[a4paper,textwidth=1200\px,top=20\px,left=30\px,right=30\px,bottom=100\px]{geometry}
+%fonts
+\usepackage{fontspec}
+	%-------set global color
+\makeatletter
+	\color{TextColor}\global\let\default@color\current@color
+\makeatother
+	%-------https://tex.stackexchange.com/a/29409
+\setmainfont[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/drake-fonts/jetbrainsmono-,UprightFont=regular,ItalicFont=italic,BoldFont=bold,BoldItalicFont=bolditalic]{}
+\usepackage[fontsize=0.1250000004in]{fontsize}%12px
+\linespread{1.333}%1.6/1.2
+%headings
+\usepackage{titlesec}
+\usepackage{soul}
+\titleformat*{\section}{\filcenter\fontsize{2em}{1.4\baselineskip}\bfseries\color{TitleColor}}
+\titlespacing{\section}{0pt}{2em}{1em}
+\titleformat{\subsection}{\fontsize{1.8em}{3em}\bfseries\color{TitleColor}}{}{}{\setul{0.3em}{0.2em}\setulcolor{TitleColor}\ul}[\resetul]
+\titlespacing{\subsection}{0pt}{2em}{1em}
+\titleformat*{\subsubsection}{\fontsize{1.4em}{1.4\baselineskip}\bfseries\color{TitleColor}}
+\titlespacing{\subsubsection}{0pt}{2em}{1em}
+\titleformat*{\paragraph}{\fontsize{1.2em}{1.4\baselineskip}\bfseries\color{TitleColor}}
+\titlespacing{\paragraph}{0pt}{2em}{1em}
+\titleformat{\subparagraph}{\fontsize{1em}{1.4\baselineskip}\bfseries\color{TitleColor}}{}{}{}%\titleformat* prevents newline
+\titlespacing{\subparagraph}{0pt}{2em}{1em}
+\raggedright
+%bold
+\let\Textbf\textbf
+\renewcommand{\textbf}[1]{\textcolor{TitleColor}{\Textbf{#1}}}
+%quotes
+\usepackage[most]{tcolorbox}
+\renewenvironment{quote}{
+	\begin{tcolorbox}[
+		notitle,
+		frame hidden,
+		enhanced,
+		outer arc=2\px,
+		arc=2\px,
+		colback=BlockquoteBgColor,
+		coltext=TextColor,
+		boxsep=0em,
+		top=10\px,
+		bottom=10\px,
+		right=16\px,
+		left=16\px,
+		overlay={
+			\fill[DrakeAccentColor]
+			([xshift=2\px,yshift=-2\px]interior.north west)--
+			([xshift=2\px,yshift=2\px]interior.south west)
+			arc(0:-180:2\px)--
+			([xshift=-2\px,yshift=2\px]interior.south west)--
+			([xshift=-2\px,yshift=-2\px]interior.north west)
+			arc(180:0:2\px)--
+			cycle;
+		}
+	]
+}{
+	\end{tcolorbox}
+}
+\AtBeginEnvironment{quote}{
+	\renewcommand{\textbf}[1]{\textcolor{TextColor}{\Textbf{#1}}}
+}
+%code background
+\newenvironment{Shaded}{
+	\begin{tcolorbox}[
+		notitle,
+		breakable,
+		frame hidden,
+		sharp corners,
+		enhanced,
+		boxrule=0pt,
+		colback=CodeBlockBgColor,
+		coltext=TextColor,
+		boxsep=0em,
+		left=2\px,
+		right=2\px,
+	]
+}{
+	\end{tcolorbox}
+}
+%syntax highlighting - taken from CodeMirror
+\newcommand{\AlertTok}[1]{#1}
+\newcommand{\AnnotationTok}[1]{#1}
+\newcommand{\AttributeTok}[1]{\textcolor[HTML]{C792EA}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\BaseNTok}[1]{#1}
+\newcommand{\BuiltInTok}[1]{\textcolor[HTML]{FFCB6B}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\CharTok}[1]{#1}
+\newcommand{\CommentTok}[1]{\textcolor[HTML]{546E7A}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\CommentVarTok}[1]{#1}
+\newcommand{\ConstantTok}[1]{#1}
+\newcommand{\ControlFlowTok}[1]{#1}
+\newcommand{\DataTypeTok}[1]{\textcolor[HTML]{DECB6B}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\DecValTok}[1]{\textcolor[HTML]{FF5370}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\DocumentationTok}[1]{#1}
+\newcommand{\ErrorTok}[1]{\colorbox{white}{\textcolor[HTML]{FF5370}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[HTML]{FF5370}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\FunctionTok}[1]{#1}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{#1}
+\newcommand{\KeywordTok}[1]{\textcolor[HTML]{C792EA}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[HTML]{89DDFF}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\OtherTok}[1]{#1}
+\newcommand{\PreprocessorTok}[1]{#1}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{#1}
+\newcommand{\SpecialStringTok}[1]{\textcolor[HTML]{C3E88D}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\StringTok}[1]{\textcolor[HTML]{C3E88D}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\VariableTok}[1]{\textcolor[HTML]{B3BEC4}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\VerbatimStringTok}[1]{#1}
+\newcommand{\WarngingTok}[1]{#1}
+%no highlighting code
+\RecustomVerbatimEnvironment{verbatim}{Verbatim}{breaklines,breakanywhere}%https://tex.stackexchange.com/a/469504
+\BeforeBeginEnvironment{verbatim}{\begin{Shaded}}
+\AfterEndEnvironment{verbatim}{\end{Shaded}}
+%inline code behaviour
+\def\VERB|#1|{{\Verb[breaklines,breakanywhere,formatcom=\color{DrakeHighlightColor},commandchars=\\\{\}]|#1|}}
+\renewcommand{\texttt}[1]{\VERB|#1|}
+%tables
+	%underline on every row
+\makeatletter
+\let\Tabularcr\@arraycr
+\def\@arraycr{\Tabularcr\hline}
+\makeatother
+	%https://stackoverflow.com/a/3175486 second comment
+\usepackage{xstring}
+\usepackage{longtable}
+\let\Longtable\longtable
+\let\EndLongtable\endlongtable
+\def\table#1{\Longtable{#1}}
+%deviation: not stretching table accross width for aesthetics
+%deviation: not making table head bold to give user more freedom
+\setlength{\tabcolsep}{13\px}
+\renewcommand{\arraystretch}{1.3}%eyeballing
+\arrayrulecolor{TableBorderColor}
+\renewenvironment{longtable}[3]{
+	\gdef\embolden{\bfseries}
+	\newcolumntype{L}{|>{\embolden}l}
+	\newcolumntype{R}{|>{\embolden}r}
+	\newcolumntype{C}{|>{\embolden}c}
+	\StrGobbleLeft{#3}{2}[\pream]
+	\StrGobbleRight{\pream}{2}[\pream]
+	\StrSubstitute{\pream}{l}{L}[\pream]
+	\StrSubstitute{\pream}{r}{R}[\pream]
+	\StrSubstitute{\pream}{c}{C}[\pream]
+	\edef\pream{{\pream|}}
+	\newcommand{\toprule}[2]{}
+	\newcommand{\midrule}[2]{\color{TextColor}}
+	\def\endhead{\gdef\embolden{}}
+	\newcommand{\bottomrule}[2]{}
+	\begin{center}
+	\rowcolors{2}{TableEvenColor}{BackgroundColor}%https://tex.stackexchange.com/a/5365
+	\expandafter\table\pream
+	\noalign{\global\arrayrulewidth=0.1em}%https://tex.stackexchange.com/a/337790
+	\hline
+}{
+	\EndLongtable
+	\end{center}
+	\vspace{1.5em}
+}
+%lists and tasklists
+\usepackage{environ}
+\newcommand{\square}{
+	\resizebox{1.6em}{1.6em}{%https://tex.stackexchange.com/a/75450
+		\begin{tikzpicture}
+			\path[fill=UncheckedColor] (.8106670,.2133330) -- (.8106670,.8106670) --
+			(.2133330,.8106670) -- (.2133330,.2133330) --
+			(.8106670,.2133330)(.8106670,.1280000) -- (.2133330,.1280000) .. controls
+			(.1664000,.1280000) and (.1280000,.1664000) .. (.1280000,.2133330) --
+			(.1280000,.8106670) .. controls (.1280000,.8576000) and (.1664000,.8960000) ..
+			(.2133330,.8960000) -- (.8106670,.8960000) .. controls (.8576000,.8960000) and
+			(.8960000,.8576000) .. (.8960000,.8106670) -- (.8960000,.2133330) .. controls
+			(.8960000,.1664000) and (.8576000,.1280000) .. (.8106670,.1280000) -- cycle;
+		\end{tikzpicture}
+	}
+}
+\newcommand{\boxtimes}{
+	\resizebox{1.6em}{1.6em}{%https://tex.stackexchange.com/a/75450
+		\begin{tikzpicture}
+			\path[fill=CheckedColor] (.4259840,.2979410) -- (.8099840,.6819410) --
+			(.7499940,.7439360) -- (.4259840,.4199250) -- (.2739630,.5719460) --
+			(.2139730,.5119570) -- cycle(.8099840,.8959570) .. controls
+			(.8339907,.8959570) and (.8543283,.8872957) .. (.8709970,.8699730) .. controls
+			(.8876657,.8526503) and (.8960000,.8326537) .. (.8960000,.8099830) --
+			(.8960000,.2139730) .. controls (.8960000,.1913030) and (.8876657,.1713063) ..
+			(.8709970,.1539830) .. controls (.8543283,.1366597) and (.8339907,.1279987) ..
+			(.8099840,.1280000) -- (.2139740,.1280000) .. controls (.1899667,.1280000) and
+			(.1696287,.1366613) .. (.1529600,.1539840) .. controls (.1362913,.1713067) and
+			(.1279570,.1913030) .. (.1279570,.2139730) -- (.1279570,.8099830) .. controls
+			(.1279570,.8326537) and (.1362913,.8526503) .. (.1529600,.8699730) .. controls
+			(.1696287,.8872957) and (.1899663,.8959570) .. (.2139730,.8959570) -- cycle;
+		\end{tikzpicture}
+	}
+}
+\let\Item\item
+\AtBeginEnvironment{itemize}{
+	\renewcommand{\item}[1][\textbullet\hspace{1.8mm}]{%1.8 from eyeballing
+		\Item[#1]
+	}
+}
+%definition lists
+\renewcommand{\descriptionlabel}[1]{#1}%remove bold
+\usepackage{enumitem}
+\setlist[description]{style=nextline,leftmargin=0pt}
+\def\colon{: }
+\AtBeginEnvironment{description}{
+	\AddToHook{para/begin}[colon]{\colon}
+	\let\Item\item
+	\renewcommand{\item}[1][\null]{\gdef\colon{}\Item[#1]:\gdef\colon{: }}
+}
+\AtEndEnvironment{description}{
+	\RemoveFromHook{para/begin}[colon]
+}
+%horizontal rules
+\let\Rule\rule
+\renewcommand{\rule}[2]{\vspace{16\px}\textcolor{TitleColor}{\Rule{\linewidth}{2\px}}\vspace{16\px}}
+%document
+\begin{document}
+$body$
+\end{document}
