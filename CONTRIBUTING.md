@@ -19,6 +19,7 @@ Possible ways you can help:
 + [woff2ttf](https://archlinux.org/packages/extra/x86_64/woff2/) -  for converting woff2 to ttf, for arch based distros
 + [woff2otf.py](https://github.com/hanikesn/woff2otf) -  for converting woff to otf
 + [File from old, deprecated project](https://github.com/cab-1729/SchoolStuff/blob/main/School%20material/Program.cs) - a file using for testing syntax highlighting
++ svg images are converted to tikz using [this inkscape extension](https://github.com/xyz2tex/svg2tikz) and then modified accordingly
 + 1px is taken to be 0.010416667inches
 + Default color for checkbox background is #0075ff, border is #a8a8a8.
 + Command used for testing and compiling : ```pandoc --verbose --pdf-engine=xelatex --template={}.tex -f markdown+inline_code_attributes+implicit_header_references+footnotes+definition_lists -t pdf Github\ Markdown.md | zathura -```
@@ -26,7 +27,7 @@ Possible ways you can help:
 ## Known issues
 
 + evangelion, solarized, rubrication - ```pdfborder``` has too much padding. The underline needs to be closer to the text to better resemble ```href``` in html.
-+ cobalt - ```marginpar``` needs to be aligned with the heading.
++ ~~cobalt - ```marginpar``` needs to be aligned with the heading.~~
 + all - formatting needs to be applied on level 6 headings. Pandoc does [not](https://github.com/jgm/pandoc/issues/8069) support it yet.
 + ~~all - switch back to ```longtable``` instead of tabular.~~
 + ~~all - inline code highlighting causes rest of paragraph to lose color.~~
@@ -36,3 +37,6 @@ Possible ways you can help:
 + ~~all - original theme github repo not mentioned as comment~~
 + ~~all - inline code box encompassing next character.~~
 + ~~all - make pixel a variable and use it for pixel lengths~~
++ ~~newsprint - table leaves box after it~~
++ torillic - theme not possible, texlive does not include [pdfinlimg](https://github.com/zerotoc/pdfinlimg), the package needed to add images to a theme
++ haru - theme not possible, italic version of version of Glow Sans not found

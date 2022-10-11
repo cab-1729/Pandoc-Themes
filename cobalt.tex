@@ -53,9 +53,6 @@
 \date{}
 \usepackage[a4paper,
 	margin=0.6em,
-	marginparwidth=1.45em,
-	marginparsep=10\px,
-	top=30\px,
 	bottom=100\px,
 	left=40\px,
 	right=30\px
@@ -129,29 +126,29 @@
 \titlespacing{\section}{0pt}{1.95em}{1.95em}
 \let\Section\section
 \renewcommand{\section}[1]{
-	\Section{#1\protect\marginpar[\fontsize{1em}{20\px}\bfseries\color{HeadingNoteColor}H1]{}}
+	\Section{#1\protect\marginpar[\hfill\fontsize{1em}{20\px}\textsc{\textbf{\textcolor{HeadingNoteColor}{H1}}}]{}}
 }
 \titleformat{\subsection}{\fontsize{1.8em}{1.4em}\bfseries\color{HeadingColor}}{}{}{}[\vspace{0.3em}{\color{HeadingUnderlineColor}{\titlerule[1\px]}}]
 \let\Subsection\subsection
 \renewcommand{\subsection}[1]{
-	\Subsection{#1\protect\marginpar[\fontsize{1em}{20\px}\bfseries\color{HeadingNoteColor}H2]{}}
+	\Subsection{#1\protect\marginpar[\hfill\fontsize{1em}{20\px}\textbf{\textsc{\textcolor{HeadingNoteColor}{H2}}}]{}}
 }
 \titlespacing{\subsection}{0pt}{1.26em}{1.26em}
 \titleformat{\subsubsection}{\fontsize{1.2em}{1.4em}\bfseries\color{HeadingColor}}{}{}{}
 \let\Subsubsection\subsubsection
 \renewcommand{\subsubsection}[1]{
-	\Subsubsection{#1\protect\marginpar[\fontsize{1em}{20\px}\bfseries\color{HeadingNoteColor}H3]{}}
+	\Subsubsection{#1\protect\marginpar[\hfill\fontsize{1em}{20\px}\textbf{\textsc{\textcolor{HeadingNoteColor}{H3}}}]{}}
 }
 \titlespacing{\subsubsection}{0pt}{0.6em}{0.6em}
 \titleformat{\paragraph}{\fontsize{1em}{1.4em}\bfseries\color{HeadingColor}}{}{}{}
 \let\Paragraph\paragraph
 \renewcommand{\paragraph}[1]{
-	\Paragraph{#1\protect\marginpar[\fontsize{1em}{20\px}\bfseries\color{HeadingNoteColor}H4]{}}
+	\Paragraph{#1\protect\marginpar[\hfill\fontsize{1em}{20\px}\textbf{\textsc{\textcolor{HeadingNoteColor}{H4}}}]{}}
 }
 \titlespacing{\paragraph}{0pt}{0.2em}{0.2em}
 \let\Subparagraph\subparagraph
 \renewcommand{\subparagraph}[1]{
-	\Subparagraph{#1\protect\marginpar[\fontsize{1em}{20\px}\bfseries\color{HeadingNoteColor}H5]{}}
+	\Subparagraph{#1\protect\marginpar[\hfill\fontsize{1em}{20\px}\textbf{\textsc{\textcolor{HeadingNoteColor}{H5}}}]{}}
 }
 \titleformat{\subparagraph}{\fontsize{1em}{1.4em}\bfseries\color{HeadingColor}}{}{}{}
 \raggedright
