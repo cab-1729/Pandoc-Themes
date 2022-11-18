@@ -114,18 +114,18 @@
 %quotes
 \renewenvironment{quote}{
 	\begin{tcolorbox}[
-			notitle,
-			frame hidden,
-			interior hidden,
-			sharp corners,
-			enhanced,
-			boxrule=0pt,
-			colback=BackgroundColor,
-			coltext=QuoteColor,
-			boxsep=0em,
-			fontupper=\itshape,
-			left=2em,
-			borderline west={5\px}{0pt}{QuotelineColor}
+		notitle,
+		frame hidden,
+		interior hidden,
+		sharp corners,
+		enhanced,
+		boxrule=0pt,
+		colback=BackgroundColor,
+		coltext=QuoteColor,
+		boxsep=0em,
+		fontupper=\itshape,
+		left=2em,
+		borderline west={5\px}{0pt}{QuotelineColor}
 	]
 }{
 	\end{tcolorbox}
@@ -191,15 +191,21 @@
 \renewcommand{\texttt}[1]{\VERB|#1|}
 %tables
 %deviation: not making table head bold and capital to give user more freedom
-%deviation: not stretching table accross width for aesthetics
-\rowcolors{2}{TableEvenColor}{BackgroundColor}%https://tex.stackexchange.com/a/5365
+%deviation: not stretching table across width for aesthetics
 \usepackage{longtable}
-\newcommand{\toprule}[2]{\rowcolor{ShadeColor}}
-\newcommand{\midrule}[2]{}
-\newcommand{\bottomrule}[2]{}
-\def\endhead{}
 \let\Longtable\longtable
-\AtEndEnvironment{longtable}{\vspace{1.5em}}
+\let\EndLongtable\endlongtable
+\renewenvironment{longtable}[3]{
+	\rowcolors{2}{TableEvenColor}{BackgroundColor}%https://tex.stackexchange.com/a/5365
+	\newcommand{\toprule}[2]{\rowcolor{ShadeColor}}
+	\newcommand{\midrule}[2]{}
+	\newcommand{\bottomrule}[2]{}
+	\def\endhead{}
+	\vspace{1.5em}
+	\Longtable{#3}
+}{
+	\EndLongtable
+}
 %lists and tasklists
 \newcommand{\boxtimes}{\sqrt{}}
 \newcommand{\square}{\color{UncheckedColor}{\sqrt{}}}
