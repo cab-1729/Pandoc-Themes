@@ -295,7 +295,8 @@
 	\end{center}
 	\vspace{1.5em}
 }
-%lists and tasklists
+%lists
+	%task lists
 \newlength{\boxside}
 \setlength{\boxside}{1.2em}
 \newtcbox{\checkbox}[2]{
@@ -328,21 +329,16 @@
 		\draw[line width=2\px,white]([xshift=0.25\boxside,yshift=-0.61\boxside]frame.north west) -- ++(310:0.15\boxside);
 	}{CheckedColor}{\hspace*{\boxside-2\px}}
 }
-\let\Item\item
-\AtBeginEnvironment{itemize}{
-	\renewcommand{\item}[1][\textcolor{ListIndexColor}\textbullet\hspace{1.8mm}]{%1.8 from eyeballing
-		\Item[#1]
-	}
-}
-%numbered lists
-\let\Tightlist\tightlist
-\renewcommand{\tightlist}{
-	\def\labelenumi{\color{ListIndexColor}\arabic{enumi}.}
-	\Tightlist
-}
-%definition lists
-\renewcommand{\descriptionlabel}[1]{#1}%remove bold
+	%unordered lists
+\renewcommand{\labelitemi}{\textcolor{ListIndexColor}\textbullet\hspace{1.8mm}}%1.8 from eyeballing
+\renewcommand{\labelitemii}{\textcolor{ListIndexColor}\textbullet\hspace{1.5mm}}%1.5 from eyeballing
+\renewcommand{\labelitemiii}{\textcolor{ListIndexColor}\textbullet\hspace{1.5mm}}
+\renewcommand{\labelitemiv}{\textcolor{ListIndexColor}\textbullet\hspace{1.5mm}}
+	%numbered lists
 \usepackage{enumitem}
+\setlist[enumerate]{font=\color{ListIndexColor}}
+	%definition lists
+\renewcommand{\descriptionlabel}[1]{#1}%remove bold
 \setlist[description]{style=nextline,leftmargin=0pt}
 \def\colon{: }
 \AtBeginEnvironment{description}{

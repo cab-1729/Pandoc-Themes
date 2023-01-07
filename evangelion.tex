@@ -258,7 +258,8 @@
 	\EndLongtable
 	\end{center}
 }
-%lists and tasklists
+%lists
+	%task-lists
 \newlength{\boxside}
 \setlength{\boxside}{1.2em}
 \newtcbox{\checkbox}[1]{
@@ -290,14 +291,6 @@
 \gdef\applystrike^^M#1^^M{\sout{#1}\endgroup}
 \endgroup
 	%-------https://tex.stackexchange.com/a/10437
-\usepackage{environ}
-\let\Item\item
-\AtBeginEnvironment{itemize}{
-	\gdef\itemformat{}
-	\renewcommand{\item}[1][\textcolor{DeepThemeColor}\textbullet\hspace{0.5mm}]{%0.5 from eyeballing
-		\Item[#1]\itemformat
-	}
-}
 \usepackage{amssymb}
 \renewcommand{\square}{
 	\checkbox{BackgroundColor}{\hspace*{\boxside-2\px}}
@@ -310,17 +303,30 @@
 		\strike
 	}
 }
-%numbered lists
-\AtBeginEnvironment{enumerate}{
-	\let\Tightlist\tightlist
-	\renewcommand{\tightlist}{
-		\def\labelenumi{\bfseries\color{DeepThemeColor}\arabic{enumi}.}
-		\Tightlist
+\usepackage{environ}
+\let\Item\item
+\AtBeginEnvironment{itemize}{
+	\gdef\itemformat{}
+	\renewcommand{\item}[1][]{
+		\ifx&#1&
+			\Item
+		\else
+			\Item[#1]
+		\fi
+		\itemformat
 	}
 }
-%definition lists
-\renewcommand{\descriptionlabel}[1]{#1}%remove bold
+	%unordered lists
+%deviation unordered list inside ordered list is not considered as nested
+\renewcommand{\labelitemi}{\textcolor{DeepThemeColor}\textbullet\hspace{1.8mm}}%1.8 from eyeballing
+\renewcommand{\labelitemii}{\textcolor{DeepThemeColor}{\tiny\(\circ\)}\hspace{1.5mm}}%1.5 from eyeballing
+\renewcommand{\labelitemiii}{\textcolor{DeepThemeColor}{\tiny\(\blacksquare\)}\hspace{1.5mm}}
+\renewcommand{\labelitemiv}{\textcolor{DeepThemeColor}{\tiny\(\blacksquare\)}\hspace{1.5mm}}
+	%numbered lists
 \usepackage{enumitem}
+\setlist[enumerate]{font=\color{DeepThemeColor}}
+	%definition lists
+\renewcommand{\descriptionlabel}[1]{#1}%remove bold
 \setlist[description]{style=nextline,leftmargin=0pt}
 \def\colon{: }
 \AtBeginEnvironment{description}{

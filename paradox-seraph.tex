@@ -255,18 +255,18 @@
 %inline code behaviour
 \def\VERB|#1|{
 	\tcbox[
-		 notitle,
-		 on line,
-		 coltext=TextColor,
-		 colback=CodeBgColor,
-		 colframe=BorderColor,
-		 arc=0.25em,
-		 outer arc=0.25em,
-		 boxrule=1\px,
-		 boxsep=0em,
-		 left=0.125em,
-		 right=0.125em,
-		 fontupper=\fontsize{15\px}{1.4em}
+		notitle,
+		on line,
+		coltext=TextColor,
+		colback=CodeBgColor,
+		colframe=BorderColor,
+		arc=0.25em,
+		outer arc=0.25em,
+		boxrule=1\px,
+		boxsep=0em,
+		left=0.125em,
+		right=0.125em,
+		fontupper=\fontsize{15\px}{1.4em}
 	]{\Verb[breaklines,breakanywhere,commandchars=\\\{\}]|#1|}
 	\color{TextColor}
 }
@@ -311,7 +311,8 @@
 	\end{center}
 	\vspace{1em}
 }
-%lists and tasklists
+%lists
+	%task lists
 \newlength{\boxside}
 \setlength{\boxside}{1em}
 \newtcbox{\checkbox}[2]{
@@ -333,10 +334,11 @@
 	overlay={#1},
 }
 \usepackage{environ}
-\newcommand{\square}{
+\usepackage{amssymb}
+\renewcommand{\square}{
 	\checkbox{\null}{white}{\hspace*{\boxside-2\px}}
 }
-\newcommand{\boxtimes}{
+\renewcommand{\boxtimes}{
 	\checkbox{
 		\draw[line width=2\px,white]([xshift=0.5\boxside,yshift=-0.5\boxside]frame.north west) -- ++(45:0.3\boxside);
 		\draw[line width=2\px,white]([xshift=0.5\boxside,yshift=-0.5\boxside]frame.north west) -- ++(225:0.3\boxside);
@@ -344,23 +346,17 @@
 		\draw[line width=2\px,white]([xshift=0.25\boxside,yshift=-0.61\boxside]frame.north west) -- ++(315:0.15\boxside);
 	}{PrimaryColor}{\hspace*{\boxside-2\px}}
 }
-\AtBeginEnvironment{itemize}{
-	\let\Item\item
-	\renewcommand{\item}[1][\textcolor{PrimaryColor}\textbullet\hspace{1.8mm}]{%1.8 from eyeballing
-		\Item[#1]
-	}
-}
-%numbered lists
-\AtBeginEnvironment{enumerate}{
-	\let\Tightlist\tightlist
-	\renewcommand{\tightlist}{
-		\def\labelenumi{\bfseries\color{PrimaryColor}\textbf{\arabic{enumi}.}}
-		\Tightlist
-	}
-}
-%definition lists
-\renewcommand{\descriptionlabel}[1]{#1}%remove bold
+	%unordered lists
+%deviation unordered list inside ordered list is not considered as nested
+\renewcommand{\labelitemi}{\textcolor{PrimaryColor}\textbullet\hspace{1.8mm}}%1.8 from eyeballing
+\renewcommand{\labelitemii}{\textcolor{PrimaryColor}{\bfseries\(\circ\)}\hspace{1.5mm}}%1.5 from eyeballing
+\renewcommand{\labelitemiii}{\textcolor{PrimaryColor}{\tiny\(\blacksquare\)}\hspace{1.5mm}}
+\renewcommand{\labelitemiv}{\textcolor{PrimaryColor}{\tiny\(\blacksquare\)}\hspace{1.5mm}}
+	%ordered lists
 \usepackage{enumitem}
+\setlist[enumerate]{font=\bfseries\color{PrimaryColor}}
+	%definition lists
+\renewcommand{\descriptionlabel}[1]{#1}%remove bold
 \setlist[description]{style=nextline,leftmargin=0pt}
 \def\colon{: }
 \AtBeginEnvironment{description}{

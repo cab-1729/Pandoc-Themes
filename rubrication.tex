@@ -190,7 +190,8 @@
 \newcommand{\midrule}[2]{}
 \def\endhead{}
 \newcommand{\bottomrule}[2]{}
-%lists and tasklists
+%lists
+	%task lists
 \newlength{\boxside}
 \setlength{\boxside}{1.2em}
 \newtcbox{\checkbox}[2]{
@@ -212,10 +213,11 @@
 	overlay={#1},
 }
 \usepackage{environ}
-\newcommand{\square}{
+\usepackage{amssymb}
+\renewcommand{\square}{
 	\checkbox{\null}{BackgroundColor}{\hspace*{\boxside-2\px}}
 }
-\newcommand{\boxtimes}{
+\renewcommand{\boxtimes}{
 	\checkbox{
 		\draw[line width=2\px,BackgroundColor]([xshift=0.5\boxside,yshift=-0.5\boxside]frame.north west) -- ++(40:0.3\boxside);
 		\draw[line width=2\px,BackgroundColor]([xshift=0.5\boxside,yshift=-0.5\boxside]frame.north west) -- ++(220:0.3\boxside);
@@ -224,7 +226,13 @@
 	}{CheckedColor}{\hspace*{\boxside-2\px}}
 }
 \renewcommand{\labelitemi}{\rule[0.25em]{0.25em}{0.25em}\hspace{1.8mm}}%eyeballing
-%definition lists
+	%unordered lists
+%deviation unordered list inside ordered list is not considered as nested
+\renewcommand{\labelitemi}{\tiny\(\blacksquare\)\hspace{1.5mm}}
+\renewcommand{\labelitemii}{\tiny\(\blacksquare\)\hspace{1.5mm}}
+\renewcommand{\labelitemiii}{\tiny\(\blacksquare\)\hspace{1.5mm}}
+\renewcommand{\labelitemiv}{\tiny\(\blacksquare\)\hspace{1.5mm}}
+	%definition lists
 \renewcommand{\descriptionlabel}[1]{#1}%remove bold
 \usepackage{enumitem}
 \setlist[description]{style=nextline,leftmargin=0pt}

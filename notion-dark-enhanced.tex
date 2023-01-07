@@ -271,7 +271,8 @@
 	\EndLongtable
 	\end{center}
 }
-%lists and tasklists
+%lists
+	%task lists
 \usepackage{amssymb}
 \newlength{\boxside}
 \setlength{\boxside}{0.95em}
@@ -293,13 +294,13 @@
 }
 \renewcommand{\square}{\checkbox{TextColor}{BackgroundColor}{\hspace*{\boxside-2\px}}}
 \renewcommand{\boxtimes}{\checkbox{CheckedColor}{CheckedColor}{\hspace*{0.1em}\textcolor{white}{\fontsize{0.75em}{\baselineskip}\bfseries\checkmark}\hspace*{0.1em}}}
-\let\Item\item
-\AtBeginEnvironment{itemize}{
-	\renewcommand{\item}[1][\textbullet\hspace{1.8mm}]{%1.8mm from eyeballing
-		\Item[#1]
-	}
-}
-%definition lists
+	%unordered lists
+%deviation unordered list inside ordered list is not considered as nested
+\renewcommand{\labelitemi}{\textbullet\hspace{1.8mm}}%1.8 from eyeballing
+\renewcommand{\labelitemii}{\tiny\(\circ\)\hspace{1.5mm}}%1.5 from eyeballing
+\renewcommand{\labelitemiii}{\tiny\(\blacksquare\)\hspace{1.5mm}}
+\renewcommand{\labelitemiv}{\tiny\(\blacksquare\)\hspace{1.5mm}}
+	%definition lists
 \renewcommand{\descriptionlabel}[1]{#1}%remove bold
 \usepackage{enumitem}
 \setlist[description]{style=nextline,leftmargin=0pt}

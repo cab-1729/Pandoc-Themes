@@ -287,7 +287,8 @@
 %strikethrough
 \let\Sout\sout
 \renewcommand{\sout}[1]{\textcolor{StrikethroughColor}{\Sout{#1}}}
-%lists and tasklists
+%lists
+	%task lists
 \newlength{\boxside}
 \setlength{\boxside}{1.2em}
 \newtcbox{\checkbox}[1]{
@@ -343,15 +344,17 @@
 		\strike
 	}
 }
-%numbered lists
-\let\Tightlist\tightlist
-\renewcommand{\tightlist}{
-	\def\labelenumi{\bfseries\color{QuotelineColor}\arabic{enumi}.}
-	\Tightlist
-}
-%definition lists
-\renewcommand{\descriptionlabel}[1]{#1}%remove bold
+	%unordered lists
+%deviation unordered list inside ordered list is not considered as nested
+\renewcommand{\labelitemi}{\textcolor{QuotelineColor}\textbullet\hspace{1.8mm}}%1.8 from eyeballing
+\renewcommand{\labelitemii}{\textcolor{QuotelineColor}\textbullet\hspace{1.8mm}}%1.8 from eyeballing
+\renewcommand{\labelitemiii}{\textcolor{QuotelineColor}\textbullet\hspace{1.8mm}}%1.8 from eyeballing
+\renewcommand{\labelitemiv}{\textcolor{QuotelineColor}\textbullet\hspace{1.8mm}}%1.8 from eyeballing
+	%ordered lists
 \usepackage{enumitem}
+\setlist[enumerate]{font=\bfseries\color{QuotelineColor}}
+	%definition lists
+\renewcommand{\descriptionlabel}[1]{#1}%remove bold
 \setlist[description]{style=nextline,leftmargin=0pt}
 \def\colon{: }
 \AtBeginEnvironment{description}{

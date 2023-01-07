@@ -275,7 +275,8 @@
 	\end{center}
 	\vspace{1.25em}
 }
-%lists and tasklists
+%lists
+	%task lists
 \newlength{\boxside}
 \setlength{\boxside}{1em}
 \newtcbox{\checkbox}[1]{
@@ -311,15 +312,21 @@
 \let\Item\item
 \AtBeginEnvironment{itemize}{
 	\gdef\itemformat{}
-	\renewcommand{\item}[1][\textbf{\textbullet}\hspace{1.8mm}]{%1.8 from eyeballing
-		\Item[#1]\itemformat
+	\renewcommand{\item}[1][]{
+		\ifx&#1&
+			\Item
+		\else
+			\Item[#1]
+		\fi
+		\itemformat
 	}
 }
-\newcommand{\square}{
+\usepackage{amssymb}
+\renewcommand{\square}{
 	\checkbox{\null}{\hspace*{\boxside-2\px}}
 	\gdef\itemformat{\color{TextColor}}
 }
-\newcommand{\boxtimes}{
+\renewcommand{\boxtimes}{
 	\checkbox{
 		\draw[line width=2\px,BoxTickColor]([xshift=0.5\boxside,yshift=-0.5\boxside]frame.north west) -- ++(40:0.3\boxside);
 		\draw[line width=2\px,BoxTickColor]([xshift=0.5\boxside,yshift=-0.5\boxside]frame.north west) -- ++(220:0.3\boxside);
@@ -331,7 +338,13 @@
 		\strike
 	}
 }
-%definition lists
+	%unordered lists
+%deviation unordered list inside ordered list is not considered as nested
+\renewcommand{\labelitemi}{\textbullet\hspace{1.8mm}}%1.8 from eyeballing
+\renewcommand{\labelitemii}{\bfseries\(\circ\)\hspace{1.5mm}}%1.5 from eyeballing
+\renewcommand{\labelitemiii}{\tiny\(\blacksquare\)\hspace{1.5mm}}
+\renewcommand{\labelitemiv}{\tiny\(\blacksquare\)\hspace{1.5mm}}
+	%definition lists
 \renewcommand{\descriptionlabel}[1]{#1}%remove bold
 \usepackage{enumitem}
 \setlist[description]{style=nextline,leftmargin=0pt}

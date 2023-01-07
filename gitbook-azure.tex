@@ -266,7 +266,9 @@
 }{
 	\EndLongtable
 }
-%lists and tasklists
+%lists
+\usepackage{amssymb}
+	%task-lists
 \newlength{\boxside}
 \setlength{\boxside}{0.9em}
 \newtcbox{\checkbox}[2]{
@@ -287,16 +289,10 @@
 	boxsep=0em,
 	overlay={#2},
 }
-\let\Item\item
-\AtBeginEnvironment{itemize}{
-	\renewcommand{\item}[1][\textbullet\hspace{1.8mm}]{%1.8 from eyeballing
-		\Item[#1]
-	}
-}
-\newcommand{\square}{
+\renewcommand{\square}{
 	\checkbox{BorderColor}{\null}{\hspace*{\boxside}}
 }
-\newcommand{\boxtimes}{
+\renewcommand{\boxtimes}{
 	\checkbox{PrimaryColor}{
 		%Bug:https://github.com/pgf-tikz/pgf/issues/708
 		\begin{scope}[xshift=-2pt,yshift=5pt,rotate=45,]%shift eyeballing
@@ -305,7 +301,13 @@
 		\end{scope}
 	}{\hspace*{\boxside}}
 }
-%definition lists
+	%unordered lists
+%deviation unordered list inside ordered list is not considered as nested
+\renewcommand{\labelitemi}{\textbullet\hspace{1.8mm}}%1.8 from eyeballing
+\renewcommand{\labelitemii}{\(\circ\)\hspace{1.8mm}}
+\renewcommand{\labelitemiii}{\tiny{\(\blacksquare\)}\hspace{1.8mm}}
+\renewcommand{\labelitemiv}{\tiny{\(\blacksquare\)}\hspace{1.8mm}}
+	%definition lists
 \renewcommand{\descriptionlabel}[1]{#1}%remove bold
 \usepackage{enumitem}
 \setlist[description]{style=nextline,leftmargin=0pt}

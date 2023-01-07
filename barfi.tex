@@ -70,7 +70,7 @@
 	$endif$
 	pdfsubject={$subject$},
 	$endif$
-	pdfcreator={XeLaTeX via Pandoc newsprint theme},
+	pdfcreator={XeLaTeX via Pandoc barfi theme},
 }
 \author{}
 \date{}
@@ -268,10 +268,11 @@
 	overlay={#1},
 }
 \usepackage{environ}
-\newcommand{\square}{
+\usepackage{amssymb}
+\renewcommand{\square}{
 	\checkbox{\null}{white}{\hspace*{\boxside-2\px}}
 }
-\newcommand{\boxtimes}{
+\renewcommand{\boxtimes}{
 	\checkbox{
 		\draw[line width=2\px,white]([xshift=0.5\boxside,yshift=-0.5\boxside]frame.north west) -- ++(40:0.3\boxside);
 		\draw[line width=2\px,white]([xshift=0.5\boxside,yshift=-0.5\boxside]frame.north west) -- ++(220:0.3\boxside);
@@ -279,13 +280,13 @@
 		\draw[line width=2\px,white]([xshift=0.25\boxside,yshift=-0.61\boxside]frame.north west) -- ++(310:0.15\boxside);
 	}{CheckedColor}{\hspace*{\boxside-2\px}}
 }
-\let\Item\item
-\AtBeginEnvironment{itemize}{
-	\renewcommand{\item}[1][\textbullet\hspace{1.8mm}]{%1.8 from eyeballing
-		\Item[#1]
-	}
-}
-%definition lists
+	%undordered lists
+%deviation unordered list inside ordered list is not considered as nested
+\renewcommand{\labelitemi}{\textbullet\hspace{1.8mm}}%1.8 from eyeballing
+\renewcommand{\labelitemii}{\(\circ\)\hspace{1.8mm}}
+\renewcommand{\labelitemiii}{\tiny{\(\blacksquare\)}\hspace{1.8mm}}
+\renewcommand{\labelitemiv}{\tiny{\(\blacksquare\)}\hspace{1.8mm}}
+	%definition lists
 \renewcommand{\descriptionlabel}[1]{#1}%remove bold
 \usepackage{enumitem}
 \setlist[description]{style=nextline,leftmargin=0pt}

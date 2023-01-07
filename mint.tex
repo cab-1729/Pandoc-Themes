@@ -111,16 +111,16 @@
 %quotes
 \renewenvironment{quote}{
 	\begin{tcolorbox}[
-			notitle,
-			frame hidden,
-			interior hidden,
-			sharp corners,
-			enhanced,
-			boxrule=0pt,
-			coltext=QuoteColor,
-			boxsep=0em,
-			left=2em,
-			borderline west={0.18em}{0pt}{TableHeadColor}
+		notitle,
+		frame hidden,
+		interior hidden,
+		sharp corners,
+		enhanced,
+		boxrule=0pt,
+		coltext=QuoteColor,
+		boxsep=0em,
+		left=2em,
+		borderline west={0.18em}{0pt}{TableHeadColor}
 	]
 		\fontsize{0.9em}{\baselineskip}
 }{
@@ -222,7 +222,8 @@
 	\EndLongtable
 	\end{center}
 }
-%lists and tasklists
+%lists
+	%task lists
 \newlength{\boxside}
 \setlength{\boxside}{1.1em}
 \newtcbox{\checkbox}[1]{
@@ -258,8 +259,13 @@
 \let\Item\item
 \AtBeginEnvironment{itemize}{
 	\gdef\itemformat{}
-	\renewcommand{\item}[1][\textbullet\hspace{1.8mm}]{%1.8 from eyeballing
-		\Item[#1]\itemformat
+	\renewcommand{\item}[1][]{
+		\ifx&#1&
+			\Item
+		\else
+			\Item[#1]
+		\fi
+		\itemformat
 	}
 }
 \usepackage{amssymb}
@@ -274,7 +280,13 @@
 		\strike
 	}
 }
-%definition lists
+	%unordered lists
+%deviation unordered list inside ordered list is not considered as nested
+\renewcommand{\labelitemi}{\textbullet\hspace{1.8mm}}%1.8 from eyeballing
+\renewcommand{\labelitemii}{\tiny\(\circ\)\hspace{1.5mm}}%1.5 from eyeballing
+\renewcommand{\labelitemiii}{\tiny\(\blacksquare\)\hspace{1.5mm}}
+\renewcommand{\labelitemiv}{\tiny\(\blacksquare\)\hspace{1.5mm}}
+	%definition lists
 \renewcommand{\descriptionlabel}[1]{#1}%remove bold
 \usepackage{enumitem}
 \setlist[description]{style=nextline,leftmargin=0pt}

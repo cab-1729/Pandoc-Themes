@@ -315,11 +315,17 @@
 \let\Item\item
 \AtBeginEnvironment{itemize}{
 	\gdef\itemformat{}
-	\renewcommand{\item}[1][\textbullet\hspace{1.8mm}]{%1.8 from eyeballing
-		\Item[#1]\itemformat
+	\renewcommand{\item}[1][]{
+		\ifx&#1&
+			\Item
+		\else
+			\Item[#1]
+		\fi
+		\itemformat
 	}
 }
-\newcommand{\square}{
+\usepackage{amssymb}
+\renewcommand{\square}{
 	\tcbox[
 		enhanced,
 		notitle,
@@ -340,7 +346,7 @@
 	]{\hspace*{\boxside-2\px}}
 	\gdef\itemformat{}
 }
-\newcommand{\boxtimes}{
+\renewcommand{\boxtimes}{
 	\tcbox[
 		enhanced,
 		notitle,
@@ -368,7 +374,13 @@
 		\strike
 	}
 }
-%definition lists
+	%unordered lists
+%deviation unordered list inside ordered list is not considered as nested
+\renewcommand{\labelitemi}{\textbullet\hspace{1.8mm}}%1.8 from eyeballing
+\renewcommand{\labelitemii}{\tiny\(\circ\)\hspace{1.5mm}}%1.5 from eyeballing
+\renewcommand{\labelitemiii}{\tiny\(\blacksquare\)\hspace{1.5mm}}
+\renewcommand{\labelitemiv}{\tiny\(\blacksquare\)\hspace{1.5mm}}
+	%definition lists
 \renewcommand{\descriptionlabel}[1]{#1}%remove bold
 \usepackage{enumitem}
 \setlist[description]{style=nextline,leftmargin=0pt}

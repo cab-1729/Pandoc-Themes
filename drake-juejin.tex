@@ -294,8 +294,9 @@
 	\vspace{1.5em}
 }
 %lists and tasklists
+\usepackage{amssymb}
 \usepackage{environ}
-\newcommand{\square}{
+\renewcommand{\square}{
 	\resizebox{1.6em}{1.6em}{%https://tex.stackexchange.com/a/75450
 		\begin{tikzpicture}
 			\path[fill=UncheckedColor] (.8106670,.2133330) -- (.8106670,.8106670) --
@@ -309,7 +310,7 @@
 		\end{tikzpicture}
 	}
 }
-\newcommand{\boxtimes}{
+\renewcommand{\boxtimes}{
 	\resizebox{1.6em}{1.6em}{%https://tex.stackexchange.com/a/75450
 		\begin{tikzpicture}
 			\path[fill=CheckedColor] (.4259840,.2979410) -- (.8099840,.6819410) --
@@ -327,12 +328,11 @@
 		\end{tikzpicture}
 	}
 }
-\let\Item\item
-\AtBeginEnvironment{itemize}{
-	\renewcommand{\item}[1][\textbullet\hspace{1.8mm}]{%1.8 from eyeballing
-		\Item[#1]
-	}
-}
+%deviation unordered list inside ordered list is not considered as nested
+\renewcommand{\labelitemi}{\textbullet\hspace{1.8mm}}%1.8 from eyeballing
+\renewcommand{\labelitemii}{\(\circ\)\hspace{1.8mm}}
+\renewcommand{\labelitemiii}{\tiny{\(\blacksquare\)}\hspace{1.8mm}}
+\renewcommand{\labelitemiv}{\tiny{\(\blacksquare\)}\hspace{1.8mm}}
 %definition lists
 \renewcommand{\descriptionlabel}[1]{#1}%remove bold
 \usepackage{enumitem}

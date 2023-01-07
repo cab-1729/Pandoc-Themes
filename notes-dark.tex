@@ -281,7 +281,8 @@
 	\EndLongtable
 	\end{center}
 }
-%lists and tasklists
+%lists
+	%task lists
 \newlength{\boxside}
 \setlength{\boxside}{1.1em}
 \newtcbox{\checkbox}[2]{
@@ -303,24 +304,20 @@
 	boxsep=0em,
 }
 \usepackage{environ}
-\let\Item\item
-\AtBeginEnvironment{itemize}{
-	\renewcommand{\item}[1][\textbf{\textbullet}\hspace{1.8mm}]{%1.8 from eyeballing
-		\Item[#1]
-	}
-}
 \usepackage{amssymb}
 \renewcommand{\square}{
 	\checkbox{BackgroundColor}{LightTraitTwoHundredColor}{\hspace*{\boxside-2\px}}
-	\gdef\itemformat{\color{TextColor}}
 }
 \renewcommand{\boxtimes}{
 	\checkbox{PrimaryColor}{PrimaryColor}{\hspace*{0.1em}\fontsize{12\px}{\baselineskip}\textbf{\checkmark}\hspace*{0.1em}}%font weight 500 not available
-	\gdef\itemformat{
-		\color{StruckColor}
-	}
 }
-%definition lists
+	%unordered lists
+%deviation unordered list inside ordered list is not considered as nested
+\renewcommand{\labelitemi}{\textbullet\hspace{1.8mm}}%1.8 from eyeballing
+\renewcommand{\labelitemii}{\tiny\(\circ\)\hspace{1.5mm}}%1.5 from eyeballing
+\renewcommand{\labelitemiii}{\tiny\(\blacksquare\)\hspace{1.5mm}}
+\renewcommand{\labelitemiv}{\tiny\(\blacksquare\)\hspace{1.5mm}}
+	%definition lists
 \renewcommand{\descriptionlabel}[1]{#1}%remove bold
 \usepackage{enumitem}
 \setlist[description]{style=nextline,leftmargin=0pt}
