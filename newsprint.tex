@@ -102,11 +102,11 @@
 \usepackage{titlesec}
 \titleformat{\section}{\fontsize{1.875em}{1.6em}\normalfont}{}{}{}[\textcolor{H1UnderlineColor}{\titlerule[1\px]}\vspace{0.5em}]
 \titlespacing{\section}{0pt}{2em}{0.8125em}
-\titleformat{\subsection}{\fontsize{1.312em}{1.15em}\bfseries}{}{}{}
+\titleformat*{\subsection}{\fontsize{1.312em}{1.15em}\bfseries}
 \titlespacing{\subsection}{0pt}{2.285714em}{0.75em}
-\titleformat{\subsubsection}{\fontsize{1.312em}{1.15em}\normalfont}{}{}{}
+\titleformat*{\subsubsection}{\fontsize{1.312em}{1.15em}\normalfont}
 \titlespacing{\subsubsection}{0pt}{2.285714em}{1.15em}
-\titleformat{\paragraph}{\fontsize{1.125em}{\baselinestretch}\bfseries}{}{}{}
+\titleformat*{\paragraph}{\fontsize{1.125em}{\baselinestretch}\bfseries}
 \titlespacing{\paragraph}{0pt}{0pt}{2.67em}
 \titleformat{\subparagraph}{\fontsize{1em}{1.5em}\bfseries}{}{}{}
 \raggedright
@@ -206,16 +206,17 @@
 }{
 	\EndLongtable
 }
-%lists and tasklists
+%lists
+	%task lists
 \newcommand{\boxtimes}{\sqrt{}}
 \newcommand{\square}{\color{UncheckedColor}{\sqrt{}}}
 \let\Item\item
-\AtBeginEnvironment{itemize}{
-	\renewcommand{\item}[1][\textbullet\hspace{1.8mm}]{%1.8mm from eyeballing
-		\Item[#1]
-	}
-}
-%definition lists
+	%unordered lists
+\renewcommand{\labelitemi}{\textbullet\hspace{1.8mm}}%1.8 from eyeballing
+\renewcommand{\labelitemii}{\textbullet\hspace{1.8mm}}
+\renewcommand{\labelitemiii}{\textbullet\hspace{1.8mm}}
+\renewcommand{\labelitemiv}{\textbullet\hspace{1.8mm}}
+	%definition lists
 \renewcommand{\descriptionlabel}[1]{#1}%remove bold
 \usepackage{enumitem}
 \setlist[description]{style=nextline,leftmargin=0pt}

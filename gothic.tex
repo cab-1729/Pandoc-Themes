@@ -49,22 +49,7 @@
 %---
 \newlength{\px}
 \setlength{\px}{0.0104166667in}
-%colors
-\usepackage[table]{xcolor}
-\definecolor{BackgroundColor}{RGB}{40,44,52}
-\definecolor{Background5Color}{RGB}{29,31,35}
-\definecolor{TextColor}{RGB}{177,180,185}
-\definecolor{Text2Color}{RGB}{220,220,220}
-\definecolor{Text5Color}{RGB}{170,178,180}
-\definecolor{QuotelineColor}{HTML}{BABABA}
-\definecolor{LinkColor}{RGB}{197,202,210}
-\definecolor{TableTheadColor}{RGB}{31,35,40}
-\definecolor{TableBorderColor}{RGB}{100,104,116}
-\definecolor{TableBgColor}{RGB}{40,44,52}
-\definecolor{TableBgDarkerColor}{RGB}{35,40,46}
-\definecolor{InputColor}{RGB}{29,31,35}
-\pagecolor{BackgroundColor}
-\usepackage[colorlinks=true,allcolors=LinkColor,allbordercolors=LinkColor]{hyperref}
+\usepackage[colorlinks=true,allcolors=LinkColor]{hyperref}
 %metadata
 \hypersetup{
 	$if(subject)$
@@ -85,18 +70,23 @@
 	$endif$
 	pdfsubject={$subject$},
 	$endif$
-	pdfcreator={XeLaTeX via Pandoc onedark theme},
+	pdfcreator={XeLaTeX via Pandoc gothic theme},
 }
-	%-------underline all links
-\makeatletter
-\Hy@AtBeginDocument{%
-	\def\@pdfborderstyle{/S/U/W 0.01}% eyeballing
-}
-\makeatother
-	%-------https://tex.stackexchange.com/a/26085
 \author{}
 \date{}
-\usepackage[a4paper,textwidth=40em]{geometry}
+\usepackage[a4paper,textwidth=48em]{geometry}
+%colors
+\usepackage[table]{xcolor}
+\definecolor{BackgroundColor}{HTML}{FCFCFC}
+\definecolor{BoxBackgroundColor}{HTML}{FDFDFD}
+\definecolor{TextColor}{HTML}{111111}
+\definecolor{CodeBorderColor}{HTML}{CCCCCC}
+\definecolor{H1UnderlineColor}{HTML}{C5C5C5}
+\definecolor{QuoteColor}{HTML}{6F6F6F}
+\definecolor{LinkColor}{HTML}{990000}
+\definecolor{TableBorderColor}{HTML}{DDDDDD}
+\definecolor{Gray}{HTML}{808080}
+\pagecolor{BackgroundColor}
 %fonts
 \usepackage{fontspec}
 	%-------set global color
@@ -104,34 +94,19 @@
 	\color{TextColor}\global\let\default@color\current@color
 \makeatother
 	%-------https://tex.stackexchange.com/a/29409
-\setmainfont[Extension=.otf,Path=/usr/share/fonts/pandoc-fonts/onedark-fonts/opensans-,UprightFont=regular,ItalicFont=italic,BoldFont=bold,BoldItalicFont=bolditalic]{}
+\setmainfont[Extension=.otf,Path=/usr/share/fonts/pandoc-fonts/gothic-fonts/texgyreadventor-,UprightFont=regular,ItalicFont=italic,BoldFont=bold,BoldItalicFont=bolditalic]{}
 \usepackage[fontsize=0.16666672in]{fontsize}%16px
-\linespread{1.33}%1.6/1.2
+\linespread{1.4563}%1.7/1.2
 %headings
 \usepackage{sectsty}
 \usepackage{titlesec}
-\usepackage{tikz}
-\pgfmathtruncatemacro{\totshadow}{50}%eyeballing
-\newcommand{\shadow}[2]{%https://tex.stackexchange.com/a/545988
-		\begin{tikzpicture}[inner sep=-7]
-		\path[black,opacity={0.8/\totshadow},shift={(-180:0pt)}]
-		foreach \nshadow [evaluate=\nshadow as \angshadow using \nshadow/\totshadow*360] in {1,...,\totshadow}{
-			node at (\angshadow:0.2) {#2}
-		};
-		\node at (0,0) {#2};
-	\end{tikzpicture}
-	\color{TextColor}
-}
-\titleformat{\section}{\fontsize{2.5em}{1em}\bfseries}{}{}{\shadow{16pt}}[\textcolor{Text5Color!50!BackgroundColor}{\hrule width \hsize height 1\px \kern 1\px \hrule width \hsize height 1\px}\vspace{0.5em}]%https://tex.stackexchange.com/a/89424
-\titlespacing{\section}{0pt}{0.67em}{0.67em}
-\titleformat{\subsection}{\fontsize{2.5em}{1em}\bfseries}{}{}{\shadow{16pt}}[\textcolor{Text5Color!50!BackgroundColor}{\hrule width \hsize height 1\px \kern 1\px \hrule width \hsize height 1\px}\vspace{0.5em}]%https://tex.stackexchange.com/a/89424
-\titlespacing{\subsection}{0pt}{0.83em}{0.83em}
-\titleformat{\subsubsection}{\fontsize{1.75em}{1em}\bfseries}{}{}{\shadow{16pt}}[\textcolor{Text5Color!50!BackgroundColor}{\titlerule[1\px]}\vspace{0.5em}]
-\titlespacing{\subsubsection}{0pt}{1em}{1em}
-\titleformat{\paragraph}{\fontsize{1.55em}{\baselinestretch}\bfseries}{}{}{\shadow{7pt}}
-\titlespacing{\paragraph}{0pt}{0.5em}{0.3em}
-\titleformat{\subparagraph}{\fontsize{1.35em}{\baselinestretch}\bfseries}{}{}{\shadow{7pt}}
-\titlespacing{\subparagraph}{0pt}{0.5em}{0.3em}
+\titleformat*{\section}{\filcenter\fontsize{2.827em}{4em}\normalfont\uppercase}
+\titlespacing{\section}{0pt}{4em+20\px}{20\px}
+\titleformat*{\subsection}{\filcenter\fontsize{1.999em}{3em}\normalfont\uppercase}
+\titlespacing{\subsection}{0pt}{3em}{0em}
+\titleformat*{\subsubsection}{\fontsize{1.413em}{\baselineskip}\normalfont}
+\titleformat*{\paragraph}{\fontsize{1.25em}{\baselineskip}\normalfont}{}{}{}
+\titleformat{\subparagraph}{\fontsize{1.15em}{\baselineskip}\normalfont}{}{}{}
 \raggedright
 \usepackage[most]{tcolorbox}
 %quotes
@@ -139,21 +114,23 @@
 	\begin{tcolorbox}[
 		notitle,
 		frame hidden,
+		interior hidden,
 		sharp corners,
 		enhanced,
 		boxrule=0pt,
-		colback=Background5Color,
-		coltext=TextColor,
+		colback=BackgroundColor,
+		coltext=QuoteColor,
 		boxsep=0em,
-		left=15\px,
-		right=15\px,
-		top=4\px,
-		bottom=4\px,
-		fuzzy shadow={0pt}{0pt}{-10\px}{10\px}{black!20!BackgroundColor},
-		borderline west={5\px}{0pt}{TextColor}
+		fontupper=\fontsize{1em}{1.6\baselineskip},
+		top=0.5em,
+		right=1.11111em,
+		left=0.5em,
+		left=1.05556em,
+		borderline west={1\px}{0pt}{Gray}
 	]
 }{
 	\end{tcolorbox}
+	\vspace{1.11111em}
 	\color{TextColor}
 }
 %code background
@@ -161,16 +138,17 @@
 	\begin{tcolorbox}[
 		notitle,
 		breakable,
+		sharp corners,
 		enhanced,
-		frame hidden,
-		colback=Background5Color,
+		boxrule=1\px,
+		colframe=CodeBorderColor,
 		coltext=TextColor,
+		colback=BackgroundColor,
 		boxsep=0em,
-		top=4\px,
-		right=8\px,
-		bottom=4\px,
-		left=8\px,
-		fuzzy shadow={0pt}{0pt}{-10\px}{10\px}{black!20!BackgroundColor}
+		top=0.4em,
+		left=1em,
+		right=1em,
+		top=0.3em,
 	]
 }{
 	\end{tcolorbox}
@@ -178,33 +156,33 @@
 %syntax highlighting - taken from CodeMirror
 \newcommand{\AlertTok}[1]{#1}
 \newcommand{\AnnotationTok}[1]{#1}
-\newcommand{\AttributeTok}[1]{\textcolor[HTML]{D19A66}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\AttributeTok}[1]{\textcolor[HTML]{0000CC}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
 \newcommand{\BaseNTok}[1]{#1}
-\newcommand{\BuiltInTok}[1]{\textcolor[HTML]{56B6C2}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\BuiltInTok}[1]{\textcolor[HTML]{3300AA}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
 \newcommand{\CharTok}[1]{#1}
-\newcommand{\CommentTok}[1]{\textcolor[HTML]{828997}{\FancyVerbBreakStart\itshape#1\FancyVerbBreakStop}}
+\newcommand{\CommentTok}[1]{\textcolor[HTML]{AA5500}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
 \newcommand{\CommentVarTok}[1]{#1}
 \newcommand{\ConstantTok}[1]{#1}
 \newcommand{\ControlFlowTok}[1]{#1}
-\newcommand{\DataTypeTok}[1]{\textcolor[HTML]{C678DD}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
-\newcommand{\DecValTok}[1]{\textcolor[HTML]{D19A66}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\DataTypeTok}[1]{\textcolor[HTML]{008855}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\DecValTok}[1]{\textcolor[HTML]{116644}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
 \newcommand{\DocumentationTok}[1]{#1}
 \newcommand{\ErrorTok}[1]{\textcolor[HTML]{FF0000}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
 \newcommand{\ExtensionTok}[1]{#1}
-\newcommand{\FloatTok}[1]{\textcolor[HTML]{D19A66}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
-\newcommand{\FunctionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[HTML]{116644}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\FunctionTok}[1]{\textcolor[HTML]{0000FF}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
 \newcommand{\ImportTok}[1]{#1}
 \newcommand{\InformationTok}[1]{#1}
-\newcommand{\KeywordTok}[1]{\textcolor[HTML]{C678DD}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\KeywordTok}[1]{\textcolor[HTML]{770088}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
 \newcommand{\NormalTok}[1]{#1}
-\newcommand{\OperatorTok}[1]{\textcolor[HTML]{56B6C2}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\OperatorTok}[1]{#1}
 \newcommand{\OtherTok}[1]{#1}
 \newcommand{\PreprocessorTok}[1]{#1}
 \newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[HTML]{98C379}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[HTML]{98C379}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
-\newcommand{\StringTok}[1]{\textcolor[HTML]{98C379}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
-\newcommand{\VariableTok}[1]{\textcolor{TextColor}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[HTML]{AA1111}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[HTML]{AA1111}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\StringTok}[1]{\textcolor[HTML]{AA1111}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\VariableTok}[1]{#1}
 \newcommand{\VerbatimStringTok}[1]{#1}
 \newcommand{\WarngingTok}[1]{#1}
 %no highlighting code
@@ -213,25 +191,23 @@
 \AfterEndEnvironment{verbatim}{\end{Shaded}}
 %inline code behaviour
 \def\VERB|#1|{
+	\hspace{0.2em}
 	\tcbox[
 		 notitle,
 		 on line,
-		 enhanced,
-		 frame empty,
+		 sharp corners,
 		 coltext=TextColor,
-		 colback=Background5Color,
+		 colback=BackgroundColor,
+		 colframe=CodeBorderColor,
 		 boxrule=1\px,
-		 boxsep=4\px,
-		 arc=6\px,
-		 outer arc=6\px,
+		 boxsep=0.1em,
 		 top=0em,
 		 bottom=0em,
 		 left=0em,
 		 right=0em,
-		 fontupper=\fontsize{0.9em}{\baselineskip},
-		fuzzy shadow={0pt}{0pt}{-10\px}{10\px}{black!20!BackgroundColor}
+		 fontupper=\fontsize{0.9em}{\baselineskip}
 	]{\Verb[breaklines,breakanywhere,commandchars=\\\{\}]|#1|}
-	\color{TextColor}
+	\hspace{0.2em}
 }
 \renewcommand{\texttt}[1]{\VERB|#1|}
 %tables
@@ -256,7 +232,7 @@
 \def\table#1{\Longtable{#1}}
 \arrayrulecolor{TableBorderColor}
 \global\arrayrulewidth=1\px
-\setlength{\tabcolsep}{6\px}
+\setlength{\tabcolsep}{16\px}%8+8
 \renewcommand{\arraystretch}{1.2}%eyeballing
 \renewenvironment{longtable}[3]{
 	\gdef\embolden{\bfseries}
@@ -265,17 +241,14 @@
 	\newcolumntype{C}{>{\embolden}c}
 	\StrGobbleLeft{#3}{2}[\pream]
 	\StrGobbleRight{\pream}{2}[\pream]
-	\StrSubstitute{\pream}{l}{|L}[\pream]
-	\StrSubstitute{\pream}{r}{|R}[\pream]
-	\StrSubstitute{\pream}{c}{|C}[\pream]
-	\StrGobbleLeft{\pream}{1}[\pream]
+	\StrSubstitute{\pream}{l}{L}[\pream]
+	\StrSubstitute{\pream}{r}{R}[\pream]
+	\StrSubstitute{\pream}{c}{C}[\pream]
 	\edef\pream{{\pream}}
-	\rowcolors{2}{TableBgDarkerColor}{TableBgColor}%https://tex.stackexchange.com/a/5365
-	\newcommand{\toprule}[2]{\rowcolor{TableTheadColor}}
+	\newcommand{\toprule}[2]{}
 	\newcommand{\midrule}[2]{}
 	\newcommand{\bottomrule}[2]{}
 	\def\endhead{\gdef\embolden{\normalfont}\normalfont}
-	\vspace{1.5em}
 	\expandafter\table\pream
 }{
 	\EndLongtable
@@ -283,15 +256,15 @@
 %lists
 	%task lists
 \newlength{\boxside}
-\setlength{\boxside}{1.2em}
-\newtcbox{\checkbox}{
+\setlength{\boxside}{1em}
+\newtcbox{\checkbox}[1]{
 	enhanced,
 	notitle,
 	on line,
-	colback=InputColor,
-	boxrule=0pt,
-	arc=3\px,
-	outer arc=3\px,
+	sharp corners,
+	colback=BackgroundColor,
+	colframe=Gray,
+	boxrule=1\px,
 	height=\boxside,
 	width=\boxside,%doesn't work for some reason
 	left=0em,
@@ -299,17 +272,18 @@
 	top=0em,
 	bottom=0em,
 	boxsep=0em,
-	fuzzy shadow={0pt}{0pt}{-10\px}{10\px}{black!20!BackgroundColor},
 }
 \usepackage{amssymb}
-\renewcommand{\square}{\checkbox{\hspace*{\boxside}}}
-\newlength{\checklength}
-\setlength{\checklength}{\widthof{\checkmark}}
-\renewcommand{\boxtimes}{\checkbox{\fontsize{0.9em}{1.08em}{\hspace*{0.5\boxside-0.5\checklength}\color{Text2Color}{\checkmark}\hspace*{0.5\boxside-0.5\checklength}}}}
+\renewcommand{\square}{
+	\checkbox{\null}{\hspace*{\boxside-2\px}}
+}
+\renewcommand{\boxtimes}{
+	\checkbox{}{\hspace*{0.09375em}\fontsize{0.8125em}{0.9375em}\(\blacksquare\)\hspace*{0.09375em}}
+}
 	%unordered lists
 %deviation unordered list inside ordered list is not considered as nested
 \renewcommand{\labelitemi}{\textbullet\hspace{1.8mm}}%1.8 from eyeballing
-\renewcommand{\labelitemii}{\tiny\(\circ\)\hspace{1.5mm}}%1.5 from eyeballing
+\renewcommand{\labelitemii}{\(\circ\)\hspace{1.5mm}}%1.5 from eyeballing
 \renewcommand{\labelitemiii}{\tiny\(\blacksquare\)\hspace{1.5mm}}
 \renewcommand{\labelitemiv}{\tiny\(\blacksquare\)\hspace{1.5mm}}
 	%definition lists
@@ -325,31 +299,9 @@
 \AtEndEnvironment{description}{
 	\RemoveFromHook{para/begin}[colon]
 }
-%images
-\let\pic\includegraphics
-\renewcommand{\includegraphics}[1]{
-	\tcbox[
-		notitle,
-		on line,
-		enhanced,
-		frame empty,
-		arc=0pt,
-		outer arc=0pt,
-		top=0pt,
-		bottom=0pt,
-		right=0pt,
-		left=0pt,
-		boxsep=0pt,
-		colback=BackgroundColor,
-		fuzzy shadow={0pt}{0pt}{-10\px}{10\px}{black!20!BackgroundColor}
-	]{
-		\pic{#1}
-	}
-	\color{TextColor}
-}
 %horizontal rules
 \let\Rule\rule
-\renewcommand{\rule}[2]{\textcolor{Text5Color}{\Rule{\linewidth}{1\px}}}
+\renewcommand{\rule}[2]{\textcolor{H1UnderlineColor}{\Rule{\linewidth}{1\px}}}
 %document
 \begin{document}
 $body$

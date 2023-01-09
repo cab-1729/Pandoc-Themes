@@ -296,7 +296,8 @@
 }{
 	\EndLongtable
 }
-%lists and tasklists
+%lists
+	%task lists
 \newlength{\boxside}
 \setlength{\boxside}{1.2em}
 \newtcbox{\checkbox}[1]{
@@ -341,16 +342,6 @@
 		\itemformat
 	}
 }
-	%undordered list
-%deviation unordered list inside ordered list is not considered as nested
-\renewcommand{\labelitemi}{\fsninehundred\textcolor{AccentColor}\textbullet\hspace{1.8mm}}%1.8 from eyeballing
-\renewcommand{\labelitemii}{\textcolor{AccentColor}{\(\circ\)}\hspace{1.5mm}}%1.5 from eyeballing
-\renewcommand{\labelitemiii}{\textcolor{AccentColor}{\(\circ\)}\hspace{1.5mm}}
-\renewcommand{\labelitemiv}{\textcolor{AccentColor}{\(\circ\)}\hspace{1.5mm}}
-	%ordered list
-\usepackage{enumitem}
-\setlist[enumerate]{font=\bfseries\color{AccentColor}}
-	%task-list
 \newcommand{\square}{
 	\checkbox{\null}{\hspace*{\boxside-2\px}}
 	\gdef\itemformat{\color{TextColor}}
@@ -367,7 +358,16 @@
 		\strike
 	}
 }
-%definition lists
+	%undordered list
+%deviation unordered list inside ordered list is not considered as nested
+\renewcommand{\labelitemi}{\fsninehundred\textcolor{AccentColor}\textbullet\hspace{1.8mm}}%1.8 from eyeballing
+\renewcommand{\labelitemii}{\textcolor{AccentColor}{\(\circ\)}\hspace{1.5mm}}%1.5 from eyeballing
+\renewcommand{\labelitemiii}{\textcolor{AccentColor}{\(\circ\)}\hspace{1.5mm}}
+\renewcommand{\labelitemiv}{\textcolor{AccentColor}{\(\circ\)}\hspace{1.5mm}}
+	%ordered list
+\usepackage{enumitem}
+\setlist[enumerate]{font=\bfseries\color{AccentColor}}
+	%definition lists
 \renewcommand{\descriptionlabel}[1]{#1}%remove bold
 \setlist[description]{style=nextline,leftmargin=0pt}
 \def\colon{: }
