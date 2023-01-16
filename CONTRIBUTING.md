@@ -40,3 +40,5 @@ Possible ways you can help:
 + ~~newsprint - table leaves box after it~~
 + torillic - theme not possible, texlive does not include [pdfinlimg](https://github.com/zerotoc/pdfinlimg), the package needed to add images to a theme
 + haru - theme not possible, italic version of version of Glow Sans not found
++ ~~all - no sub-list support~~
++ all - word spacing not accurate
