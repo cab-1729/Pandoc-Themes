@@ -39,7 +39,6 @@
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
-\usepackage[normalem]{ulem}
 % Avoid problems with \sout in headers with hyperref
 %\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
 \setlength{\emergencystretch}{3em} % prevent overfull lines
@@ -49,6 +48,7 @@
 %---
 \newlength{\px}
 \setlength{\px}{0.0104166667in}
+\usepackage{soul}
 %colors
 \usepackage[table]{xcolor}
 \definecolor{BackgroundColor}{HTML}{272B40}
@@ -86,7 +86,7 @@
 	$endif$
 	pdfsubject={$subject$},
 	$endif$
-	pdfcreator={XeLaTeX via Pandoc pie theme},
+	pdfcreator={XeLaTeX via Pandoc pie-dark theme},
 }
 \author{}
 \date{}

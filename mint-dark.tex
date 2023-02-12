@@ -31,7 +31,6 @@
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
-\usepackage[normalem]{ulem}
 % Avoid problems with \sout in headers with hyperref
 %\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
 \setlength{\emergencystretch}{3em} % prevent overfull lines
@@ -41,6 +40,7 @@
 %---
 \newlength{\px}
 \setlength{\px}{0.0104166667in}
+\usepackage{soul}
 \usepackage[colorlinks=true,allcolors=DeepThemeColor]{hyperref}
 %metadata
 \hypersetup{
@@ -263,7 +263,7 @@
 }
 \begingroup
 \catcode`\^^M=\active
-\gdef\applystrike^^M#1^^M{\sout{#1}\endgroup}
+\gdef\applystrike^^M#1^^M{\st{#1}\endgroup}
 \endgroup
 	%-------https://tex.stackexchange.com/a/10437
 \usepackage{environ}
