@@ -13,7 +13,7 @@ __Warning_: These templates are very liberal with packages and assume the user h
 
 ## Usage
 
-Symlink or copy the template files to your /usr/share/pandoc/data/templates/.
+Symlink or copy the template files to your /usr/share/haskell-pandoc/data/templates/.
 
 Copy or symlink _pandoc-fonts_ to /usr/share/fonts/.
 
