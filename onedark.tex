@@ -273,8 +273,12 @@
 	\rowcolors{2}{TableBgDarkerColor}{TableBgColor}%https://tex.stackexchange.com/a/5365
 	\newcommand{\toprule}[2]{\rowcolor{TableTheadColor}}
 	\newcommand{\midrule}[2]{}
-	\newcommand{\bottomrule}[2]{}
-	\def\endhead{\gdef\embolden{\normalfont}\normalfont}
+	\newcommand{\bottomrule}[3]{}
+	\def\endhead{
+		\gdef\embolden{\normalfont}\relax
+		\normalfont
+	}
+	\def\endlastfoot{}
 	\vspace{1.5em}
 	\expandafter\table\pream
 }{

@@ -266,9 +266,13 @@
 	\StrSubstitute{\pream}{c}{C}[\pream]
 	\edef\pream{{\pream|}}
 	\newcommand{\toprule}[2]{}
-	\newcommand{\midrule}[2]{\normalfont}
-	\def\endhead{\gdef\embolden{}}
-	\newcommand{\bottomrule}[2]{}
+	\newcommand{\midrule}[2]{}
+	\newcommand{\bottomrule}[3]{}
+	\def\endhead{
+		\gdef\embolden{}\relax
+		\normalfont
+	}
+	\def\endlastfoot{}
 	\begin{center}
 	\rowcolors{2}{TableEvenColor}{BackgroundColor}%https://tex.stackexchange.com/a/5365
 	\expandafter\table\pream

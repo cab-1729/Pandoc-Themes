@@ -252,17 +252,17 @@
 	\StrSubstitute{\pream}{c}{C}[\pream]
 	\edef\pream{{\pream}}
 	\fontsize{0.83125em}{\baselineskip}\selectfont
-	\newcommand{\toprule}[2]{
-		\noalign{\global\arrayrulewidth=2\px}%https://tex.stackexchange.com/a/337790
+	\newcommand{\toprule}[2]{}
+	\newcommand{\midrule}[2]{}
+	\newcommand{\bottomrule}[3]{}
+	\def\endhead{
+		\global\arrayrulewidth=1\px
+		\gdef\embolden{}\relax
+		\normalfont
 	}
-	\newcommand{\midrule}[2]{
-		\noalign{\global\arrayrulewidth=1\px}%https://tex.stackexchange.com/a/337790
-	}
-	\newcommand{\bottomrule}[2]{}
-	\def\endhead{\gdef\embolden{}\normalfont}
+	\def\endlastfoot{}
 	\expandafter\table\pream
-	\noalign{\global\arrayrulewidth=1\px}
-	\hline
+	\global\arrayrulewidth=1\px
 }{
 	\EndLongtable
 }

@@ -267,6 +267,7 @@
 	}
 	\newcommand{\midrule}[2]{}
 	\def\endhead{}
+	\def\endlastfoot{}
 	\newcommand{\bottomrule}[2]{}
 	\begin{tcolorbox}[enhanced,notitle,clip upper,breakable,
 		width=\linewidth,
@@ -295,8 +296,8 @@
 \let\Emph\emph
 \renewcommand{\emph}[1]{\textcolor{EmphasisColor}{\Emph{#1}}}
 %strikethrough
-\let\Sout\sout
-\renewcommand{\sout}[1]{\textcolor{StrikethroughColor}{\Sout{#1}}}
+\let\St\st
+\renewcommand{\st}[1]{\textcolor{StrikethroughColor}{\St{#1}}}
 %lists
 	%task list
 \newlength{\boxside}
@@ -309,7 +310,7 @@
 }
 \begingroup
 \catcode`\^^M=\active
-\gdef\applystrike^^M#1^^M{\st{#1}\endgroup}
+\gdef\applystrike^^M#1^^M{\St{#1}\endgroup}
 \endgroup
 	%-------https://tex.stackexchange.com/a/10437
 \usepackage{environ}

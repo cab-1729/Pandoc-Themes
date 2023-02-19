@@ -282,9 +282,13 @@
 	\StrSubstitute{\pream}{c}{C}[\pream]
 	\edef\pream{{\pream|}}
 	\newcommand{\toprule}[2]{}
-	\newcommand{\midrule}[2]{\color{TextColor}}
-	\def\endhead{\gdef\purply{\fontsize{0.875em}{\baselineskip}\selectfont}}
-	\newcommand{\bottomrule}[2]{}
+	\newcommand{\midrule}[2]{}
+	\newcommand{\bottomrule}[3]{}
+	\def\endhead{
+		\gdef\purply{\fontsize{0.875em}{\baselineskip}\selectfont}\relax
+		\color{TextColor}\relax
+	}
+	\def\endlastfoot{}
 	\begin{center}
 	\expandafter\table\pream
 	\noalign{\global\arrayrulewidth=1\px}%https://tex.stackexchange.com/a/337790

@@ -255,9 +255,13 @@
 	\StrSubstitute{\pream}{c}{C}[\pream]
 	\edef\pream{{\pream|}}
 	\newcommand{\toprule}[2]{\rowcolor{TableHeaderColor}}
-	\newcommand{\midrule}[2]{\color{TextColor}}
-	\def\endhead{\gdef\embolden{}}
-	\newcommand{\bottomrule}[2]{}
+	\newcommand{\midrule}[2]{}
+	\newcommand{\bottomrule}[3]{}
+	\def\endhead{
+		\gdef\embolden{}\relax
+		\normalfont
+	}
+	\def\endlastfoot{}
 	\begin{center}
 	\expandafter\table\pream
 	\noalign{\global\arrayrulewidth=0.1em}%https://tex.stackexchange.com/a/337790

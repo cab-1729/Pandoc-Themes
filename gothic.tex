@@ -247,8 +247,12 @@
 	\edef\pream{{\pream}}
 	\newcommand{\toprule}[2]{}
 	\newcommand{\midrule}[2]{}
-	\newcommand{\bottomrule}[2]{}
-	\def\endhead{\gdef\embolden{\normalfont}\normalfont}
+	\newcommand{\bottomrule}[3]{}
+	\def\endhead{
+		\gdef\embolden{}\relax
+		\normalfont
+	}
+	\def\endlastfoot{}
 	\expandafter\table\pream
 }{
 	\EndLongtable
