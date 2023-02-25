@@ -239,7 +239,7 @@
 \makeatletter
 \let\Tabularcr\@arraycr
 \def\@arraycr#1{%
-	\IfStrEq{\detokenize{\bottomrule}}{\detokenize{#1}}{%
+	\IfStrEq{\detokenize{\end}}{\detokenize{#1}}{%
 		\Tabularcr#1%
 	}{%
 		\Tabularcr\hline#1%
