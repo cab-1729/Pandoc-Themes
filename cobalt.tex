@@ -39,6 +39,8 @@
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
+\usepackage[normalem]{ulem}
+\usepackage{soul}
 % Avoid problems with \sout in headers with hyperref
 %\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
 \setlength{\emergencystretch}{3em} % prevent overfull lines
@@ -48,7 +50,6 @@
 %---
 \newlength{\px}
 \setlength{\px}{0.0104166667in}
-\usepackage{soul}
 \author{}
 \date{}
 \usepackage[a4paper,
@@ -282,13 +283,9 @@
 	\StrSubstitute{\pream}{c}{C}[\pream]
 	\edef\pream{{\pream|}}
 	\newcommand{\toprule}[2]{}
-	\newcommand{\midrule}[2]{}
-	\newcommand{\bottomrule}[3]{}
-	\def\endhead{
-		\gdef\purply{\fontsize{0.875em}{\baselineskip}\selectfont}\relax
-		\color{TextColor}\relax
-	}
-	\def\endlastfoot{}
+	\newcommand{\midrule}[2]{\color{TextColor}}
+	\def\endhead{\gdef\purply{\fontsize{0.875em}{\baselineskip}\selectfont}}
+	\newcommand{\bottomrule}[2]{}
 	\begin{center}
 	\expandafter\table\pream
 	\noalign{\global\arrayrulewidth=1\px}%https://tex.stackexchange.com/a/337790

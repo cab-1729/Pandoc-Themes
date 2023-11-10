@@ -39,6 +39,8 @@
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
+\usepackage[normalem]{ulem}
+\usepackage{soul}
 % Avoid problems with \sout in headers with hyperref
 %\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
 \setlength{\emergencystretch}{3em} % prevent overfull lines
@@ -48,7 +50,6 @@
 %---
 \newlength{\px}
 \setlength{\px}{0.0104166667in}
-\usepackage{soul}
 \usepackage[colorlinks=true,allcolors=LinkColor]{hyperref}
 %metadata
 \hypersetup{
@@ -267,7 +268,6 @@
 	}
 	\newcommand{\midrule}[2]{}
 	\def\endhead{}
-	\def\endlastfoot{}
 	\newcommand{\bottomrule}[2]{}
 	\begin{tcolorbox}[enhanced,notitle,clip upper,breakable,
 		width=\linewidth,
@@ -296,8 +296,8 @@
 \let\Emph\emph
 \renewcommand{\emph}[1]{\textcolor{EmphasisColor}{\Emph{#1}}}
 %strikethrough
-\let\St\st
-\renewcommand{\st}[1]{\textcolor{StrikethroughColor}{\St{#1}}}
+\let\Sout\st
+\renewcommand{\st}[1]{\textcolor{StrikethroughColor}{\Sout{#1}}}
 %lists and tasklists
 \newlength{\boxside}
 \setlength{\boxside}{20\px}
@@ -309,7 +309,7 @@
 }
 \begingroup
 \catcode`\^^M=\active
-\gdef\applystrike^^M#1^^M{\St{#1}\endgroup}
+\gdef\applystrike^^M#1^^M{\st{#1}\endgroup}
 \endgroup
 	%-------https://tex.stackexchange.com/a/10437
 \usepackage{environ}

@@ -40,6 +40,7 @@
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
+\usepackage[normalem]{ulem}
 % Avoid problems with \sout in headers with hyperref
 %\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
 \setlength{\emergencystretch}{3em} % prevent overfull lines
@@ -255,13 +256,9 @@
 	\StrSubstitute{\pream}{c}{C}[\pream]
 	\edef\pream{{\pream|}}
 	\newcommand{\toprule}[2]{\rowcolor{TableHeaderColor}}
-	\newcommand{\midrule}[2]{}
-	\newcommand{\bottomrule}[3]{}
-	\def\endhead{
-		\gdef\embolden{}\relax
-		\normalfont
-	}
-	\def\endlastfoot{}
+	\newcommand{\midrule}[2]{\color{TextColor}}
+	\def\endhead{\gdef\embolden{}}
+	\newcommand{\bottomrule}[2]{}
 	\begin{center}
 	\expandafter\table\pream
 	\noalign{\global\arrayrulewidth=0.1em}%https://tex.stackexchange.com/a/337790

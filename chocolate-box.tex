@@ -40,6 +40,8 @@
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
+\usepackage[normalem]{ulem}
+\usepackage{soul}
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -52,7 +54,6 @@
 \renewcommand{\href}[2]{\Href{#1}{\bfseries#2}}
 \let\Hyperlink\hyperlink
 \renewcommand{\hyperlink}[2]{\Hyperlink{#1}{\bfseries#2}}
-\usepackage{soul}
 %metadata
 \hypersetup{
 	$if(title-meta)$
@@ -281,18 +282,17 @@
 	\StrSubstitute{\pream}{r}{R}[\pream]
 	\StrSubstitute{\pream}{c}{C}[\pream]
 	\edef\pream{{\pream}}
-	\arrayrulecolor{HeaderColor}
-	\global\arrayrulewidth=2\px
-	\newcommand{\toprule}[2]{}
-	\newcommand{\midrule}[2]{}
-	\newcommand{\bottomrule}[3]{}
-	\def\endhead{
+	\newcommand{\toprule}[2]{
+		\arrayrulecolor{HeaderColor}
+		\noalign{\global\arrayrulewidth=2\px}%https://tex.stackexchange.com/a/337790
+	}
+	\newcommand{\midrule}[2]{
 		\arrayrulecolor{AccentColor}
-		\global\arrayrulewidth=1\px
-		\gdef\heavier{\fstwohundred}\relax
+		\noalign{\global\arrayrulewidth=1\px}%https://tex.stackexchange.com/a/337790
 		\fstwohundred%for first item in second row
 	}
-	\def\endlastfoot{}
+	\def\endhead{\gdef\heavier{\fstwohundred}}
+	\newcommand{\bottomrule}[2]{}
 	\expandafter\table\pream
 }{
 	\EndLongtable

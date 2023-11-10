@@ -40,6 +40,8 @@
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
+\usepackage[normalem]{ulem}
+\usepackage{soul}
 % Avoid problems with \sout in headers with hyperref
 %\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
 \setlength{\emergencystretch}{3em} % prevent overfull lines
@@ -49,7 +51,6 @@
 %---
 \newlength{\px}
 \setlength{\px}{0.0104166667in}
-\usepackage{soul}
 \usepackage[colorlinks=true,allcolors=PrimaryColor]{hyperref}
 %metadata
 \hypersetup{
@@ -252,17 +253,17 @@
 	\StrSubstitute{\pream}{c}{C}[\pream]
 	\edef\pream{{\pream}}
 	\fontsize{0.83125em}{\baselineskip}\selectfont
-	\newcommand{\toprule}[2]{}
-	\newcommand{\midrule}[2]{}
-	\newcommand{\bottomrule}[3]{}
-	\def\endhead{
-		\global\arrayrulewidth=1\px
-		\gdef\embolden{}\relax
-		\normalfont
+	\newcommand{\toprule}[2]{
+		\noalign{\global\arrayrulewidth=2\px}%https://tex.stackexchange.com/a/337790
 	}
-	\def\endlastfoot{}
+	\newcommand{\midrule}[2]{
+		\noalign{\global\arrayrulewidth=1\px}%https://tex.stackexchange.com/a/337790
+	}
+	\newcommand{\bottomrule}[2]{}
+	\def\endhead{\gdef\embolden{}\normalfont}
 	\expandafter\table\pream
-	\global\arrayrulewidth=2\px
+	\noalign{\global\arrayrulewidth=1\px}
+	\hline
 }{
 	\EndLongtable
 }

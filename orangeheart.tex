@@ -39,6 +39,8 @@
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
+\usepackage[normalem]{ulem}
+\usepackage{soul}
 % Avoid problems with \sout in headers with hyperref
 %\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
 \setlength{\emergencystretch}{3em} % prevent overfull lines
@@ -48,7 +50,6 @@
 %---
 \newlength{\px}
 \setlength{\px}{0.0104166667in}
-\usepackage{soul}
 \author{}
 \date{}
 \usepackage[a4paper,margin=10\px]{geometry}
@@ -276,7 +277,6 @@
 	\newcommand{\toprule}[2]{}
 	\newcommand{\midrule}[2]{}
 	\def\endhead{}
-	\def\endlastfoot{}
 	\newcommand{\bottomrule}[2]{}
 	\begin{center}
 	\rowcolors{2}{TableEvenColor}{white}%https://tex.stackexchange.com/a/5365

@@ -39,6 +39,8 @@
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
+\usepackage[normalem]{ulem}
+\usepackage{soul}
 % Avoid problems with \sout in headers with hyperref
 %\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
 \setlength{\emergencystretch}{3em} % prevent overfull lines
@@ -48,7 +50,6 @@
 %---
 \newlength{\px}
 \setlength{\px}{0.0104166667in}
-\usepackage{soul}
 %colors
 \usepackage[table]{xcolor}
 \definecolor{BackgroundColor}{RGB}{40,44,52}
@@ -239,7 +240,7 @@
 \makeatletter
 \let\Tabularcr\@arraycr
 \def\@arraycr#1{%
-	\IfStrEq{\detokenize{\end}}{\detokenize{#1}}{%
+	\IfStrEq{\detokenize{\bottomrule}}{\detokenize{#1}}{%
 		\Tabularcr#1%
 	}{%
 		\Tabularcr\hline#1%
@@ -273,12 +274,8 @@
 	\rowcolors{2}{TableBgDarkerColor}{TableBgColor}%https://tex.stackexchange.com/a/5365
 	\newcommand{\toprule}[2]{\rowcolor{TableTheadColor}}
 	\newcommand{\midrule}[2]{}
-	\newcommand{\bottomrule}[3]{}
-	\def\endhead{
-		\gdef\embolden{\normalfont}\relax
-		\normalfont
-	}
-	\def\endlastfoot{}
+	\newcommand{\bottomrule}[2]{}
+	\def\endhead{\gdef\embolden{\normalfont}\normalfont}
 	\vspace{1.5em}
 	\expandafter\table\pream
 }{

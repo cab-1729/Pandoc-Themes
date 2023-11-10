@@ -39,6 +39,8 @@
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
+\usepackage[normalem]{ulem}
+\usepackage{soul}
 % Avoid problems with \sout in headers with hyperref
 %\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
 \setlength{\emergencystretch}{3em} % prevent overfull lines
@@ -48,7 +50,6 @@
 %---
 \newlength{\px}
 \setlength{\px}{0.0104166667in}
-\usepackage{soul}
 %colors
 \usepackage[table]{xcolor}
 \definecolor{Mid3Color}{HTML}{F5F5F5}
@@ -261,17 +262,13 @@
 	\StrSubstitute{\pream}{c}{C}[\pream]
 	\edef\pream{{\pream|}}
 	\newcommand{\toprule}[2]{}
-	\newcommand{\midrule}[2]{}
-	\newcommand{\bottomrule}[3]{}
-	\def\endhead{
-		\gdef\embolden{}\relax
-		\normalfont
-	}
-	\def\endlastfoot{}
-	\global\arrayrulewidth=1\px
+	\newcommand{\midrule}[2]{\normalfont}
+	\def\endhead{\gdef\embolden{}}
+	\newcommand{\bottomrule}[2]{}
 	\begin{center}
 	\rowcolors{2}{Mid3Color}{white}%https://tex.stackexchange.com/a/5365
 	\expandafter\table\pream
+	\noalign{\global\arrayrulewidth=1\px}%https://tex.stackexchange.com/a/337790
 	\hline
 }{
 	\EndLongtable

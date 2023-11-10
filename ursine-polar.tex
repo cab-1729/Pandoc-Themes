@@ -40,6 +40,8 @@
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
+\usepackage[normalem]{ulem}
+\usepackage{soul}
 % Avoid problems with \sout in headers with hyperref
 %\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
 \setlength{\emergencystretch}{3em} % prevent overfull lines
@@ -49,7 +51,6 @@
 %---
 \newlength{\px}
 \setlength{\px}{0.0104166667in}
-\usepackage{soul}
 %colors
 \usepackage[table]{xcolor}
 \definecolor{BackgroundColor}{HTML}{FBFBFB}
@@ -275,7 +276,6 @@
 	\newcommand{\toprule}[2]{}
 	\newcommand{\midrule}[2]{}
 	\def\endhead{}
-	\def\endlastfoot{}
 	\newcommand{\bottomrule}[2]{}
 	\begin{center}
 	\rowcolors{2}{TableEvenColor}{BackgroundColor}%https://tex.stackexchange.com/a/5365
@@ -286,8 +286,8 @@
 	\end{center}
 }
 %strikethrough
-\let\St\st
-\renewcommand{\st}[1]{\textcolor{StrikethroughColor}{\St{#1}}}
+\let\Sout\st
+\renewcommand{\st}[1]{\textcolor{StrikethroughColor}{\Sout{#1}}}
 %lists
 	%task lists
 \newlength{\boxside}
@@ -319,7 +319,7 @@
 }
 \begingroup
 \catcode`\^^M=\active
-\gdef\applystrike^^M#1^^M{\St{#1}\endgroup}
+\gdef\applystrike^^M#1^^M{\st{#1}\endgroup}
 \endgroup
 	%-------https://tex.stackexchange.com/a/10437
 \let\Item\item

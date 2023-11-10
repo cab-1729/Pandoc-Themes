@@ -18,8 +18,7 @@
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
 \usepackage{fvextra}
-\DefineVerbatimEnvironment{Highlighting}{Verbatim}{numbers=left,xleftmargin=3em,breaklines,breakanywhere,commandchars=\\\{\}}%eyeballing
-\renewcommand{\theFancyVerbLine}{\textcolor[HTML]{6D8A88}{\arabic{FancyVerbLine}}}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,breakanywhere,commandchars=\\\{\}}
 % Add ',fontsize=\small' for more characters per line
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
@@ -40,6 +39,8 @@
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
+\usepackage[normalem]{ulem}
+\usepackage{soul}
 % Avoid problems with \sout in headers with hyperref
 %\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
 \setlength{\emergencystretch}{3em} % prevent overfull lines
@@ -49,7 +50,6 @@
 %---
 \newlength{\px}
 \setlength{\px}{0.0104166667in}
-\usepackage{soul}
 \usepackage[a4paper,
 	marginparsep=10\px,
 	top=30\px,
@@ -68,13 +68,9 @@
 \definecolor{HeadingColor}{HTML}{333333}
 \definecolor{HeadingNoteColor}{HTML}{444444}
 \definecolor{ListIndexColor}{HTML}{7397CA}
-\definecolor{ShadeColor}{HTML}{272C35}
-\definecolor{ShadedTextColor}{HTML}{A6AEBD}
-\definecolor{ShadedBorderColor}{HTML}{324560}
-\definecolor{TableHeadTextColor}{HTML}{9DBBDD}
-\definecolor{TableHeadBackgroundColor}{HTML}{FDF1D5}
-\definecolor{TableBorderColor}{HTML}{D2C9B2}
-\definecolor{TableRowColor}{HTML}{E2DCC5}
+\definecolor{ShadeColor}{HTML}{DADADA}
+\definecolor{TableEvenColor}{HTML}{E8E7E7}
+\definecolor{UncheckedColor}{HTML}{DDDDDD}
 \pagecolor{BackgroundColor}
 \usepackage[colorlinks=true,allcolors=ListIndexColor,allbordercolors=ListIndexColor]{hyperref}
 %metadata
@@ -116,7 +112,7 @@
 \makeatother
 	%-------https://tex.stackexchange.com/a/29409
 \setmainfont[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/scrolls-fonts/jetbrainsmono-,UprightFont=regular,ItalicFont=italic,BoldFont=extrabold,BoldItalicFont=extrabolditalic]{}
-\usepackage[fontsize=0.1354166671in]{fontsize}%16px
+\usepackage[fontsize=0.16666672in]{fontsize}%16px
 \linespread{1.33}%1.6/1.2
 %headings
 \usepackage{sectsty}
@@ -177,22 +173,20 @@
 	\color{TextColor}
 }
 %code background
+\newcommand{\codesize}{\fontsize{0.875em}{1.714285em}}
 \newenvironment{Shaded}{
 	\begin{tcolorbox}[
 		notitle,
 		breakable,
+		frame hidden,
+		sharp corners,
 		enhanced,
-		boxrule=1\px,
+		boxrule=0pt,
 		colback=ShadeColor,
-		coltext=ShadedTextColor,
-		colframe=ShadedBorderColor,
-		arc=0.25em,
-		outer arc=0.25em,
 		boxsep=0em,
-		left=0.2em,
-		right=0.2em,
-		top=0.5em,
-		bottom=0.5em,
+		left=2\px,
+		right=2\px,
+		fontupper=\codesize,
 	]
 }{
 	\end{tcolorbox}
@@ -200,33 +194,33 @@
 %syntax highlighting - taken from CodeMirror
 \newcommand{\AlertTok}[1]{#1}
 \newcommand{\AnnotationTok}[1]{#1}
-\newcommand{\AttributeTok}[1]{\textcolor[HTML]{DA985C}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\AttributeTok}[1]{\textcolor[HTML]{0000CC}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
 \newcommand{\BaseNTok}[1]{#1}
-\newcommand{\BuiltInTok}[1]{\textcolor[HTML]{EA6171}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\BuiltInTok}[1]{\textcolor[HTML]{3300AA}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
 \newcommand{\CharTok}[1]{#1}
-\newcommand{\CommentTok}[1]{\textcolor[HTML]{6272A4}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\CommentTok}[1]{\textcolor[HTML]{AA5500}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
 \newcommand{\CommentVarTok}[1]{#1}
 \newcommand{\ConstantTok}[1]{#1}
 \newcommand{\ControlFlowTok}[1]{#1}
-\newcommand{\DataTypeTok}[1]{\textcolor[HTML]{FFB86C}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
-\newcommand{\DecValTok}[1]{\textcolor[HTML]{DA975D}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\DataTypeTok}[1]{\textcolor[HTML]{008855}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\DecValTok}[1]{\textcolor[HTML]{116644}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
 \newcommand{\DocumentationTok}[1]{#1}
 \newcommand{\ErrorTok}[1]{\textcolor[HTML]{FF0000}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
 \newcommand{\ExtensionTok}[1]{#1}
-\newcommand{\FloatTok}[1]{\textcolor[HTML]{DA975D}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
-\newcommand{\FunctionTok}[1]{\textcolor[HTML]{43B0F5}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\FloatTok}[1]{\textcolor[HTML]{116644}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\FunctionTok}[1]{\textcolor[HTML]{0000FF}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
 \newcommand{\ImportTok}[1]{#1}
 \newcommand{\InformationTok}[1]{#1}
-\newcommand{\KeywordTok}[1]{\textcolor[HTML]{D371E3}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
-\newcommand{\NormalTok}[1]{\textcolor[HTML]{EA6171}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
-\newcommand{\OperatorTok}[1]{\textcolor[HTML]{E66170}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\KeywordTok}[1]{\textcolor[HTML]{770088}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{#1}
 \newcommand{\OtherTok}[1]{#1}
 \newcommand{\PreprocessorTok}[1]{#1}
 \newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[HTML]{89C06E}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[HTML]{89C06E}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
-\newcommand{\StringTok}[1]{\textcolor[HTML]{89C06E}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
-\newcommand{\VariableTok}[1]{\textcolor[HTML]{EA6171}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[HTML]{AA1111}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[HTML]{AA1111}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\StringTok}[1]{\textcolor[HTML]{AA1111}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\VariableTok}[1]{#1}
 \newcommand{\VerbatimStringTok}[1]{#1}
 \newcommand{\WarngingTok}[1]{#1}
 %no highlighting code
@@ -234,70 +228,24 @@
 \BeforeBeginEnvironment{verbatim}{\begin{Shaded}}
 \AfterEndEnvironment{verbatim}{\end{Shaded}}
 %inline code behaviour
-\def\VERB|#1|{
-	\tcbox[
-		notitle,
-		on line,
-		frame empty,
-		coltext=white,
-		colback=ListIndexColor,
-		boxsep=0em,
-		arc=4\px,
-		outer arc=4\px,
-		top=2\px,
-		bottom=2\px,
-		left=7\px,
-		right=7\px,
-		fontupper=\fontsize{1em}{1.8\baselineskip}\bfseries
-	]{\Verb[breaklines,breakanywhere,commandchars=\\\{\}]|#1|}
-	\color{TextColor}
-}
+\def\VERB|#1|{\colorbox{ShadeColor}{\codesize\Verb[breaklines,breakanywhere,commandchars=\\\{\}]|#1|}}
 \renewcommand{\texttt}[1]{\VERB|#1|}
 %tables
-	%underline on every row
-\makeatletter
-\let\Tabularcr\@arraycr
-\def\@arraycr{\Tabularcr\hline\rowcolor{TableRowColor}}
-\makeatother
-	%https://stackoverflow.com/a/3175486 second comment
-\usepackage{xstring}
+%deviation: not making table head bold and capital to give user more freedom
+%deviation: not stretching table across width for aesthetics
 \usepackage{longtable}
 \let\Longtable\longtable
 \let\EndLongtable\endlongtable
-\def\table#1{\Longtable{#1}}
-%deviation: not stretching table across width for aesthetics
-%deviation: not making table head bold to give user more freedom
-\setlength{\tabcolsep}{16\px}
-\renewcommand{\arraystretch}{1.3}%eyeballing
-\arrayrulecolor{TableBorderColor}
 \renewenvironment{longtable}[3]{
-	\gdef\bluey{\color{TableHeadTextColor}\fontsize{0.875em}{\baselineskip}\selectfont}
-	\newcolumntype{L}{|>{\bluey}l}
-	\newcolumntype{R}{|>{\bluey}r}
-	\newcolumntype{C}{|>{\bluey}c}
-	\StrGobbleLeft{#3}{2}[\pream]
-	\StrGobbleRight{\pream}{2}[\pream]
-	\StrSubstitute{\pream}{l}{L}[\pream]
-	\StrSubstitute{\pream}{r}{R}[\pream]
-	\StrSubstitute{\pream}{c}{C}[\pream]
-	\edef\pream{{\pream|}}
-	\newcommand{\toprule}[2]{}
+	\rowcolors{2}{TableEvenColor}{BackgroundColor}%https://tex.stackexchange.com/a/5365
+	\newcommand{\toprule}[2]{\rowcolor{ShadeColor}}
 	\newcommand{\midrule}[2]{}
-	\newcommand{\bottomrule}[3]{}
-	\def\endhead{
-		\gdef\bluey{\fontsize{0.875em}{\baselineskip}\selectfont}\relax
-		\color{TextColor}\relax
-	}
-	\def\endlastfoot{}
-	\begin{center}
-	\expandafter\table\pream
-	\noalign{\global\arrayrulewidth=1\px}%https://tex.stackexchange.com/a/337790
-	\hline
-	\rowcolor{TableHeadBackgroundColor}
+	\newcommand{\bottomrule}[2]{}
+	\def\endhead{}
+	\vspace{1.5em}
+	\Longtable{#3}
 }{
 	\EndLongtable
-	\end{center}
-	\vspace{1.5em}
 }
 %lists
 	%task lists

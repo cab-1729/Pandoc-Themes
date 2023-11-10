@@ -39,6 +39,8 @@
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
+\usepackage[normalem]{ulem}
+\usepackage{soul}
 % Avoid problems with \sout in headers with hyperref
 %\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
 \setlength{\emergencystretch}{3em} % prevent overfull lines
@@ -48,7 +50,6 @@
 %---
 \newlength{\px}
 \setlength{\px}{0.0104166667in}
-\usepackage{soul}
 \usepackage[colorlinks=true,allcolors=LinkColor]{hyperref}
 %metadata
 \hypersetup{
@@ -201,7 +202,6 @@
 	\newcommand{\midrule}[2]{}
 	\newcommand{\bottomrule}[2]{}
 	\def\endhead{}
-	\def\endlastfoot{}
 	\vspace{1.5em}
 	\Longtable{#3}
 }{
