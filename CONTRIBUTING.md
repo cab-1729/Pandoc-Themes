@@ -22,8 +22,16 @@ Possible ways you can help:
 + svg images are converted to tikz using [this inkscape extension](https://github.com/xyz2tex/svg2tikz) and then modified accordingly
 + 1px is taken to be 0.010416667inches
 + Default color for checkbox background is #0075ff, border is #a8a8a8.
-+ Command used for testing and compiling : ```pandoc --verbose --pdf-engine=xelatex --template={}.tex -f markdown+inline_code_attributes+implicit_header_references+footnotes+definition_lists -t pdf Github\ Markdown.md | zathura -```
-
++ Command used for testing and compiling : 
+```bash
+    pandoc --verbose --pdf-engine=xelatex --template={}.tex -f markdown+inline_code_attributes+implicit_header_references+footnotes+definition_lists -t pdf Github\ Markdown.md | zathura -
+```
++ javascript for getting the final css value of a selector (element must exist in document)
+```javascript
+window.getComputedStyle(document.querySelector('#1')).getPropertyValue('#2');
+// #1 -> selector string
+// #2 -> css attribute
+```
 ## Known issues
 
 + evangelion, solarized, rubrication - ```pdfborder``` has too much padding. The underline needs to be closer to the text to better resemble ```href``` in html.

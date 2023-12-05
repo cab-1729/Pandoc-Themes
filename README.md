@@ -13,7 +13,7 @@ __Warning_: These templates are very liberal with packages and assume the user h
 
 ## Usage
 
-Symlink or copy the template files to your /usr/share/haskell-pandoc/data/templates/.
+Symlink or copy the template files to your /usr/share/pandoc/data/templates/.
 
 Copy or symlink _pandoc-fonts_ to /usr/share/fonts/.
 
@@ -32,3 +32,4 @@ Metadata from markdown file will not be given priority. Most of the things will 
 ## Features not supported
 + Highlight - Pandoc does not support highlight
 + Footnotes - Typora and Pandoc deal with footnotes in very different ways, hence this feature is not implemented.
++ Lists nested further than level 4 (unless explicitly designed in the source theme)
