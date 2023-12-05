@@ -1,0 +1,347 @@
+%Typora theme : https://github.com/lloyd094/Typora-Law-School
+\documentclass{article}
+% Use upquote if available, for straight quotes in verbatim environments
+\usepackage{upquote}
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\usepackage{fvextra}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{numbers=left,xleftmargin=24\px,breaklines,breakanywhere,commandchars=\\\{\}}
+\renewcommand{\theFancyVerbLine}{\textcolor[HTML]{333333}{\small\arabic{FancyVerbLine}}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\makeatother
+\usepackage{footnotehyper}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\usepackage[normalem]{ulem}
+\usepackage{soul}
+% Avoid problems with \sout in headers with hyperref
+%\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+%---
+\newlength{\px}
+\setlength{\px}{0.0104166667in}
+\newlength{\ch}
+\setlength{\ch}{\widthof{0}}
+\author{}
+\date{}
+\usepackage[a4paper,
+	top=21mm,% 5% of A4 height
+	bottom=42mm,% 10% of A4 height
+	left=42mm,
+	right=42mm
+]{geometry}
+%colors
+\usepackage[table]{xcolor}
+\definecolor{TextColor}{HTML}{1F0909}
+\definecolor{H1UnderlineColor}{HTML}{C5C5C5}
+\definecolor{QuotelineColor}{HTML}{BABABA}
+\definecolor{QuoteBackgroundColor}{HTML}{F3F3F3}
+\definecolor{QuoteBorderColor}{HTML}{A2A9B1}
+\definecolor{LinkColor}{HTML}{A00A00}
+\definecolor{ShadeColor}{HTML}{F8F7E9}
+\definecolor{ShadeBorderColor}{HTML}{A2A9B1}
+\definecolor{ShadeShadowColor}{HTML}{CCCCCC}
+\definecolor{TableHeadColor}{HTML}{575C61}
+\definecolor{TableHeadTextColor}{HTML}{F3F3F3}
+\definecolor{TableBorderColor}{HTML}{333333}
+\definecolor{BoxColor}{HTML}{A8A8A8}
+\definecolor{CheckedColor}{HTML}{0075FF}
+\definecolor{CheckedItemColor}{HTML}{AAAAAA}
+%links
+\usepackage[colorlinks=true,allcolors=LinkColor,allbordercolors=LinkColor]{hyperref}
+%metadata
+\hypersetup{
+	$if(subject)$
+	$if(title-meta)$
+	  pdftitle={$title-meta$},
+	$endif$
+	$if(author-meta)$
+	  pdfauthor={$author-meta$},
+	$endif$
+	$if(subject)$
+	  pdfsubject={$subject$},
+	$endif$
+	$if(keywords)$
+	  pdfkeywords={$for(keywords)$$keywords$$sep$, $endfor$},
+	$endif$
+	$if(subject)$
+	pdfsubject={$subject$},
+	$endif$
+	pdfsubject={$subject$},
+	$endif$
+	pdfcreator={XeLaTeX via Pandoc law theme},
+}
+	%-------underline all links
+\makeatletter
+\Hy@AtBeginDocument{%
+	\def\@pdfborderstyle{/S/U/W 0.01}% eyeballing
+}
+\makeatother
+	%-------https://tex.stackexchange.com/a/26085
+%fonts
+\usepackage{fontspec}
+	%-------set global color
+\makeatletter
+	\color{TextColor}\global\let\default@color\current@color
+\makeatother
+	%-------https://tex.stackexchange.com/a/29409
+\setmainfont[Extension=.otf,Path=/usr/share/fonts/pandoc-fonts/law-fonts/lato-,UprightFont=regular,ItalicFont=italic,BoldFont=bold,BoldItalicFont=bolditalic]{}
+\setmonofont[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/law-fonts/latinmodernmonolight-,UprightFont=regular]{}
+\usepackage[fontsize=12pt]{fontsize}
+\linespread{1.25}%1.5/1.2
+%headings
+\usepackage{sectsty}
+\usepackage{titlesec}
+\titleformat*{\section}{\fontsize{2em}{1em}\bfseries}
+\titlespacing{\section}{0pt}{0.67em}{0.67em}
+\titleformat*{\subsection}{\fontsize{1.6em}{1em}\bfseries}
+\titlespacing{\subsection}{0pt}{0.83em}{0.83em}
+\titleformat*{\subsubsection}{\fontsize{1.4em}{1em}\bfseries}
+\titlespacing{\subsubsection}{0pt}{1em}{1em}
+\titleformat*{\paragraph}{\fontsize{1.2em}{1em}\bfseries}
+\titlespacing{\paragraph}{0pt}{1.33em}{1.33em}
+\titleformat{\subparagraph}{\fontsize{1.2em}{1em}\bfseries}{}{}{}
+\titlespacing{\subparagraph}{0pt}{1.67em}{1.67em}
+\raggedright
+\usepackage[most]{tcolorbox}
+%quotes
+\renewenvironment{quote}{
+	\vspace{0.75em}
+	\begin{tcolorbox}[
+		notitle,
+		enhanced,
+		boxrule=1\px,
+		colback=white,
+		coltext=TextColor,
+		colback=QuoteBackgroundColor,
+		colframe=QuoteBorderColor,
+		arc=4\px,
+		outer arc=4\px,
+		boxsep=0pt,
+		top=5\px,
+		right=30\px,
+		bottom=5\px,
+		left=10\px,
+		shadow={0pt}{0pt}{-1\px}{ShadeShadowColor},
+		%width 100%+20px
+		grow to left by=10\px,
+		grow to right by=10\px,
+	]
+}{
+	\end{tcolorbox}
+	\vspace{0.75em}
+	\color{TextColor}
+}
+%code background
+\newcommand{\codesize}{\fontsize{0.875em}{1.714285em}}
+\newenvironment{Shaded}{
+	\begin{tcolorbox}[
+		notitle,
+		breakable,
+		sharp corners,
+		enhanced,
+		boxrule=1\px,
+		colback=ShadeColor,
+		colframe=ShadeBorderColor,
+		shadow={0pt}{0pt}{-1\px}{ShadeShadowColor}
+	]
+}{
+	\end{tcolorbox}
+}
+%syntax highlighting - taken from CodeMirror
+\newcommand{\AlertTok}[1]{#1}
+\newcommand{\AnnotationTok}[1]{#1}
+\newcommand{\AttributeTok}[1]{\textcolor[HTML]{0000CC}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\BaseNTok}[1]{#1}
+\newcommand{\BuiltInTok}[1]{\textcolor[HTML]{3300AA}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\CharTok}[1]{#1}
+\newcommand{\CommentTok}[1]{\textcolor[HTML]{AA5500}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\CommentVarTok}[1]{#1}
+\newcommand{\ConstantTok}[1]{#1}
+\newcommand{\ControlFlowTok}[1]{#1}
+\newcommand{\DataTypeTok}[1]{\textcolor[HTML]{008855}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\DecValTok}[1]{\textcolor[HTML]{116644}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\DocumentationTok}[1]{#1}
+\newcommand{\ErrorTok}[1]{\textcolor[HTML]{FF0000}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[HTML]{116644}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\FunctionTok}[1]{\textcolor[HTML]{0000FF}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{#1}
+\newcommand{\KeywordTok}[1]{\textcolor[HTML]{770088}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{#1}
+\newcommand{\OtherTok}[1]{#1}
+\newcommand{\PreprocessorTok}[1]{#1}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[HTML]{AA1111}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[HTML]{AA1111}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\StringTok}[1]{\textcolor[HTML]{AA1111}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\VariableTok}[1]{#1}
+\newcommand{\VerbatimStringTok}[1]{#1}
+\newcommand{\WarngingTok}[1]{#1}
+%no highlighting code
+\RecustomVerbatimEnvironment{verbatim}{Verbatim}{breaklines,breakanywhere}%https://tex.stackexchange.com/a/469504
+\BeforeBeginEnvironment{verbatim}{\begin{Shaded}}
+\AfterEndEnvironment{verbatim}{\end{Shaded}}
+%inline code behaviour
+\def\VERB|#1|{\colorbox{ShadeColor}{\codesize\Verb[breaklines,breakanywhere,commandchars=\\\{\}]|#1|}}
+\renewcommand{\texttt}[1]{\VERB|#1|}
+%tables
+%deviation: not stretching table across width for aesthetics
+	%underline on every row
+\makeatletter
+\let\Tabularcr\@arraycr
+\def\@arraycr{\Tabularcr\hline}
+\makeatother
+	%https://stackoverflow.com/a/3175486 second comment
+\usepackage{xstring}
+\usepackage{longtable}
+\let\Longtable\longtable
+\let\EndLongtable\endlongtable
+\def\table#1{\Longtable{#1}}
+%deviation: not stretching table across width for aesthetics
+\arrayrulecolor{TableBorderColor}
+\setlength{\tabcolsep}{2\ch}
+\global\arrayrulewidth=1\px%https://tex.stackexchange.com/a/337790
+\renewenvironment{longtable}[3]{
+	\gdef\whitey{\color{TableHeadTextColor}}
+	\newcolumntype{L}{|>{\whitey}l}
+	\newcolumntype{R}{|>{\whitey}r}
+	\newcolumntype{C}{|>{\whitey}c}
+	\StrGobbleLeft{#3}{2}[\pream]
+	\StrGobbleRight{\pream}{2}[\pream]
+	\StrSubstitute{\pream}{l}{L}[\pream]
+	\StrSubstitute{\pream}{r}{R}[\pream]
+	\StrSubstitute{\pream}{c}{C}[\pream]
+	\edef\pream{{\pream|}}
+	\newcommand{\toprule}[2]{}
+	\newcommand{\midrule}[2]{\arrayrulecolor{black}}
+	\def\endhead{\gdef\whitey{}\color{TextColor}}
+	\newcommand{\bottomrule}[2]{}
+	\renewcommand{\endlastfoot}{}
+	\begin{center}
+	\expandafter\table\pream
+	\hline
+	\rowcolor{TableHeadColor}
+}{
+	\EndLongtable
+	\end{center}
+}
+%lists
+\usepackage{amssymb}
+	%undordered lists
+\usepackage{enumitem}
+%deviation unordered list inside ordered list is not considered as nested
+\setlist[itemize]{leftmargin=30\px}
+\renewcommand{\labelitemi}{\textbullet\hspace{1.8mm}}%1.8 from eyeballing
+\renewcommand{\labelitemii}{\(\circ\)\hspace{1.8mm}}
+\renewcommand{\labelitemiii}{\tiny{\(\blacksquare\)}\hspace{1.8mm}}
+\renewcommand{\labelitemiv}{\tiny{\(\blacksquare\)}\hspace{1.8mm}}
+	%ordered lists
+\setlistdepth{7}
+\renewlist{enumerate}{enumerate}{7}
+\let\Arabic\arabic
+\setlist[enumerate,2]{first=\renewcommand{\arabic}[1]{\Alph{enumii}}}
+\setlist[enumerate,3]{first=\renewcommand{\arabic}[1]{\roman{enumiii}}}
+\setlist[enumerate,4]{first=\renewcommand{\arabic}[1]{\Arabic{enumiv}}}
+\setlist[enumerate,5]{first=\renewcommand{\arabic}[1]{\alph{enumv}}}
+\setlist[enumerate,6]{first=\renewcommand{\arabic}[1]{\roman{enumvi}}}
+\setlist[enumerate,7]{first=\renewcommand{\arabic}[1]{\Arabic{enumvii}}}
+	%task lists
+\newlength{\boxside}
+\setlength{\boxside}{1.2em}
+\newtcbox{\checkbox}[2]{
+	enhanced,
+	notitle,
+	on line,
+	colback=#2,
+	colframe=BoxColor,
+	boxrule=1\px,
+	arc=0.25em,
+	outer arc=0.25em,
+	height=\boxside,
+	width=\boxside,%doesn't work for some reason
+	left=0em,
+	right=0em,
+	top=0em,
+	bottom=0em,
+	boxsep=0em,
+	overlay={#1},
+}
+\usepackage{environ}
+\let\Item\item
+\AtBeginEnvironment{itemize}{
+	\gdef\itemformat{}
+	\renewcommand{\item}[1][]{
+		\ifx&#1&
+			\Item
+		\else
+			\Item[#1]
+		\fi
+		\itemformat
+	}
+}
+\renewcommand{\square}{
+	\checkbox{\null}{white}{\hspace*{\boxside-2\px}}
+	\gdef\itemformat{\color{TextColor}}
+}
+\renewcommand{\boxtimes}{
+	\checkbox{
+		\draw[line width=2\px,white]([xshift=0.5\boxside,yshift=-0.5\boxside]frame.north west) -- ++(40:0.3\boxside);
+		\draw[line width=2\px,white]([xshift=0.5\boxside,yshift=-0.5\boxside]frame.north west) -- ++(220:0.3\boxside);
+		\draw[line width=2\px,white]([xshift=0.25\boxside,yshift=-0.61\boxside]frame.north west) -- ++(130:0.15\boxside);
+		\draw[line width=2\px,white]([xshift=0.25\boxside,yshift=-0.61\boxside]frame.north west) -- ++(310:0.15\boxside);
+	}{CheckedColor}{\hspace*{\boxside-2\px}}
+	\gdef\itemformat{\color{CheckedItemColor}}
+}
+	%definition lists
+\renewcommand{\descriptionlabel}[1]{#1}%remove bold
+\setlist[description]{style=nextline,leftmargin=0pt}
+\def\colon{: }
+\AtBeginEnvironment{description}{
+	\AddToHook{para/begin}[colon]{\colon}
+	\let\Item\item
+	\renewcommand{\item}[1][\null]{\gdef\colon{}\Item[#1]:\gdef\colon{: }}
+}
+\AtEndEnvironment{description}{
+	\RemoveFromHook{para/begin}[colon]
+}
+%horizontal rules
+\let\Rule\rule
+\renewcommand{\rule}[2]{\textcolor{H1UnderlineColor}{\Rule{\linewidth}{1\px}}}
+%document
+\begin{document}
+$body$
+\end{document}
