@@ -105,7 +105,7 @@
   \color{TextColor}\global\let\default@color\current@color
 \makeatother
 	%-------https://tex.stackexchange.com/a/29409
-\setmainfont[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/mo-fonts/helveticaneue-,UprightFont=regular,ItalicFont=italic,BoldFont=bold,BoldItalicFont=bolditalic]{}
+\setmainfont[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/mo-fonts/helveticaneue-,UprightFont=regular,ItalicFont=italic,BoldFont=bold,BoldItalicFont=bolditalic,BoldFeatures={Color=BoldColor},ItalicFeatures={Color=EmphasisColor},BoldItalicFeatures={Color=EmphasisColor}]{}
 \setmonofont[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/mo-fonts/,UprightFont=firacode]{}
 \usepackage{setspace}
 \usepackage[fontsize=0.16666672in]{fontsize}%16px
@@ -290,12 +290,6 @@
 	\end{tcolorbox}
 	\vspace{1.5em}
 }
-%bold
-\let\Textbf\textbf
-\renewcommand{\textbf}[1]{\textcolor{BoldColor}{\Textbf{#1}}}
-%emphasis
-\let\Emph\emph
-\renewcommand{\emph}[1]{\textcolor{EmphasisColor}{\Emph{#1}}}
 %strikethrough
 \let\Sout\st
 \renewcommand{\st}[1]{\textcolor{StrikethroughColor}{\Sout{#1}}}
