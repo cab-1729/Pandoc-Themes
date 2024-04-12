@@ -40,8 +40,8 @@
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
-\usepackage[normalem]{ulem}
 \usepackage{soul}
+\setul{0.175em}{0.06em}
 % Avoid problems with \sout in headers with hyperref
 %\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
 \setlength{\emergencystretch}{3em} % prevent overfull lines
@@ -68,7 +68,7 @@
 \definecolor{BoxTickColor}{HTML}{DDDDDD}
 \pagecolor{BackgroundColor}
 %metadata
-\usepackage[colorlinks=true,allcolors=LinkColor,allbordercolors=LinkColor]{hyperref}
+\usepackage[colorlinks=true,allcolors=LinkColor,hidelinks]{hyperref}
 \hypersetup{
 	$if(subject)$
 	$if(title-meta)$
@@ -92,13 +92,19 @@
 }
 \author{}
 \date{}
-	%-------underline all links
+%--------underline links
 \makeatletter
-\Hy@AtBeginDocument{%
-	\def\@pdfborderstyle{/S/U/W 0.01}%eyeballing
+\begingroup%copied and modified from href-ul.sty
+%$$ used as escape sequence
+\catcode`\$$=6 %
+\catcode`\#=12 %
+\gdef\href@split$$1#$$2#$$3\\$$4{%
+	\hyper@@link{$$1}{$$2}{\ul{$$4}}%
+	\endgroup%
 }
+\endgroup
 \makeatother
-	%-------https://tex.stackexchange.com/a/26085
+%--------
 \usepackage[a4paper,
 	textwidth=700\px,
 	marginparsep=0.75em

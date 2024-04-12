@@ -41,6 +41,7 @@
 \makeatother
 \usepackage[normalem]{ulem}
 \usepackage{soul}
+\setul{0.175em}{0.06em}
 % Avoid problems with \sout in headers with hyperref
 %\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
 \setlength{\emergencystretch}{3em} % prevent overfull lines
@@ -59,7 +60,7 @@
 \definecolor{CheckedColor}{HTML}{0075FF}
 \definecolor{HRColor}{RGB}{51,51,51}%default HTML color
 \pagecolor{BackgroundColor}
-\usepackage[allbordercolors=TextColor]{hyperref}
+\usepackage[hidelinks]{hyperref}
 %metadata
 \hypersetup{
 	$if(subject)$
@@ -82,13 +83,19 @@
 	$endif$
 	pdfcreator={XeLaTeX via Pandoc turing theme},
 }
-	%-------underline all links
+%--------underline links
 \makeatletter
-\Hy@AtBeginDocument{%
-	\def\@pdfborderstyle{/S/U/W 0.01}% eyeballing
+\begingroup%copied and modified from href-ul.sty
+%$$ used as escape sequence
+\catcode`\$$=6 %
+\catcode`\#=12 %
+\gdef\href@split$$1#$$2#$$3\\$$4{%
+	\hyper@@link{$$1}{$$2}{\ul{$$4}}%
+	\endgroup%
 }
+\endgroup
 \makeatother
-	%-------https://tex.stackexchange.com/a/26085
+%--------
 \author{}
 \date{}
 \usepackage[a4paper,top=36\px,left=30\px,right=30\px]{geometry}
@@ -103,15 +110,17 @@
 \setmonofont[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/turing-fonts/jmhtypewriter-,UprightFont=regular]{}
 \usepackage[fontsize=0.16666672in]{fontsize}%16px
 \linespread{1.25}%1.5/1.2
-\renewcommand{\emph}[1]{\uline{\textbf{#1}}}
+\renewcommand{\emph}[1]{\ul{\textbf{#1}}}
 %headings
 \usepackage{sectsty}
 \usepackage{titlesec}
 \titleformat*{\section}{\fontsize{16\px}{\baselineskip}\filcenter\uppercase}
 \titlespacing{\section}{0pt}{0.67em}{0.67em}
-\titleformat{\subsection}{\fontsize{16\px}{\baselineskip}\filcenter}{\uline{\arabic{subsection}. }}{0pt}{\uline}
+\renewcommand{\thesubsection}{\arabic{subsection}}
+\titleformat{\subsection}{\fontsize{16\px}{\baselineskip}\filcenter}{\ul{\thesubsection. }}{0pt}{\ul}
 \titlespacing{\subsection}{0pt}{0.83em}{0.83em}
-\titleformat{\subsubsection}{\fontsize{16\px}{\baselineskip}}{\uline{\arabic{subsection}.\arabic{subsubsection}. }}{0pt}{\uline}
+\renewcommand{\thesubsubsection}{\arabic{subsubsection}}
+\titleformat{\subsubsection}{\fontsize{16\px}{\baselineskip}}{\ul{\thesubsection.\thesubsubsection. }}{0pt}{\ul}
 \titlespacing{\subsubsection}{0pt}{1em}{1em}
 \titleformat*{\paragraph}{\fontsize{16\px}{\baselineskip}}
 \titlespacing{\paragraph}{0pt}{1.33em}{1.33em}

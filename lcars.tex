@@ -1,4 +1,4 @@
-%Typora theme : https://github.com/typora/typora-default-themes/tree/master/themes
+%Typora theme : https://github.com/TEParsons/LCARS
 \documentclass{article}
 % Use upquote if available, for straight quotes in verbatim environments
 \usepackage{upquote}
@@ -70,15 +70,14 @@
 	$endif$
 	pdfsubject={$subject$},
 	$endif$
-	pdfcreator={XeLaTeX via Pandoc newsprint theme},
+	pdfcreator={XeLaTeX via Pandoc lcars theme},
 }
 \author{}
 \date{}
-\usepackage[a4paper,textwidth=40em]{geometry}
+\usepackage[a4paper,textwidth=0.8\paperwidth,headheight=4em,headsep=2em]{geometry}
 %colors
 \usepackage[table]{xcolor}
-\definecolor{BackgroundColor}{HTML}{F3F2EE}
-\definecolor{TextColor}{HTML}{1F0909}
+\definecolor{TextColor}{HTML}{FFCC66}
 \definecolor{H1UnderlineColor}{HTML}{C5C5C5}
 \definecolor{QuotelineColor}{HTML}{BABABA}
 \definecolor{QuoteColor}{HTML}{656565}
@@ -86,7 +85,9 @@
 \definecolor{ShadeColor}{HTML}{DADADA}
 \definecolor{TableEvenColor}{HTML}{E8E7E7}
 \definecolor{UncheckedColor}{HTML}{DDDDDD}
-\pagecolor{BackgroundColor}
+\definecolor{DefinedOrange}{HTML}{FF9900}
+\definecolor{DefinedGrey}{HTML}{9999CC}
+\pagecolor{black}
 %fonts
 \usepackage{fontspec}
 	%-------set global color
@@ -94,21 +95,159 @@
 	\color{TextColor}\global\let\default@color\current@color
 \makeatother
 	%-------https://tex.stackexchange.com/a/29409
-\setmainfont[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/newsprint-fonts/timesnewroman-,UprightFont=regular,ItalicFont=italic,BoldFont=bold,BoldItalicFont=bolditalic]{}
-\usepackage[fontsize=0.16666672in]{fontsize}%16px
+\setmainfont[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/lcars-fonts/teko-,UprightFont=regular,BoldFont=bold,AutoFakeSlant,AutoFakeBold]{}
+\usepackage[fontsize=10pt]{fontsize}
 \linespread{1.25}%1.5/1.2
+%header
+\usepackage{fancyhdr}
+\fancyhead{}%clear
+\fancyhead[RH]{%
+	\tcbox[
+		enhanced,
+		on line,
+		sharp corners,
+		notitle,
+		boxrule=0pt,
+		colback=black,
+		coltext=TextColor,
+		boxsep=0pt,
+		top=0pt,
+		bottom=0pt,
+		left=0.2em,
+		right=0.2em,
+		shadow={-9em}{0pt}{0pt}{black},
+		shadow={-8.5em}{0pt}{0pt}{DefinedGrey},
+		shadow={-2.5em}{0pt}{0pt}{black},
+		shadow={-2em}{0pt}{0pt}{DefinedOrange},
+	]{\fontsize{5em}{4em}\selectfont TYPORA}\hspace{5em}
+}
+\renewcommand{\headrulewidth}{0pt}
+\pagestyle{fancy}
 %headings
 \usepackage{sectsty}
-\usepackage{titlesec}
-\titleformat{\section}{\fontsize{1.875em}{1.6em}\normalfont}{}{}{}[\textcolor{H1UnderlineColor}{\titlerule[1\px]}\vspace{0.5em}]
-\titlespacing{\section}{0pt}{2em}{0.8125em}
-\titleformat*{\subsection}{\fontsize{1.312em}{1.15em}\bfseries}
-\titlespacing{\subsection}{0pt}{2.285714em}{0.75em}
-\titleformat*{\subsubsection}{\fontsize{1.312em}{1.15em}\normalfont}
-\titlespacing{\subsubsection}{0pt}{2.285714em}{1.15em}
-\titleformat*{\paragraph}{\fontsize{1.125em}{\baselineskip}\bfseries}
-\titlespacing{\paragraph}{0pt}{0pt}{2.67em}
-\titleformat{\subparagraph}{\fontsize{1em}{1.5em}\bfseries}{}{}{}
+%complete overwrite of all headings, might cause problems later
+\renewcommand{\section}[1]{
+	\vspace{0.44em}%2/fontsize
+	\tcbox[
+			enhanced,
+			on line,
+			notitle,
+			sharp corners,
+			boxsep=0em,
+			boxrule=0pt,
+			top=0pt,
+			right=0pt,
+			bottom=0pt,
+			left=0pt,
+			colback=black,
+			coltext=TextColor,
+			fontupper=\fontsize{4.5em}{0.8em}\bfseries,
+			shadow={-4em}{0pt}{-0.5em}{black},
+			shadow={-4em}{0pt}{0pt}{DefinedOrange},
+			shadow={-2em}{0pt}{0pt}{black},
+		]{\hspace{0.2em}\textcolor{DefinedOrange}{\Rule{0.5em}{0.7em}}\hspace{2.2em}#1%
+		\tcbox[
+			on line,
+			notitle,
+			sharp corners,
+			boxsep=0em,
+			boxrule=0pt,
+			top=0pt,
+			right=0pt,
+			bottom=0pt,
+			left=0pt,
+			colback=DefinedOrange,
+		]{la}}
+	\vspace{0.44em}
+}
+\renewcommand{\subsection}[1]{
+	\vspace{0.571428em}%2/fontsize
+	\tcbox[
+			enhanced,
+			on line,
+			notitle,
+			sharp corners,
+			boxsep=0em,
+			boxrule=0pt,
+			top=0pt,
+			right=0pt,
+			bottom=0pt,
+			left=0pt,
+			colback=black,
+			coltext=TextColor,
+			fontupper=\fontsize{3.5em}{0.8em}\bfseries,
+			shadow={-4em}{0pt}{-0.5em}{black},
+			shadow={-4em}{0pt}{0pt}{DefinedOrange},
+			shadow={-2em}{0pt}{0pt}{black},
+		]{#1}
+	\vspace{0.571428em}
+}
+\renewcommand{\subsubsection}[1]{
+	\vspace{0.66em}%2/fontsize
+	\tcbox[
+			enhanced,
+			on line,
+			notitle,
+			sharp corners,
+			boxsep=0em,
+			boxrule=0pt,
+			top=0pt,
+			right=0pt,
+			bottom=0pt,
+			left=0pt,
+			colback=black,
+			coltext=TextColor,
+			fontupper=\fontsize{3em}{0.8em}\bfseries,
+			shadow={-4em}{0pt}{-0.5em}{black},
+			shadow={-4em}{0pt}{0pt}{DefinedOrange},
+			shadow={-2em}{0pt}{0pt}{black},
+		]{#1}
+	\vspace{0.66em}
+}
+\renewcommand{\paragraph}[1]{
+	\vspace{0.8em}%2/fontsize
+	\tcbox[
+			enhanced,
+			on line,
+			notitle,
+			sharp corners,
+			boxsep=0em,
+			boxrule=0pt,
+			top=0pt,
+			right=0pt,
+			bottom=0pt,
+			left=0pt,
+			colback=black,
+			coltext=TextColor,
+			fontupper=\fontsize{2.5em}{0.8em}\bfseries,
+			shadow={-4em}{0pt}{-0.5em}{black},
+			shadow={-4em}{0pt}{0pt}{DefinedOrange},
+			shadow={-2em}{0pt}{0pt}{black},
+		]{#1}
+	\vspace{0.8em}
+}
+\renewcommand{\subparagraph}[1]{
+	\vspace{1em}%2/fontsize
+	\tcbox[
+			enhanced,
+			on line,
+			notitle,
+			sharp corners,
+			boxsep=0em,
+			boxrule=0pt,
+			top=0pt,
+			right=0pt,
+			bottom=0pt,
+			left=0pt,
+			colback=black,
+			coltext=TextColor,
+			fontupper=\fontsize{2em}{0.8em}\bfseries,
+			shadow={-4em}{0pt}{-0.5em}{black},
+			shadow={-4em}{0pt}{0pt}{DefinedOrange},
+			shadow={-2em}{0pt}{0pt}{black},
+		]{#1}
+	\vspace{1em}
+}
 \raggedright
 \usepackage[most]{tcolorbox}
 %quotes
@@ -120,7 +259,7 @@
 		sharp corners,
 		enhanced,
 		boxrule=0pt,
-		colback=BackgroundColor,
+		colback=black,
 		coltext=QuoteColor,
 		boxsep=0em,
 		fontupper=\itshape,
@@ -196,7 +335,7 @@
 \let\Longtable\longtable
 \let\EndLongtable\endlongtable
 \renewenvironment{longtable}[3]{
-	\rowcolors{2}{TableEvenColor}{BackgroundColor}%https://tex.stackexchange.com/a/5365
+	\rowcolors{2}{TableEvenColor}{black}%https://tex.stackexchange.com/a/5365
 	\newcommand{\toprule}[2]{\rowcolor{ShadeColor}}
 	\newcommand{\midrule}[2]{}
 	\newcommand{\bottomrule}[2]{}

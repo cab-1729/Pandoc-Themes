@@ -39,8 +39,8 @@
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
-\usepackage[normalem]{ulem}
 \usepackage{soul}
+\setul{0.175em}{0.06em}
 % Avoid problems with \sout in headers with hyperref
 %\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
 \setlength{\emergencystretch}{3em} % prevent overfull lines
@@ -69,7 +69,7 @@
 \definecolor{BoxColor}{HTML}{A8A8A8}
 \definecolor{CheckedColor}{HTML}{0075FF}
 %links
-\usepackage[colorlinks=true,allcolors=H2Color,allbordercolors=H2Color]{hyperref}
+\usepackage[colorlinks=true,allcolors=H2Color,hidelinks]{hyperref}
 %metadata
 \hypersetup{
 	$if(title-meta)$
@@ -92,17 +92,19 @@
 	$endif$
 	pdfcreator={XeLaTeX via Pandoc evangelion theme},
 }
-	%-------underline all links
+%--------underline links
 \makeatletter
-\Hy@AtBeginDocument{%
-	\def\@pdfborderstyle{/S/U/W 0.01}%eyeballing
+\begingroup%copied and modified from href-ul.sty
+%$$ used as escape sequence
+\catcode`\$$=6 %
+\catcode`\#=12 %
+\gdef\href@split$$1#$$2#$$3\\$$4{%
+  \hyper@@link{$$1}{$$2}{\bfseries\ul{$$4}}%
+  \endgroup%
 }
+\endgroup
 \makeatother
-	%-------https://tex.stackexchange.com/a/26085
-\let\Href\href
-\renewcommand{\href}[2]{\Href{#1}{\bfseries#2}}
-\let\Hyperlink\hyperlink
-\renewcommand{\hyperlink}[2]{\Hyperlink{#1}{\bfseries#2}}
+%--------
 %fonts
 \usepackage{fontspec}
 \setmainfont[Extension=.otf,Path=/usr/share/fonts/pandoc-fonts/orangeheart-fonts/optima-,UprightFont=regular,ItalicFont=italic,BoldFont=bold,BoldItalicFont=bolditalic]{}

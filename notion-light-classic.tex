@@ -39,8 +39,8 @@
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
-\usepackage[normalem]{ulem}
 \usepackage{soul}
+\setul{0.175em}{0.06em}
 % Avoid problems with \sout in headers with hyperref
 %\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
 \setlength{\emergencystretch}{3em} % prevent overfull lines
@@ -66,7 +66,7 @@
 \definecolor{ShadedTextColor}{HTML}{999999}
 \definecolor{ShadeColor}{HTML}{F7F6F3}
 \definecolor{CheckedColor}{HTML}{2EAADC}
-\usepackage[colorlinks=true,allcolors=TextColor!60!white,allbordercolors=TextColor]{hyperref}
+\usepackage[colorlinks=true,allcolors=TextColor!60!white,hidelinks]{hyperref}
 %metadata
 \hypersetup{
 	$if(subject)$
@@ -92,13 +92,19 @@
 \author{}
 \date{}
 \usepackage[a4paper,top=30\px,left=30\px,right=30\px,bottom=100\px,textwidth=860\px]{geometry}
-	%-------underline all links
+%--------underline links
 \makeatletter
-\Hy@AtBeginDocument{%
-	\def\@pdfborderstyle{/S/U/W 0.01}%eyeballing
+\begingroup%copied and modified from href-ul.sty
+%$$ used as escape sequence
+\catcode`\$$=6 %
+\catcode`\#=12 %
+\gdef\href@split$$1#$$2#$$3\\$$4{%
+  \hyper@@link{$$1}{$$2}{\ul{$$4}}%
+  \endgroup%
 }
+\endgroup
 \makeatother
-	%-------https://tex.stackexchange.com/a/26085
+%--------
 %fonts
 \usepackage{fontspec}
 	%-------set global color
