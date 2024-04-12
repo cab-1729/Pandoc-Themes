@@ -22,6 +22,8 @@ Possible ways you can help:
 + svg images are converted to tikz using [this inkscape extension](https://github.com/xyz2tex/svg2tikz) and then modified accordingly
 + 1px is taken to be 0.010416667inches
 + Default color for checkbox background is #0075ff, border is #a8a8a8.
++ Value of ```pdfborder``` in ```hyperref``` is [here](https://tex.stackexchange.com/questions/175385/what-do-the-first-two-numbers-in-the-pdfborder-option-of-hyperref-do).
++ Contributors are encouraged to link articles and stackexchange answers in comments for reference is they deem it necessary.
 + Command used for testing and compiling : 
 ```bash
     pandoc --verbose --pdf-engine=xelatex --template={}.tex -f markdown+inline_code_attributes+implicit_header_references+footnotes+definition_lists -t pdf Github\ Markdown.md | zathura -
@@ -32,9 +34,14 @@ window.getComputedStyle(document.querySelector('#1')).getPropertyValue('#2');
 // #1 -> selector string
 // #2 -> css attribute
 ```
++ Link underlines are given default values using the following specification inspired from this article: 
+```latex
+\setul{0.175em}{0.06em}
+```
+
 ## Known issues
 
-+ evangelion, solarized, rubrication - ```pdfborder``` has too much padding. The underline needs to be closer to the text to better resemble ```href``` in html.
++ ~~evangelion, solarized, rubrication - ```pdfborder``` has too much padding. The underline needs to be closer to the text to better resemble ```<a>``` in html.~~
 + ~~cobalt - ```marginpar``` needs to be aligned with the heading.~~
 + all - formatting needs to be applied on level 6 headings. Pandoc does [not](https://github.com/jgm/pandoc/issues/8069) support it yet.
 + ~~all - switch back to ```longtable``` instead of tabular.~~
@@ -50,3 +57,4 @@ window.getComputedStyle(document.querySelector('#1')).getPropertyValue('#2');
 + haru - theme not possible, italic version of version of Glow Sans not found
 + ~~all - no sub-list support~~
 + all - word spacing not accurate
++ lcars - 
