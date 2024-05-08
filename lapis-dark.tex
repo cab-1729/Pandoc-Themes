@@ -1,0 +1,359 @@
+%Typora theme : https://github.com/YiNNx/typora-theme-lapis
+\documentclass{article}
+% Use upquote if available, for straight quotes in verbatim environments
+\usepackage{upquote}
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\usepackage{fvextra}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{numbers=left,frame=leftline,rulecolor=ShadeRuleColor,framerule=1\px,breaklines,breakanywhere,commandchars=\\\{\}}
+\renewcommand{\theFancyVerbLine}{\textcolor{PrimaryColor}{\arabic{FancyVerbLine}}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\makeatother
+\usepackage{footnotehyper}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\usepackage{soul}
+\setul{0.175em}{0.06em}
+% Avoid problems with \sout in headers with hyperref
+%\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+%---
+\newlength{\px}
+\setlength{\px}{0.0104166667in}
+\usepackage[colorlinks=true,allcolors=LinkColor]{hyperref}
+%metadata
+\hypersetup{
+	$if(subject)$
+	$if(title-meta)$
+	  pdftitle={$title-meta$},
+	$endif$
+	$if(author-meta)$
+	  pdfauthor={$author-meta$},
+	$endif$
+	$if(subject)$
+	  pdfsubject={$subject$},
+	$endif$
+	$if(keywords)$
+	  pdfkeywords={$for(keywords)$$keywords$$sep$, $endfor$},
+	$endif$
+	$if(subject)$
+	pdfsubject={$subject$},
+	$endif$
+	pdfsubject={$subject$},
+	$endif$
+	pdfcreator={XeLaTeX via Pandoc lapis theme},
+}
+\author{}
+\date{}
+\usepackage[a4paper,textwidth=40em,bottom=20em]{geometry}
+%colors
+\usepackage[table]{xcolor}
+\definecolor{TextBaseColor}{HTML}{E4E4E4}
+\definecolor{BackgroundColor}{HTML}{1E222A}
+\colorlet{TextColor}{TextBaseColor!89!BackgroundColor}
+\definecolor{BlockBgColor}{HTML}{080E1D}
+\definecolor{QuoteBlockBgColor}{HTML}{2A2F3B}
+\definecolor{PrimaryColor}{HTML}{8393ad}
+\definecolor{ShadeColor}{HTML}{DADADA}
+\definecolor{ShadeTextColor}{HTML}{ABBAD4}
+\definecolor{ShadeRuleBaseColor}{HTML}{a2b6d4}
+\colorlet{ShadeRuleColor}{ShadeRuleBaseColor!20!ShadeColor}
+\definecolor{TableBorderColor}{HTML}{47556D}
+\colorlet{RuleColor}{TableBorderColor}
+\definecolor{MarkerColor}{HTML}{A2B6D4}
+\colorlet{LinkColor}{PrimaryColor}
+\pagecolor{BackgroundColor}
+%--------underline links
+\makeatletter
+\begingroup%copied and modified from href-ul.sty
+%$$ used as escape sequence
+\catcode`\$$=6 %
+\catcode`\#=12 %
+\gdef\href@split$$1#$$2#$$3\\$$4{%
+  \hyper@@link{$$1}{$$2}{\ul{$$4}}%
+  \endgroup%
+}
+\endgroup
+\makeatother
+%--------
+%fonts
+\usepackage{fontspec}
+	%-------set global color
+\makeatletter
+	\color{TextColor}\global\let\default@color\current@color
+\makeatother
+	%-------https://tex.stackexchange.com/a/29409
+\setmainfont[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/lapis-fonts/cantarell-,UprightFont=regular,ItalicFont=italic,BoldFont=bold,BoldItalicFont=bolditalic,BoldFeatures={Color=PrimaryColor}]{}
+\setmonofont[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/lapis-fonts/jetbrainsmono-,UprightFont=regular]{}
+\newfontfamily\headingfont[Extension=.otf,Path=/usr/share/fonts/pandoc-fonts/lapis-fonts/sourcehanserif-,UprightFont=medium,BoldFont=bold]{}
+\usepackage[fontsize=1.1em]{fontsize}%16px
+\linespread{1.33}%1.6/1.2
+%headings
+\usepackage{sectsty}
+\usepackage{titlesec}
+\titleformat*{\section}{\fontsize{2em}{\baselineskip}\filcenter\headingfont\color{PrimaryColor}\bfseries}
+\titlespacing{\section}{0pt}{0.67em}{0.67em}
+\renewcommand{\subsection}[1]{%complete overwrite of level 3 header might cause problems later
+	\colorlet{LinkColor}{white}
+	\setul{2\px}{1.2\px}
+	\vspace{0.83em}
+	\tcbox[
+		on line,
+		notitle,
+		colback=TableBorderColor,
+		coltext=TextColor,
+		frame hidden,
+		boxsep=0pt,
+		boxrule=0pt,
+		arc=4\px,
+		outer arc=4\px,
+		top=1\px,
+		bottom=1\px,
+		left=12.5\px,
+		right=12.5\px,
+		fontupper=\fontsize{1.5em}{\baselineskip}\headingfont\bfseries
+	]{#1}
+	\colorlet{LinkColor}{PrimaryColor}
+	\setul{0.175em}{0.06em}
+	\vspace{0.83em}
+}
+\titleformat*{\subsubsection}{\fontsize{1.312em}{1.15em}\headingfont\color{PrimaryColor}\bfseries}
+\titlespacing{\subsubsection}{0pt}{2.285714em}{1.15em}
+\titleformat*{\paragraph}{\fontsize{1.125em}{\baselineskip}\headingfont\color{PrimaryColor}\normalfont}
+\titlespacing{\paragraph}{0pt}{0pt}{2.67em}
+\titleformat{\subparagraph}{\fontsize{1em}{1.5em}\headingfont\color{PrimaryColor}\normalfont}{}{}{}
+\raggedright
+\usepackage[most]{tcolorbox}
+%quotes
+\renewenvironment{quote}{
+	\vspace{20\px}
+	\begin{tcolorbox}[
+		notitle,
+		frame hidden,
+		sharp corners,
+		enhanced,
+		boxrule=0pt,
+		colback=QuoteBlockBgColor,
+		coltext=TextColor,
+		boxsep=0em,
+		fontupper=\fontsize{1.1em}{1.8em}\selectfont,
+		top=15\px,
+		right=30\px,
+		bottom=15\px,
+		left=20\px,
+		borderline west={3\px}{0pt}{PrimaryColor}
+	]
+}{
+	\end{tcolorbox}
+	\vspace{20\px}
+}
+%code background
+\newcommand{\codesize}{\fontsize{0.94em}{\baselineskip}}
+\newenvironment{Shaded}{
+	\begin{tcolorbox}[
+		notitle,
+		breakable,
+		frame hidden,
+		enhanced,
+		boxrule=0pt,
+		colback=BlockBgColor,
+		coltext=ShadeTextColor,
+		arc=16\px,
+		outer arc=16\px,
+		boxsep=0em,
+		top=1.2em,
+		bottom=1.2em,
+		left=0.8em,
+		right=0.8em,
+		fontupper=\fontsize{1em}{1.6em}\selectfont
+	]
+}{
+	\end{tcolorbox}
+}
+%syntax highlighting - taken from CodeMirror
+\newcommand{\AlertTok}[1]{#1}
+\newcommand{\AnnotationTok}[1]{#1}
+\newcommand{\AttributeTok}[1]{\textcolor[HTML]{BAACC3}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\BaseNTok}[1]{#1}
+\newcommand{\BuiltInTok}[1]{\textcolor[HTML]{C2EAFF}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\CharTok}[1]{\textcolor[HTML]{ACD9A4}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\CommentTok}[1]{\textcolor[RGB]{168,168,168}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\CommentVarTok}[1]{#1}
+\newcommand{\ConstantTok}[1]{#1}
+\newcommand{\ControlFlowTok}[1]{#1}
+\newcommand{\DataTypeTok}[1]{\textcolor[HTML]{DEBBFB}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\DecValTok}[1]{\textcolor[HTML]{B0F6AE}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\DocumentationTok}[1]{#1}
+\newcommand{\ErrorTok}[1]{\colorbox[HTML]{FFCFF}{\textcolor{white}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[HTML]{B0F6AE}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\FunctionTok}[1]{\textcolor[HTML]{C2EAFF}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{#1}
+\newcommand{\KeywordTok}[1]{\textcolor[HTML]{66CFE9}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[HTML]{E7FC4A}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\OtherTok}[1]{#1}
+\newcommand{\PreprocessorTok}[1]{#1}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[HTML]{ACD9A4}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[HTML]{ACD9A4}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\StringTok}[1]{\textcolor[HTML]{ACD9A4}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\VariableTok}[1]{\textcolor[HTML]{C2EAFF}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\VerbatimStringTok}[1]{#1}
+\newcommand{\WarngingTok}[1]{#1}
+%no highlighting code
+\RecustomVerbatimEnvironment{verbatim}{Verbatim}{breaklines,breakanywhere}%https://tex.stackexchange.com/a/469504
+\BeforeBeginEnvironment{verbatim}{\begin{Shaded}}
+\AfterEndEnvironment{verbatim}{\end{Shaded}}
+%inline code behaviour
+\def\VERB|#1|{
+	\tcbox[
+		 notitle,
+		 on line,
+		 frame empty,
+		 coltext=PrimaryColor,
+		 colback=BlockBgColor,
+		 boxrule=0pt,
+		 boxsep=0pt,
+		 arc=3\px,
+		 outer arc=3\px,
+		 top=2\px,
+		 bottom=2\px,
+		 left=4\px,
+		 right=4\px,
+		 fontupper=\fontsize{0.94em}{\baselineskip}
+	]{\Verb[breaklines,breakanywhere,commandchars=\\\{\}]|#1|}
+	\color{TextColor}
+}
+\renewcommand{\texttt}[1]{\VERB|#1|}
+%tables
+%deviation: not stretching table across width for aesthetics
+%deviation: not forcing table head to be center aligned
+\makeatletter
+\let\Tabularcr\@arraycr
+\def\@arraycr{\Tabularcr\hline}
+\makeatother
+	%https://stackoverflow.com/a/3175486 second comment
+\usepackage{xstring}
+\usepackage{longtable}
+\let\Longtable\longtable
+\let\EndLongtable\endlongtable
+\def\table#1{\Longtable{#1}}
+\arrayrulecolor{TableBorderColor}
+\global\arrayrulewidth=1\px%https://tex.stackexchange.com/a/337790
+\setlength{\tabcolsep}{10\px}
+\renewcommand{\arraystretch}{1.5}
+\renewenvironment{longtable}[3]{
+	\gdef\cellformat{\bfseries\color{PrimaryColor}\headingfont}
+	\newcolumntype{L}{|>{\cellformat}l}
+	\newcolumntype{R}{|>{\cellformat}r}
+	\newcolumntype{C}{|>{\cellformat}c}
+	\StrGobbleLeft{#3}{2}[\pream]
+	\StrGobbleRight{\pream}{2}[\pream]
+	\StrSubstitute{\pream}{l}{L}[\pream]
+	\StrSubstitute{\pream}{r}{R}[\pream]
+	\StrSubstitute{\pream}{c}{C}[\pream]
+	\edef\pream{{\pream|}}
+	\newcommand{\toprule}[2]{}
+	\newcommand{\midrule}[2]{}
+	\def\endhead{\gdef\cellformat{}\normalfont\color{TextColor}}
+	\newcommand{\bottomrule}[2]{}
+	\renewcommand{\endlastfoot}{}
+	\begin{center}
+	\expandafter\table\pream
+	\hline
+}{
+	\EndLongtable
+	\vspace{20\px}
+	\end{center}
+}
+%lists
+\usepackage{amssymb}
+	%task lists
+\newlength{\boxside}
+\setlength{\boxside}{1.0125em}
+\newtcbox{\checkbox}{
+	enhanced,
+	notitle,
+	on line,
+	coltext=PrimaryColor,
+	colback=BackgroundColor,
+	colframe=MarkerColor,
+	boxrule=1\px,
+	arc=0.6em,%experimentation, using 1.1em produces wierd pattern
+	outer arc=0.6em,
+	height=\boxside,
+	width=\boxside,%doesn't work for some reason
+	left=0em,
+	right=0em,
+	top=0em,
+	bottom=0em,
+	boxsep=0em,
+	fontupper=\fontsize{0.75em}{0.8em}
+}
+\renewcommand{\square}{
+	\checkbox{\hspace*{\boxside-2\px}}
+}
+\renewcommand{\boxtimes}{
+	\checkbox{\hspace*{0.2625em}\textbf{\checkmark}}
+}
+	%unordered lists
+%deviation unordered list inside ordered list is not considered as nested
+\renewcommand{\labelitemi}{\textcolor{MarkerColor}{\textbf{\textbullet}}\hspace{1.8mm}}%1.8 from eyeballing
+\renewcommand{\labelitemii}{\textcolor{MarkerColor}{\textbf{\tiny\(\blacksquare\)}}\hspace{1.5mm}}
+\renewcommand{\labelitemiii}{\textcolor{MarkerColor}{\textbf{\tiny\(\blacksquare\)}}\hspace{1.5mm}}
+\renewcommand{\labelitemiv}{\textcolor{MarkerColor}{\textbf{\tiny\(\blacksquare\)}}\hspace{1.5mm}}
+	%ordered lists
+\usepackage{enumitem}
+\setlist[enumerate]{font=\bfseries\color{MarkerColor}}
+	%definition lists
+\renewcommand{\descriptionlabel}[1]{#1}%remove bold
+\setlist[description]{style=nextline,leftmargin=0pt}
+\def\colon{: }
+\AtBeginEnvironment{description}{
+	\AddToHook{para/begin}[colon]{\colon}
+	\let\Item\item
+	\renewcommand{\item}[1][\null]{\gdef\colon{}\Item[#1]:\gdef\colon{: }}
+}
+\AtEndEnvironment{description}{
+	\RemoveFromHook{para/begin}[colon]
+}
+%horizontal rules
+\let\Rule\rule
+\renewcommand{\rule}[2]{\textcolor{RuleColor}{\Rule{\linewidth}{1\px}}}
+%document
+\begin{document}
+$body$
+\end{document}
