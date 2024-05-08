@@ -1,0 +1,339 @@
+%Typora theme : https://github.com/dhay3/bios-typora-theme
+\documentclass{article}
+% Use upquote if available, for straight quotes in verbatim environments
+\usepackage{upquote}
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\usepackage{fvextra}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{numbers=left,frame=leftline,rulecolor=white,breaklines,breakanywhere,commandchars=\\\{\}}
+\renewcommand{\theFancyVerbLine}{\textcolor{white}{\small\arabic{FancyVerbLine}}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\makeatother
+\usepackage{footnotehyper}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\usepackage{soul}
+% Avoid problems with \sout in headers with hyperref
+%\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+%---
+\newlength{\px}
+\setlength{\px}{0.0104166667in}
+\usepackage[colorlinks=true,allcolors=LinkColor]{hyperref}
+%metadata
+\hypersetup{
+	$if(subject)$
+	$if(title-meta)$
+	  pdftitle={$title-meta$},
+	$endif$
+	$if(author-meta)$
+	  pdfauthor={$author-meta$},
+	$endif$
+	$if(subject)$
+	  pdfsubject={$subject$},
+	$endif$
+	$if(keywords)$
+	  pdfkeywords={$for(keywords)$$keywords$$sep$, $endfor$},
+	$endif$
+	$if(subject)$
+	pdfsubject={$subject$},
+	$endif$
+	pdfsubject={$subject$},
+	$endif$
+	pdfcreator={XeLaTeX via Pandoc bios theme},
+}
+\author{}
+\date{}
+\usepackage[a4paper,bottom=7.5em]{geometry}
+%colors
+\usepackage[table]{xcolor}
+\definecolor{BackgroundColor}{HTML}{000084}
+\definecolor{DosBaseColor}{HTML}{AAAAAA}
+\definecolor{TextColor}{HTML}{AAAAAA}
+\definecolor{HeadingBackgroundColor}{HTML}{00AAAA}
+\definecolor{StrikethroughColor}{HTML}{FF033E}
+\definecolor{InlineCodeColor}{HTML}{FF55FF}
+\definecolor{RuleColor}{HTML}{EEEEEE}
+\definecolor{LinkColor}{HTML}{FEFE54}
+\definecolor{ListColor}{HTML}{00AA00}
+\definecolor{UncheckedColor}{HTML}{00AA00}
+\pagecolor{BackgroundColor}
+%fonts
+\usepackage{fontspec}
+	%-------set global color
+\makeatletter
+	\color{TextColor}\global\let\default@color\current@color
+\makeatother
+	%-------https://tex.stackexchange.com/a/29409
+\setmainfont[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/bios-fonts/,UprightFont=ibmvga,AutoFakeBold,BoldFeatures={Color=FF5555},AutoFakeSlant,ItalicFeatures={Color=BA8B00},BoldItalicFeatures={Color=BA8B00}]{}
+\setmonofont[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/bios-fonts/,UprightFont=ibmvga]{}
+\newfontfamily\headingfont[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/bios-fonts/,UprightFont=ibmvga,AutoFakeBold,AutoFakeSlant]{}
+\newfontfamily\fallbackfont[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/bios-fonts/,UprightFont=firacode]{}
+\newfontfamily\dosfonttwo[Extension=.ttf,Path=/usr/share/fonts/pandoc-fonts/bios-fonts/,UprightFont=hacknerd]{}
+\setstcolor{StrikethroughColor}
+\usepackage[fontsize=0.20833334in]{fontsize}%20px
+\linespread{1.4166666}%1.7/1.2
+%headings
+\usepackage{sectsty}
+\usepackage{titlesec}
+\titleformat{\section}{\fontsize{3em}{\baselineskip}\headingfont\bfseries\filcenter}{}{}{{\dosfonttwo\{ }}%blinking not possible in PDF
+\titlespacing{\section}{0pt}{0.67em}{0.67em}
+\let\Section\section
+\renewcommand{\section}[1]{\Section{#1 {\dosfonttwo \}}}}
+\titleformat*{\subsection}{\fontsize{1em}{\baselineskip}\headingfont\bfseries}
+\titlespacing{\subsection}{0pt}{0pt}{0pt}
+\let\Subsection\subsection
+\renewcommand{\subsection}[1]{
+	\begin{tcolorbox}[
+		on line,
+		notitle,
+		frame empty,
+		sharp corners,
+		boxsep=0pt,
+		top=14\px,
+		bottom=14\px,
+		right=10\px,
+		left=10\px,
+		colback=HeadingBackgroundColor,
+		coltext=black
+	]
+	\Subsection{#1}
+	\end{tcolorbox}
+}
+\titleformat*{\subsubsection}{\fontsize{1em}{\baselineskip}\headingfont\bfseries}
+\titlespacing{\subsubsection}{0pt}{0pt}{0pt}
+\let\Subsubsection\subsection
+\renewcommand{\subsubsection}[1]{
+	\begin{tcolorbox}[
+		on line,
+		notitle,
+		frame empty,
+		sharp corners,
+		boxsep=0pt,
+		top=0\px,
+		bottom=0\px,
+		right=10\px,
+		left=10\px,
+		colback=HeadingBackgroundColor,
+		coltext=black
+	]
+	\Subsubsection{#1}
+	\end{tcolorbox}
+}
+\titleformat*{\paragraph}{\fontsize{1em}{\baselineskip}\headingfont\bfseries}
+\titlespacing{\paragraph}{0pt}{0pt}{0em}
+\let\Paragraph\paragraph
+\renewcommand{\paragraph}[1]{
+	\begin{tcolorbox}[
+		on line,
+		notitle,
+		sharp corners,
+		boxsep=0pt,
+		top=0\px,
+		bottom=0\px,
+		right=10\px,
+		left=10\px,
+		boxrule=1\px,
+		colframe=white,
+		colback=BackgroundColor,
+		coltext=TextColor
+	]
+	%TODO: fix padding and investigate bug
+	\Paragraph{#1}\ %BUG: without empty space content goes outside of box
+	\end{tcolorbox}
+}
+\titleformat{\subparagraph}{\fontsize{1em}{\baselineskip}\headingfont\bfseries}{}{}{}
+\let\Subparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\Subparagraph{>>\hspace{0.5em}#1\hspace{0.5em}<<}}
+\raggedright
+\usepackage[most]{tcolorbox}
+%quotes
+\renewenvironment{quote}{
+	\begin{tcolorbox}[
+		notitle,
+		frame hidden,
+		interior hidden,
+		sharp corners,
+		enhanced,
+		boxrule=0pt,
+		colback=BackgroundColor,
+		coltext=TextColor,
+		boxsep=0em,
+		top=9\px,
+		bottom=9\px,
+		right=18\px,
+		left=18\px,
+		borderline west={5\px}{0pt}{white}
+	]
+}{
+	\end{tcolorbox}
+	\color{TextColor}
+}
+%code background
+\newenvironment{Shaded}{
+	\begin{tcolorbox}[
+		notitle,
+		breakable,
+		frame hidden,
+		enhanced,
+		boxrule=0pt,
+		colback=BackgroundColor,
+		coltext=UncheckedColor,
+		arc=6\px,
+		outer arc=6\px,
+		boxsep=0em,
+	]
+}{
+	\end{tcolorbox}
+	\vspace{2em}
+}
+%syntax highlighting - taken from CodeMirror
+\newcommand{\AlertTok}[1]{#1}
+\newcommand{\AnnotationTok}[1]{#1}
+\newcommand{\AttributeTok}[1]{\textcolor[HTML]{FFCB6B}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\BaseNTok}[1]{#1}
+\newcommand{\BuiltInTok}[1]{\textcolor[HTML]{DECB6B}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\CharTok}[1]{#1}
+\newcommand{\CommentTok}[1]{\textcolor[HTML]{546E7A}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\CommentVarTok}[1]{#1}
+\newcommand{\ConstantTok}[1]{#1}
+\newcommand{\ControlFlowTok}[1]{#1}
+\newcommand{\DataTypeTok}[1]{\textcolor[HTML]{DECB6B}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\DecValTok}[1]{\textcolor[HTML]{F77669}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\DocumentationTok}[1]{#1}
+\newcommand{\ErrorTok}[1]{\colorbox[HTML]{EC5F67}{\textcolor{white}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[HTML]{F77669}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\FunctionTok}[1]{\textcolor[RGB]{233,237,237}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{#1}
+\newcommand{\KeywordTok}[1]{\textcolor[RGB]{199,146,234}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\NormalTok}[1]{\textcolor[HTML]{82B1FF}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\OperatorTok}[1]{\textcolor[RGB]{233,237,237}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\OtherTok}[1]{#1}
+\newcommand{\PreprocessorTok}[1]{#1}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[HTML]{C3E88D}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[HTML]{C3E88D}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\StringTok}[1]{\textcolor[HTML]{C3E88D}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\VariableTok}[1]{\textcolor[HTML]{82B1FF}{\FancyVerbBreakStart#1\FancyVerbBreakStop}}
+\newcommand{\VerbatimStringTok}[1]{#1}
+\newcommand{\WarngingTok}[1]{#1}
+%no highlighting code
+\RecustomVerbatimEnvironment{verbatim}{Verbatim}{breaklines,breakanywhere}%https://tex.stackexchange.com/a/469504
+\BeforeBeginEnvironment{verbatim}{\begin{Shaded}}
+\AfterEndEnvironment{verbatim}{\end{Shaded}}
+%inline code behaviour
+\def\VERB|#1|{\hspace{3\px}\Verb[breaklines,breakanywhere,commandchars=\\\{\}]|\textcolor{InlineCodeColor}{#1}|\hspace{3\px}}
+\renewcommand{\texttt}[1]{\VERB|#1|}
+%tables
+%deviation: not making table head bold and capital to give user more freedom
+%deviation: not stretching table across width for aesthetics
+\makeatletter
+\let\Tabularcr\@arraycr
+\def\@arraycr{\Tabularcr\hline}
+\makeatother
+	%https://stackoverflow.com/a/3175486 second comment
+\usepackage{xstring}
+\usepackage{longtable}
+\let\Longtable\longtable
+\let\EndLongtable\endlongtable
+\def\table#1{\Longtable{#1}}
+%deviation: not stretching table across width for aesthetics
+%deviation: not making table head bold to give user more freedom
+\setlength{\tabcolsep}{16\px}
+\renewcommand{\arraystretch}{1.3}%eyeballing
+\arrayrulecolor{white}
+\renewenvironment{longtable}[3]{
+	\gdef\blacky{\color{black}}
+	\newcolumntype{L}{|>{\blacky}l}
+	\newcolumntype{R}{|>{\blacky}r}
+	\newcolumntype{C}{|>{\blacky}c}
+	\StrGobbleLeft{#3}{2}[\pream]
+	\StrGobbleRight{\pream}{2}[\pream]
+	\StrSubstitute{\pream}{l}{L}[\pream]
+	\StrSubstitute{\pream}{r}{R}[\pream]
+	\StrSubstitute{\pream}{c}{C}[\pream]
+	\edef\pream{{\pream|}}
+	\newcommand{\toprule}[2]{}
+	\newcommand{\midrule}[2]{}
+	\def\endhead{\gdef\blacky{}\color{TextColor}}
+	\newcommand{\bottomrule}[2]{}
+	\renewcommand{\endlastfoot}{}
+	\begin{center}
+	\expandafter\table\pream
+	\noalign{\global\arrayrulewidth=1\px}%https://tex.stackexchange.com/a/337790
+	\hline
+	\rowcolor{DosBaseColor}
+}{
+	\EndLongtable
+	\end{center}
+}
+%lists
+	%task lists
+\newcommand{\boxtimes}{\color{UncheckedColor}\langle\hphantom{*}\rangle}
+\newcommand{\square}{\color{UncheckedColor}\langle$$\color{white}*$$\color{UncheckedColor}\rangle}
+	%unordered lists
+\renewcommand{\labelitemi}{\textcolor{ListColor}{♦} }
+\renewcommand{\labelitemii}{\textcolor{ListColor}{♦} }
+\renewcommand{\labelitemiii}{\textcolor{ListColor}{♦} }
+\renewcommand{\labelitemiv}{\textcolor{ListColor}{♦} }
+	%definition lists
+\renewcommand{\descriptionlabel}[1]{#1}%remove bold
+\usepackage{enumitem}
+\setlist[description]{style=nextline,leftmargin=0pt}
+\def\colon{: }
+\AtBeginEnvironment{description}{
+	\AddToHook{para/begin}[colon]{\colon}
+	\let\Item\item
+	\renewcommand{\item}[1][\null]{\gdef\colon{}\Item[#1]:\gdef\colon{: }}
+}
+\AtEndEnvironment{description}{
+	\RemoveFromHook{para/begin}[colon]
+}
+%horizontal rules
+\let\Rule\rule
+\newcounter{i}
+\renewcommand{\rule}[2]{\textcolor{RuleColor}{
+	\setcounter{i}{19}
+	\loop
+	\Rule{1ex}{1\px}
+	\addtocounter{i}{-1}
+	\ifnum \value{i}>0
+	\repeat
+}}
+%document
+\begin{document}
+$body$
+\end{document}
