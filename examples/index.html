@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pandoc Themes Preview</title>
+<style>
+  :root{
+    --bg:#0b0d10;
+    --panel:#12161a;
+    --panel-2:#171c21;
+    --text:#e6eaf0;
+    --muted:#98a2b3;
+    --accent:#59a6ff;
+    --accent-2:#7c5cff;
+    --ok:#32d583;
+    --warn:#f79009;
+    --card-radius:14px;
+    --button-radius:10px;
+    --shadow:0 6px 24px rgba(0,0,0,.35);
+    --grid-gap:18px;
+    --max-content:1320px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    background:linear-gradient(180deg, #0b0d10 0%, #0e1216 100%);
+    color:var(--text);
+  }
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  .wrap{max-width:var(--max-content);margin:0 auto;padding:28px 20px 80px}
+  header{
+    display:flex;flex-wrap:wrap;align-items:center;gap:16px;justify-content:space-between;margin-bottom:20px
+  }
+  .brand{display:flex;align-items:center;gap:14px}
+  .logo{
+    width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    display:grid;place-items:center;box-shadow:var(--shadow);
+    font-weight:800;color:#0b0d10
+  }
+  h1{font-size:20px;line-height:1.2;margin:0}
+  .sub{color:var(--muted);font-size:13px}
+
+  .controls{display:flex;gap:10px;align-items:center}
+  .search{position:relative}
+  .search input{
+    background:var(--panel);border:1px solid #1f252b;color:var(--text);
+    padding:12px 14px 12px 40px;border-radius:12px;min-width:240px;outline:none
+  }
+  .search svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);fill:var(--muted)}
+
+  .grid{
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(325px,1fr));gap:var(--grid-gap)
+  }
+  .card{
+    background:linear-gradient(180deg,var(--panel) 0%, var(--panel-2) 100%);
+    border:1px solid #1b2127;border-radius:var(--card-radius);box-shadow:var(--shadow);
+    overflow:hidden;display:flex;flex-direction:column
+  }
+  .thumb{
+    position:relative;background:#0b0f13;border-bottom:1px solid #1b2127;height:275px;overflow:hidden
+  }
+  .thumb iframe{
+    width:100%;height:100%;border:0;opacity:0;transition:opacity .4s ease;pointer-events:none
+  }
+  /* hint removed */
+  .thumb .click-mask{
+    position:absolute;inset:0;border:0;padding:0;margin:0;background:transparent;cursor:zoom-in;
+    color:transparent;outline:none
+  }
+  .meta{padding:12px 12px 6px}
+  .title{font-size:15px;font-weight:700;margin:0 0 6px}
+  .name{color:var(--muted);font-size:12px}
+  .actions{display:flex;gap:8px;flex-wrap:wrap;padding:10px 12px 14px}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;border:1px solid #26303a;background:#121921;
+    color:#dbe3ee;padding:9px 12px;border-radius:var(--button-radius);font-size:12px;cursor:pointer
+  }
+  .btn:hover{background:#0f151c}
+  .btn.ghost{background:transparent}
+  .btn.ok{border-color:#234b3a;color:#e9fff4;background:#0e1a17}
+  .btn.warn{border-color:#3f2a12;background:#1b140d;color:#ffe7c4}
+
+  /* Overlay preview */
+  .overlay{position:fixed;inset:0;background:rgba(10,12,14,.86);backdrop-filter:blur(4px);
+    display:none;align-items:center;justify-content:center;z-index:50}
+  .overlay[data-open="true"]{display:flex}
+  .overlay-inner{position:relative;width:min(96vw,1200px);height:min(92vh,1100px);background:#0c1116;border:1px solid #1f2933;border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
+  .overlay iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#0c1116}
+  .overlay .close{
+    position:absolute;right:10px;top:10px;z-index:2
+  }
+
+  /* Footer */
+  footer{max-width:var(--max-content);margin:40px auto 20px;color:var(--muted);padding:0 20px;font-size:12px}
+
+  @media (max-width:600px){
+    .search input{min-width:0;width:100%}
+    header{gap:10px}
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">PT</div>
+        <div>
+          <h1>Pandoc Themes Preview</h1>
+          <div class="sub">Click a card to preview; open or download from actions</div>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="search">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 14h-.79l-.28-.27a6.471 6.471 0 0 0 1.57-4.23 6.5 6.5 0 1 0-6.5 6.5 6.471 6.471 0 0 0 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+          <input id="filter" type="search" placeholder="Search themes..." autocomplete="off" />
+        </div>
+        <a class="btn ghost" href="https://github.com/cab-1729/Pandoc-Themes" target="_blank" rel="noopener">Repository</a>
+      </div>
+    </header>
+
+    <div id="grid" class="grid" aria-live="polite"></div>
+  </div>
+
+  <!-- Overlay Preview -->
+  <div id="overlay" class="overlay" aria-hidden="true">
+    <div class="overlay-inner">
+      <a class="btn close" id="overlayClose" href="#" aria-label="Close preview">Close ✕</a>
+      <iframe id="overlayFrame" title="PDF preview"></iframe>
+    </div>
+  </div>
+
+<footer>
+  Built from examples in this folder. Source templates live in the repository. Theme preview uses native browser PDF viewer; first page is shown in-card, full document in overlay. If the PDF does not render, use the Open link.
+  <br>Repository: <a href="https://github.com/cab-1729/Pandoc-Themes" target="_blank" rel="noopener">cab-1729/Pandoc-Themes</a>
+</footer>
+
+<script>
+  // List of example PDFs (basename without extension)
+  const themes = [
+    "barfi","bios","chocolate-box","cobalt","drake-ayu","drake-black","drake-dark","drake-google","drake-juejin","drake-light","drake-material","drake-purple","drake-vue","drake","evangelion","gitbook-azure","gitbook-slate","gitbook-teal","gothic","lapis-dark","lapis","law","mint-dark","mint","mo-dark","mo","newsprint","notes-dark","notion-dark-classic","notion-dark-enhanced","notion-darker-classic","notion-darker-enhanced","notion-light-classic","notion-light-enhanced","onedark","orangeheart","panda","paradox-phantom","paradox-seraph","pie-dark","pie","purple-blue","purple-cesno","purple-classic","purple-green","purple-plain","purple","rubrication","scrolls-dark","scrolls","solarized-dark","solarized","turing","ursine-polar","ursine-umbra","xydark","xylight"
+  ].sort((a,b)=>a.localeCompare(b));
+
+  const repositoryBase = "https://github.com/cab-1729/Pandoc-Themes/blob/main/";
+  const grid = document.getElementById('grid');
+  const filterInput = document.getElementById('filter');
+  const overlay = document.getElementById('overlay');
+  const overlayFrame = document.getElementById('overlayFrame');
+  const overlayClose = document.getElementById('overlayClose');
+
+  function createCard(name){
+    const card = document.createElement('article');
+    card.className = 'card';
+
+    const thumb = document.createElement('div');
+    thumb.className = 'thumb';
+    // Hide toolbar via URL params where supported
+    thumb.dataset.pdf = `${name}.pdf#page=1&view=FitH&zoom=page-width&toolbar=0&navpanes=0&statusbar=0`;
+
+    const iframe = document.createElement('iframe');
+    iframe.setAttribute('title', `${name} preview`);
+    iframe.setAttribute('loading', 'lazy');
+    iframe.dataset.src = thumb.dataset.pdf;
+    thumb.appendChild(iframe);
+
+    // Clickable mask to intercept any PDF link clicks
+    const mask = document.createElement('button');
+    mask.type = 'button';
+    mask.className = 'click-mask';
+    mask.setAttribute('aria-label', `Preview ${name}`);
+    thumb.appendChild(mask);
+
+    // no hint bar
+
+    const meta = document.createElement('div');
+    meta.className = 'meta';
+    const title = document.createElement('div');
+    title.className = 'title';
+    title.textContent = name.replace(/-/g,' ');
+    const filename = document.createElement('div');
+    filename.className = 'name';
+    filename.textContent = name + '.pdf';
+    meta.appendChild(title);
+    meta.appendChild(filename);
+
+    const actions = document.createElement('div');
+    actions.className = 'actions';
+
+    const previewBtn = document.createElement('button');
+    previewBtn.className = 'btn';
+    previewBtn.type = 'button';
+    previewBtn.textContent = 'Preview';
+    previewBtn.addEventListener('click', (e)=>{ e.preventDefault(); openOverlay(); });
+
+    const texLink = document.createElement('a');
+    texLink.className = 'btn';
+    texLink.href = repositoryBase + encodeURIComponent(name) + '.tex';
+    texLink.target = '_blank';
+    texLink.rel = 'noopener';
+    texLink.textContent = 'View .tex';
+
+    const openPdf = document.createElement('a');
+    openPdf.className = 'btn ok';
+    openPdf.href = `./${encodeURIComponent(name)}.pdf`;
+    openPdf.target = '_blank';
+    openPdf.rel = 'noopener';
+    openPdf.textContent = 'Open PDF';
+
+    const downloadPdf = document.createElement('a');
+    downloadPdf.className = 'btn ghost';
+    downloadPdf.href = `./${encodeURIComponent(name)}.pdf`;
+    downloadPdf.setAttribute('download', `${name}.pdf`);
+    downloadPdf.textContent = 'Download';
+
+    actions.appendChild(previewBtn);
+    actions.appendChild(texLink);
+    actions.appendChild(openPdf);
+    actions.appendChild(downloadPdf);
+
+    card.appendChild(thumb);
+    card.appendChild(meta);
+    card.appendChild(actions);
+
+    // Click to open overlay with full PDF
+    let previewLoaded = false;
+    function openOverlay(){
+      overlayFrame.src = `./${encodeURIComponent(name)}.pdf#view=FitH&toolbar=0&navpanes=0&statusbar=0`; // full document, hide UI if supported
+      overlay.setAttribute('data-open','true');
+      overlay.setAttribute('aria-hidden','false');
+    }
+    // On desktop/mobile, use click on mask
+    mask.addEventListener('click', (e)=>{ e.preventDefault(); openOverlay(); });
+
+    // Lazy load the small iframe when in view
+    const io = new IntersectionObserver((entries, obs)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting && !previewLoaded){
+          iframe.src = iframe.dataset.src;
+          iframe.addEventListener('load', ()=>{ iframe.style.opacity = '1'; });
+          previewLoaded = true;
+          obs.unobserve(entry.target);
+        }
+      })
+    },{ rootMargin:'200px' });
+    io.observe(thumb);
+
+    return card;
+  }
+
+  function render(list){
+    grid.innerHTML = '';
+    list.forEach(name=> grid.appendChild(createCard(name)));
+  }
+
+  // Filter
+  filterInput.addEventListener('input', ()=>{
+    const q = filterInput.value.trim().toLowerCase();
+    if(!q){ render(themes); return; }
+    const filtered = themes.filter(n=> n.toLowerCase().includes(q));
+    render(filtered);
+  });
+
+  // Overlay controls
+  function closeOverlay(){
+    overlay.removeAttribute('data-open');
+    overlay.setAttribute('aria-hidden','true');
+    // keep src to allow quick reopen; clear if you need memory: overlayFrame.src = '';
+  }
+  overlay.addEventListener('click', (e)=>{ if(e.target === overlay) closeOverlay(); });
+  overlayClose.addEventListener('click', (e)=>{ e.preventDefault(); closeOverlay(); });
+  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeOverlay(); });
+
+  // Initial render
+  render(themes);
+</script>
+</body>
+</html>
+
+
