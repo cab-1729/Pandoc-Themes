@@ -28,13 +28,16 @@
 \usepackage{footnotehyper}
 \usepackage{graphicx}
 \makeatletter
-\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
-\makeatother
-% Scale images if necessary, so that they will not overflow the page
-% margins by default, and it is still possible to overwrite the defaults
-% using explicit options in \includegraphics[width, height, ...]{}
-\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
 % Set default figure placement to htbp
 \makeatletter
 \def\fps@figure{htbp}
@@ -287,6 +290,7 @@
 	%https://stackoverflow.com/a/3175486 second comment
 \usepackage{xstring}
 \usepackage{longtable}
+\usepackage{comment}
 \let\Longtable\longtable
 \let\EndLongtable\endlongtable
 \def\table#1{\Longtable{#1}}
@@ -295,6 +299,7 @@
 \setlength{\tabcolsep}{0.7em}
 \renewcommand{\arraystretch}{1.5}%eyeballing
 \arrayrulecolor{BorderColor}
+\excludecomment{ignore}
 \renewenvironment{longtable}[3]{
 	\vspace{1em}
 	\StrGobbleLeft{#3}{2}[\pream]
@@ -303,9 +308,9 @@
 	\StrSubstitute{\pream}{r}{|r}[\pream]
 	\StrSubstitute{\pream}{c}{|c}[\pream]
 	\edef\pream{{\pream|}}
+	\renewcommand{\endfirsthead}{}
 	\newcommand{\toprule}[2]{}
 	\newcommand{\midrule}[2]{}
-	\def\endhead{}
 	\newcommand{\bottomrule}[2]{}
 	\renewcommand{\endlastfoot}{}
 	\begin{center}
